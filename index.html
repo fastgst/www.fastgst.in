@@ -103,6 +103,20 @@
 
     <style>
         /* Critical CSS */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
         .gradient-bg {
             background: rgb(71 66 239);
         }
@@ -219,24 +233,24 @@
     </header>
 
     <!-- Hero Section -->
-    <main>
+    <main class="overflow-x-hidden">
         <section class="gradient-bg hero-pattern min-h-screen flex items-center relative overflow-hidden">
             <div class="absolute inset-0 bg-black/10"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center">
                     <div class="fade-in">
-                        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 leading-tight pt-16 md:pt-0">
                             Smart, Centralized<br>
                             <span class="text-blue-200">HSN & SAC Lookup APIs</span>
                         </h1>
-                        <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                        <p class="text-lg sm:text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
                             Tired of scattered, outdated GST HSN/SAC codes?
                         </p>
                         <div class="fade-divider"></div>
-                        <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto mt-4">
+                        <p class="text-lg sm:text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto mt-4">
                             FastGST's Tax Lookup API offers a centralized, fuzzy-searchable GST code lookup to speed up classification and reduce errors.
                         </p>
-                        <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto flex items-center justify-center gap-2">
+                        <p class="text-lg sm:text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto flex items-center justify-center gap-2">
                             100% Free For Testing
                             <svg class="w-6 h-6 text-blue-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -271,14 +285,14 @@
 
 
         <!-- Live API Section -->
-        <section id="api" class="py-20 bg-gray-50">
+        <section id="api" class="py-20 bg-gray-50 overflow-x-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                         What is Tax Lookup API?
                     </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                         A simple, reliable API to search and retrieve updated HSN/SAC codes — built for integration into your billing, ERP, or commerce platforms.
                     </p>
                 </div>
@@ -297,9 +311,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">CBIC & GST Council Sync</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">CBIC & GST Council Sync</h3>
                             </div>
-                            <p class="text-gray-600">
+                            <p class="text-sm md:text-base text-gray-600">
                                 We strive to stay in sync with the latest <strong>CBIC</strong> and <strong>GST Council</strong> notifications to keep data fresh and relevant.
                             </p>
                         </div>
@@ -313,9 +327,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">Vector-Powered Fuzzy Search</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">Vector-Powered Fuzzy Search</h3>
                             </div>
-                            <p class="text-gray-600">
+                            <p class="text-sm md:text-base text-gray-600">
                                 Built with AI-grade vector search, our API tries to approximate to the most relevant HSN/SAC codes even from imperfect keywords.
                             </p>
                         </div>
@@ -328,9 +342,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">Full Developer Control</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">Full Developer Control</h3>
                             </div>
-                            <p class="text-gray-600">Built for developers in mind, Manage your keys, momnitor usage, quotas, and billing in Developer portal.</p>
+                            <p class="text-sm md:text-base text-gray-600">Built for developers in mind, Manage your keys, monitor usage, quotas, and billing in Developer portal.</p>
                         </div>
 
                         <!-- Feature: Hierarchical Classification -->
@@ -341,9 +355,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h6M9 5l7 7-7 7"></path>
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">Structured GST Classification</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">Structured GST Classification</h3>
                             </div>
-                            <p class="text-gray-600">
+                            <p class="text-sm md:text-base text-gray-600">
                                 Lookup for parent or child with organized Sections, Chapters, Headings, and Tariff items delivered in clean JSON.
                             </p>
                         </div>
@@ -359,9 +373,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m4-13H8a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">Detailed Metadata</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">Detailed Metadata</h3>
                             </div>
-                            <p class="text-gray-600">
+                            <p class="text-sm md:text-base text-gray-600">
                                 Access a rich set of metadata including GST rates, descriptions, cess applicability, and more ready for direct use in your apps.
                             </p>
                         </div>
@@ -374,49 +388,52 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m4-13H8a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">GST Classification</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">GST Classification</h3>
                             </div>
-                            <p class="text-gray-600">
+                            <p class="text-sm md:text-base text-gray-600">
                                 Easily identify GST applicability — including <strong>Standard</strong>, <strong>Zero Rated</strong>, <strong>Exempt</strong>, <strong>RCM</strong>, <strong>Composition</strong>, and more. Perfect for building tax-aware systems with clarity and precision.
                             </p>
                         </div>
 
                         <!-- Cess Types Card -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mt-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                             <div class="flex items-center space-x-3 mb-4">
                                 <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
                                     <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-semibold text-gray-900">Cess Details</h3>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-900">Cess Details</h3>
                             </div>
-                            <p class="text-gray-600">
+                            <p class="text-sm md:text-base text-gray-600">
                                 Capture cess breakdowns like <strong>Compensation Cess</strong>, <strong>NCCD</strong>, <strong>Health Cess</strong>, and more — right inside the API response. Helps in transparent tax calculations and reporting.
                             </p>
                         </div>
-
-
-
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- API Example UI -->
-                    <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700">
+        <!-- API Demo Section -->
+        <section class="py-20 bg-white overflow-x-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- API Example UI -->
+                <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700 max-w-4xl mx-auto">
                         <h3 class="text-2xl font-bold text-white mb-6">Try a Live API Call</h3>
                         <div class="space-y-4">
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <button class="px-3 py-1 bg-primary-500 text-white rounded-full text-sm hover:bg-primary-600 transition-colors" onclick="showTab('validation')">996601</button>
+                                <button class="px-2 sm:px-3 py-1 bg-primary-500 text-white rounded-full text-xs sm:text-sm hover:bg-primary-600 transition-colors" onclick="showTab('validation')">996601</button>
                             </div>
                             
                             <!-- Tab Navigation -->
-                            <div class="flex space-x-1 mb-4 bg-gray-800 p-1 rounded-lg">
-                                <button class="tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" onclick="showTab('validation')" id="tab-validation">
+                            <div class="flex flex-wrap gap-1 mb-4 bg-gray-800 p-1 rounded-lg">
+                                <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('validation')" id="tab-validation">
                                     HSN Validation
                                 </button>
-                                <button class="tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" onclick="showTab('taxes')" id="tab-taxes">
+                                <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('taxes')" id="tab-taxes">
                                     Tax Info
                                 </button>
-                                <button class="tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" onclick="showTab('parent')" id="tab-parent">
+                                <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('parent')" id="tab-parent">
                                     Hierarchical Parent
                                 </button>
                             </div>
@@ -426,12 +443,12 @@
                                 <!-- HSN Validation Tab -->
                                 <div id="tab-content-validation" class="tab-content">
                                     <div class="mb-3">
-                                        <div class="flex items-center space-x-2 mb-2">
+                                        <div class="flex flex-wrap items-center gap-2 mb-2">
                                             <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
-                                            <span class="text-gray-300 text-sm font-mono">/api/v1/product/996601/validate</span>
+                                            <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/product/996601/validate</span>
                                         </div>
                                         <div class="text-xs text-gray-400 mb-3">Response:</div>
-                                        <pre class="text-xs text-gray-200 overflow-x-auto"><code>{
+                                        <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code>{
   "data": {
     "hsn": "996601",
     "isValid": true,
@@ -446,12 +463,12 @@
                                 <!-- Tax Info Tab -->
                                 <div id="tab-content-taxes" class="tab-content hidden">
                                     <div class="mb-3">
-                                        <div class="flex items-center space-x-2 mb-2">
+                                        <div class="flex flex-wrap items-center gap-2 mb-2">
                                             <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
-                                            <span class="text-gray-300 text-sm font-mono">/api/v1/product/996601/taxes/gst</span>
+                                            <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/product/996601/taxes/gst</span>
                                         </div>
                                         <div class="text-xs text-gray-400 mb-3">Response:</div>
-                                        <pre class="text-xs text-gray-200 overflow-x-auto"><code>{
+                                        <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code>{
   "data": {
     "hsn": "996601",
     "section": "Services",
@@ -483,12 +500,12 @@
                                 <!-- Hierarchical Parent Tab -->
                                 <div id="tab-content-parent" class="tab-content hidden">
                                     <div class="mb-3">
-                                        <div class="flex items-center space-x-2 mb-2">
+                                        <div class="flex flex-wrap items-center gap-2 mb-2">
                                             <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
-                                            <span class="text-gray-300 text-sm font-mono">/api/v1/hsn/996601/parent</span>
+                                            <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/hsn/996601/parent</span>
                                         </div>
                                         <div class="text-xs text-gray-400 mb-3">Response:</div>
-                                        <pre class="text-xs text-gray-200 overflow-x-auto"><code>{
+                                        <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code>{
   "data": {
     "parentCode": "9966",
     "description": "Other services",
@@ -511,18 +528,18 @@
 
 
         <!-- Pricing Section -->
-        <section id="pricing" class="py-20 bg-white">
+        <section id="pricing" class="py-20 bg-white overflow-x-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                         Simple, Transparent Pricing
                     </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                         Start free, scale as you grow. No hidden fees, no surprises.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-4 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     <!-- Free Plan -->
                     <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                         <div class="text-center">
@@ -658,13 +675,13 @@
         </section>
 
         <!-- Why FastGST Section -->
-        <section id="about" class="py-20 bg-gray-50">
+        <section id="about" class="py-20 bg-gray-50 overflow-x-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                         Tax Lookup API
                     </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                         Built for developers, designed for compliance, optimized for performance.
                     </p>
                 </div>
@@ -727,8 +744,8 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
+            <!-- Footer -->
+        <footer class="bg-gray-900 text-white overflow-x-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">
