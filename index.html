@@ -388,9 +388,17 @@
                             </div>
                             <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">GST Classification</h3>
                         </div>
-                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                            Easily identify GST applicability — including <strong>Standard</strong>, <strong>Zero Rated</strong>, <strong>Exempt</strong>, <strong>RCM</strong>, <strong>Composition</strong>, and more. Perfect for building tax-aware systems with clarity and precision.
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600 mb-4">
+                            Comprehensive GST type identification with 8 distinct categories including conditional GST scenarios.
                         </p>
+                        <div class="bg-gray-50 rounded-lg p-3 text-xs">
+                            <div class="grid grid-cols-2 gap-2 text-gray-600">
+                                <span><code class="bg-white px-1 rounded">STANDARD</code> 5%, 12%, 18%, 28%</span>
+                                <span><code class="bg-white px-1 rounded">ZERO_RATED</code> Exports & SEZ</span>
+                                <span><code class="bg-white px-1 rounded">EXEMPT</code> No GST, no ITC</span>
+                                <span><code class="bg-white px-1 rounded">CONDITIONAL</code> Job work, thresholds</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Cess Details -->
@@ -403,9 +411,17 @@
                             </div>
                             <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Cess Details</h3>
                         </div>
-                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                            Capture cess breakdowns like <strong>Compensation Cess</strong>, <strong>NCCD</strong>, <strong>Health Cess</strong>, and more — right inside the API response. Helps in transparent tax calculations and reporting.
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600 mb-4">
+                            Advanced cess classification with conditional scenarios for precise tax calculations.
                         </p>
+                        <div class="bg-gray-50 rounded-lg p-3 text-xs">
+                            <div class="grid grid-cols-2 gap-2 text-gray-600">
+                                <span><code class="bg-white px-1 rounded">COMPENSATION</code> Sin/luxury goods</span>
+                                <span><code class="bg-white px-1 rounded">NCCD</code> Tobacco, pan masala</span>
+                                <span><code class="bg-white px-1 rounded">HEALTH</code> Medical devices</span>
+                                <span><code class="bg-white px-1 rounded">CONDITIONAL</code> Usage-based rates</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -514,12 +530,151 @@
                             </div>
                         </div>
 
-                        <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
-                            Goto Developer Portal
-                        </a>
+                                                    <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
+                                Goto Developer Portal
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Data Structure Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center mb-16">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                        Did you know there are many types of GST?
+                    </h2>
+                    <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                        Our API delivers detailed information about which tax type or even sub-types, your goods or service falls into, so you can take reliable actions.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- GST Types Table -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="bg-primary-50 px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">GST Classification Types</h3>
+                            <p class="text-sm text-gray-600 mt-1">8 distinct categories with conditional scenarios</p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left font-medium text-gray-700">GST Type</th>
+                                        <th class="px-4 py-3 text-left font-medium text-gray-700">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">STANDARD</code></td>
+                                        <td class="px-4 py-3 text-gray-600">Standard GST slab rates</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-green-50 text-green-700 px-2 py-1 rounded text-xs">ZERO_RATED</code></td>
+                                        <td class="px-4 py-3 text-gray-600">Exports & SEZ supplies</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-yellow-50 text-yellow-700 px-2 py-1 rounded text-xs">EXEMPT</code></td>
+                                        <td class="px-4 py-3 text-gray-600">No GST due to exemption notifications</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-purple-50 text-purple-700 px-2 py-1 rounded text-xs">CONDITIONAL</code></td>
+                                        <td class="px-4 py-3 text-gray-600">GST under specific conditions</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-red-50 text-red-700 px-2 py-1 rounded text-xs">REVERSE_CHARGE</code></td>
+                                        <td class="px-4 py-3 text-gray-600">RCM - recipient pays GST</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-indigo-50 text-indigo-700 px-2 py-1 rounded text-xs">COMPOSITION</code></td>
+                                        <td class="px-4 py-3 text-gray-600">Fixed-rate for small taxpayers</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Cess Types Table -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="bg-primary-50 px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Cess Classification</h3>
+                            <p class="text-sm text-gray-600 mt-1">Advanced cess types with conditional scenarios</p>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left font-medium text-gray-700">Cess Type</th>
+                                        <th class="px-4 py-3 text-left font-medium text-gray-700">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-gray-50 text-gray-700 px-2 py-1 rounded text-xs">NONE</code></td>
+                                        <td class="px-4 py-3 text-gray-600">No cess applicable</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-orange-50 text-orange-700 px-2 py-1 rounded text-xs">COMPENSATION</code></td>
+                                        <td class="px-4 py-3 text-gray-600">Sin/luxury goods</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-red-50 text-red-700 px-2 py-1 rounded text-xs">NCCD</code></td>
+                                        <td class="px-4 py-3 text-gray-600">National Calamity Contingent Duty</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs">HEALTH</code></td>
+                                        <td class="px-4 py-3 text-gray-600">Health Cess on medical devices</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3"><code class="bg-purple-50 text-purple-700 px-2 py-1 rounded text-xs">CUSTOM</code></td>
+                                        <td class="px-4 py-3 text-gray-600">Special government notifications</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conditional Scenarios -->
+                <div class="mt-12 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-primary-50 to-blue-50 px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Conditional Tax Scenarios</h3>
+                        <p class="text-sm text-gray-600 mt-1">Advanced classification for complex tax scenarios</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                                    Conditional GST Types
+                                </h4>
+                                <div class="space-y-2 text-sm text-gray-600">
+                                    <div><strong>JOB_WORK:</strong> Work based excemptions</div>
+                                    <div><strong>TURNOVER_BASED:</strong> Threshold-based exemptions</div>
+                                    <div><strong>TYPE_OF_SUPPLY:</strong> Intra/inter-state variations</div>
+                                    <div><strong>RECIPIENT_TYPE:</strong> Business vs individual rules</div>
+                                    <div><strong>USAGE_BASED:</strong> End-use dependent rates</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                                    <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                                    Conditional Cess Types
+                                </h4>
+                                <div class="space-y-2 text-sm text-gray-600">
+                                    <div><strong>PRODUCT_TYPE:</strong> Luxury vs standard variants</div>
+                                    <div><strong>SPECIFICATION:</strong> Engine size, weight-based rates</div>
+                                    <div><strong>USAGE_TYPE:</strong> Commercial vs personal use</div>
+                                    <div><strong>IMPORT_VS_DOMESTIC:</strong> Origin-based treatment</div>
+                                    <div><strong>SEZ_SUPPLIES:</strong> Export-oriented exemptions</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
