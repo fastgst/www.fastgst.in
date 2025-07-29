@@ -1,10 +1,10 @@
-name: Deploy Static Site to Azure Blob
+name: Copy to Azure Blob
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Enables manual trigger
+  workflow_dispatch:
 
 jobs:
   upload:
@@ -14,12 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload static site to Azure Blob Storage
+      - name: Copy static site to Azure Blob Storage
         uses: azure/cli@v1
         with:
           inlineScript: |
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
-              --source ./web \
+              --source ./ \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }}
