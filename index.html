@@ -93,12 +93,12 @@
     </script>
 
     <!-- Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'G-FTSN7KVKLV');
     </script>
 
     <style>
@@ -260,11 +260,11 @@
                             </svg>
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                            <a href="https://docs.fastgst.in/api/taxlookup" target="_blank" class="bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-700 transition-colors text-base sm:text-lg border border-gray-600 flex items-center gap-2">
+                            <a href="https://docs.fastgst.in/api/taxlookup" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'See API Documentation'});" class="bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-700 transition-colors text-base sm:text-lg border border-gray-600 flex items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bookmark"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" /></svg>
                                 See API Documentation
                             </a>
-                            <a href="https://developers.fastgst.in" target="_blank" class="bg-white text-primary-500 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-base sm:text-lg glow-border flex items-center gap-2">
+                            <a href="https://developers.fastgst.in" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Launch Developer Portal'});" class="bg-white text-primary-500 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-base sm:text-lg glow-border flex items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tools">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" />
@@ -431,7 +431,7 @@
         <section class="py-20 bg-white overflow-x-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- API Example UI -->
-                <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700 max-w-4xl mx-auto">
+                <div id="example-scenarios" class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700 max-w-4xl mx-auto">
                     <h3 class="text-2xl font-bold text-white mb-6">Example Scenerios</h3>
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -722,7 +722,7 @@
                                 <span class="text-gray-700">1 req/sec</span>
                             </li>
                         </ul>
-                        <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-gray-100 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
+                        <a href="https://developers.fastgst.in" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Pricing Button', 'event_label': 'Developer Trial - Get Started Free'});" class="block w-full bg-gray-100 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
                             Get Started Free
                         </a>
                     </div>
@@ -754,7 +754,7 @@
                                 <span class="text-gray-700">3 req/sec</span>
                             </li>
                         </ul>
-                        <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
+                        <a href="https://developers.fastgst.in" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Pricing Button', 'event_label': 'Starter - Choose Starter'});" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
                             Choose Starter
                         </a>
                     </div>
@@ -789,7 +789,7 @@
                                 <span class="text-gray-700">8 req/sec</span>
                             </li>
                         </ul>
-                        <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
+                        <a href="https://developers.fastgst.in" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Pricing Button', 'event_label': 'Professional - Choose Professional'});" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
                             Choose Professional
                         </a>
                     </div>
@@ -821,7 +821,7 @@
                                 <span class="text-gray-700">20 req/sec</span>
                             </li>
                         </ul>
-                        <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
+                        <a href="https://developers.fastgst.in" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Pricing Button', 'event_label': 'Business - Contact Sales'});" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
                             Contact Sales
                         </a>
                     </div>
@@ -1030,6 +1030,123 @@
         document.addEventListener('DOMContentLoaded', function () {
             showTab('validation');
         });
+
+        // Scroll depth tracking
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const scrollHeight = document.body.scrollHeight;
+            const scrolled = (scrollPosition / scrollHeight) * 100;
+
+            if (scrolled >= 25 && !window.scroll25Tracked) {
+                window.scroll25Tracked = true;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'Scroll',
+                    'event_label': '25% Page Scroll'
+                });
+            }
+
+            if (scrolled >= 50 && !window.scroll50Tracked) {
+                window.scroll50Tracked = true;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'Scroll',
+                    'event_label': '50% Page Scroll'
+                });
+            }
+
+            if (scrolled >= 75 && !window.scroll75Tracked) {
+                window.scroll75Tracked = true;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'Scroll',
+                    'event_label': '75% Page Scroll'
+                });
+            }
+
+            if (scrolled >= 90 && !window.scroll90Tracked) {
+                window.scroll90Tracked = true;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'Scroll',
+                    'event_label': '90% Page Scroll'
+                });
+            }
+        });
+
+        // Example scenarios visibility tracking
+        const scenarioObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !window.scenarioTracked) {
+                    window.scenarioTracked = true;
+                    gtag('event', 'view_item', {
+                        'event_category': 'Visibility',
+                        'event_label': 'Example Scenarios Box Seen'
+                    });
+                }
+            });
+        });
+
+        const scenarioTarget = document.getElementById('example-scenarios');
+        if (scenarioTarget) scenarioObserver.observe(scenarioTarget);
+
+        // Pricing section engagement tracking
+        let pricingStartTime = null;
+        let pricingObserver = null;
+
+        const pricingSection = document.getElementById('pricing');
+        if (pricingSection) {
+            pricingObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !pricingStartTime) {
+                        pricingStartTime = Date.now();
+                        gtag('event', 'begin_checkout', {
+                            'event_category': 'Pricing',
+                            'event_label': 'Pricing Section Entered'
+                        });
+                    } else if (!entry.isIntersecting && pricingStartTime) {
+                        const timeSpent = Math.round((Date.now() - pricingStartTime) / 1000);
+                        gtag('event', 'custom', {
+                            'event_category': 'Pricing',
+                            'event_label': 'Pricing Section Time Spent',
+                            'value': timeSpent
+                        });
+                        pricingStartTime = null;
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            pricingObserver.observe(pricingSection);
+        }
+
+        // Tab interaction tracking
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab content
+            const selectedContent = document.getElementById('tab-content-' + tabName);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+
+            // Add active class to selected tab button
+            const selectedButton = document.getElementById('tab-' + tabName);
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+            }
+
+            // Track tab interaction
+            gtag('event', 'select_content', {
+                'event_category': 'API Demo',
+                'event_label': 'Tab: ' + tabName.charAt(0).toUpperCase() + tabName.slice(1)
+            });
+        }
     </script>
 </body>
 </html>
