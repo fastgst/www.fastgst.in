@@ -106,17 +106,17 @@
         * {
             box-sizing: border-box;
         }
-        
+
         body {
             overflow-x: hidden;
             max-width: 100vw;
         }
-        
+
         .container {
             max-width: 100%;
             overflow-x: hidden;
         }
-        
+
         .gradient-bg {
             background: rgb(71 66 239);
         }
@@ -188,20 +188,23 @@
             background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.3) 80%, transparent 100%);
             border-radius: 1px;
         }
-        
+
         .tab-btn {
             color: #9ca3af;
         }
-        .tab-btn.active {
-            background-color: #374151;
-            color: white;
-        }
+
+            .tab-btn.active {
+                background-color: #374151;
+                color: white;
+            }
+
         .tab-content {
             display: block;
         }
-        .tab-content.hidden {
-            display: none;
-        }
+
+            .tab-content.hidden {
+                display: none;
+            }
     </style>
 </head>
 <body class="font-sans text-gray-900 antialiased">
@@ -241,14 +244,14 @@
                     <div class="fade-in">
                         <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight pt-20 sm:pt-16 md:pt-0">
                             Smart, Centralized<br>
-                            <span class="text-blue-200">HSN & SAC Lookup APIs</span>
+                            <span class="text-blue-200">GST Tax Lookup API</span>
                         </h1>
                         <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                            Tired of scattered, outdated GST HSN/SAC codes?
+                            Tired of scattered, outdated Taxes & HSN/SAC codes?
                         </p>
                         <div class="fade-divider"></div>
                         <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto mt-4">
-                            FastGST's Tax Lookup API offers a centralized, fuzzy-searchable GST code lookup to speed up classification and reduce errors.
+                            Access well documented API for latest GST slabs, tax rates, Cess rates, HSN/SAC classifications, fuzzy searches and more
                         </p>
                         <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto flex items-center justify-center gap-2">
                             100% Free For Testing
@@ -257,7 +260,20 @@
                             </svg>
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                            <a href="https://developers.fastgst.in" target="_blank" class="bg-white text-primary-500 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-base sm:text-lg glow-border">
+                            <a href="https://docs.fastgst.in/api/taxlookup" target="_blank" class="bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-700 transition-colors text-base sm:text-lg border border-gray-600 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bookmark"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" /></svg>
+                                See API Documentation
+                            </a>
+                            <a href="https://developers.fastgst.in" target="_blank" class="bg-white text-primary-500 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-base sm:text-lg glow-border flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-tools">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" />
+                                    <path d="M14.5 5.5l4 4" />
+                                    <path d="M12 8l-5 -5l-4 4l5 5" />
+                                    <path d="M7 8l-1.5 1.5" />
+                                    <path d="M16 12l5 5l-4 4l-5 -5" />
+                                    <path d="M16 17l-1.5 1.5" />
+                                </svg>
                                 Launch Developer Portal
                             </a>
                         </div>
@@ -293,122 +309,103 @@
                         What is Tax Lookup API?
                     </h2>
                     <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                        A simple, reliable API to search and retrieve updated HSN/SAC codes — built for integration into your billing, ERP, or commerce platforms.
+                        A fast, reliable API to retrive updated GST tax rates and resolve HSN/SAC codes — built for integration into your billing, ERP, or commerce platforms.
                     </p>
                 </div>
 
 
 
 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="space-y-6">
-
-                        <!-- Feature: Synced with Notifications -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">CBIC & GST Council Sync</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- CBIC & GST Council Sync -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
                             </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                                We strive to stay in sync with the latest <strong>CBIC</strong> and <strong>GST Council</strong> notifications to keep data fresh and relevant.
-                            </p>
+                            <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">CBIC & GST Council Sync</h3>
                         </div>
-
-
-                        <!-- Feature: Fast Vector Search -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Vector-Powered Fuzzy Search</h3>
-                            </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                                Built with AI-grade vector search, our API tries to approximate to the most relevant HSN/SAC codes even from imperfect keywords.
-                            </p>
-                        </div>
-
-                        <!-- Feature: Developer Portal -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Full Developer Control</h3>
-                            </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">Built for developers in mind, Manage your keys, monitor usage, quotas, and billing in Developer portal.</p>
-                        </div>
-
-                        <!-- Feature: Hierarchical Classification -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h6M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Structured GST Classification</h3>
-                            </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                                Lookup for parent or child with organized Sections, Chapters, Headings, and Tariff items delivered in clean JSON.
-                            </p>
-                        </div>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
+                            We strive to stay in sync with the latest <strong>CBIC</strong> and <strong>GST Council</strong> notifications to keep data fresh and relevant.
+                        </p>
                     </div>
 
-                    <!-- Column 2 -->
-                    <div class="space-y-6">
-                        <!-- Feature: Rich Metadata -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m4-13H8a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" />
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Detailed Metadata</h3>
+                    <!-- Vector-Powered Fuzzy Search -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
                             </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                                Access a rich set of metadata including GST rates, descriptions, cess applicability, and more ready for direct use in your apps.
-                            </p>
+                            <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Vector-Powered Fuzzy Search</h3>
                         </div>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
+                            Built with AI-grade vector search, our API tries to approximate to the most relevant HSN/SAC codes even from imperfect keywords.
+                        </p>
+                    </div>
 
-                        <!-- GST Types Card -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m4-13H8a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" />
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">GST Classification</h3>
-                            </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                                Easily identify GST applicability — including <strong>Standard</strong>, <strong>Zero Rated</strong>, <strong>Exempt</strong>, <strong>RCM</strong>, <strong>Composition</strong>, and more. Perfect for building tax-aware systems with clarity and precision.
-                            </p>
-                        </div>
 
-                        <!-- Cess Types Card -->
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                            <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Cess Details</h3>
+                    <!-- Structured GST Classification -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h6M9 5l7 7-7 7"></path>
+                                </svg>
                             </div>
-                            <p class="text-xs sm:text-sm md:text-base text-gray-600">
-                                Capture cess breakdowns like <strong>Compensation Cess</strong>, <strong>NCCD</strong>, <strong>Health Cess</strong>, and more — right inside the API response. Helps in transparent tax calculations and reporting.
-                            </p>
+                            <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Structured GST Classification</h3>
                         </div>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
+                            Lookup for parent or child with organized Sections, Chapters, Headings, and Tariff items delivered in clean JSON.
+                        </p>
+                    </div>
+
+                    <!-- Detailed Metadata -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m4-13H8a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Detailed Metadata</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
+                            Access a rich set of metadata including GST rates, descriptions, cess applicability, and more ready for direct use in your apps.
+                        </p>
+                    </div>
+
+                    <!-- GST Classification -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m4-13H8a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">GST Classification</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
+                            Easily identify GST applicability — including <strong>Standard</strong>, <strong>Zero Rated</strong>, <strong>Exempt</strong>, <strong>RCM</strong>, <strong>Composition</strong>, and more. Perfect for building tax-aware systems with clarity and precision.
+                        </p>
+                    </div>
+
+                    <!-- Cess Details -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Cess Details</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600">
+                            Capture cess breakdowns like <strong>Compensation Cess</strong>, <strong>NCCD</strong>, <strong>Health Cess</strong>, and more — right inside the API response. Helps in transparent tax calculations and reporting.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -419,110 +416,110 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- API Example UI -->
                 <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700 max-w-4xl mx-auto">
-                        <h3 class="text-2xl font-bold text-white mb-6">Try a Live API Call</h3>
-                        <div class="space-y-4">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <button class="px-2 sm:px-3 py-1 bg-primary-500 text-white rounded-full text-xs sm:text-sm hover:bg-primary-600 transition-colors" onclick="showTab('validation')">996601</button>
-                            </div>
-                            
-                            <!-- Tab Navigation -->
-                            <div class="flex flex-wrap gap-1 mb-4 bg-gray-800 p-1 rounded-lg">
-                                <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('validation')" id="tab-validation">
-                                    HSN Validation
-                                </button>
-                                <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('taxes')" id="tab-taxes">
-                                    Tax Info
-                                </button>
-                                <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('parent')" id="tab-parent">
-                                    Hierarchical Parent
-                                </button>
-                            </div>
-                            
-                            <!-- Tab Content -->
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <!-- HSN Validation Tab -->
-                                <div id="tab-content-validation" class="tab-content">
-                                    <div class="mb-3">
-                                        <div class="flex flex-wrap items-center gap-2 mb-2">
-                                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
-                                            <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/product/996601/validate</span>
-                                        </div>
-                                        <div class="text-xs text-gray-400 mb-3">Response:</div>
-                                        <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code><span style="color: #e5e7eb;">{</span>
-  <span style="color: #60a5fa;">"data"</span>: <span style="color: #e5e7eb;">{</span>
-    <span style="color: #60a5fa;">"hsn"</span>: <span style="color: #fbbf24;">"996601"</span>,
-    <span style="color: #60a5fa;">"isValid"</span>: <span style="color: #34d399;">true</span>,
-    <span style="color: #60a5fa;">"classification"</span>: <span style="color: #fbbf24;">"SubHeading"</span>,
-    <span style="color: #60a5fa;">"lastRefreshed"</span>: <span style="color: #fbbf24;">"2025-07-26"</span>
-  <span style="color: #e5e7eb;">}</span>,
-  <span style="color: #60a5fa;">"pagination"</span>: <span style="color: #ef4444;">null</span>
-<span style="color: #e5e7eb;">}</span></code></pre>
-                                    </div>
-                                </div>
-                                
-                                <!-- Tax Info Tab -->
-                                <div id="tab-content-taxes" class="tab-content hidden">
-                                    <div class="mb-3">
-                                        <div class="flex flex-wrap items-center gap-2 mb-2">
-                                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
-                                            <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/product/996601/taxes/gst</span>
-                                        </div>
-                                        <div class="text-xs text-gray-400 mb-3">Response:</div>
-                                        <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code><span style="color: #e5e7eb;">{</span>
-  <span style="color: #60a5fa;">"data"</span>: <span style="color: #e5e7eb;">{</span>
-    <span style="color: #60a5fa;">"hsn"</span>: <span style="color: #fbbf24;">"996601"</span>,
-    <span style="color: #60a5fa;">"section"</span>: <span style="color: #fbbf24;">"Services"</span>,
-    <span style="color: #60a5fa;">"chapter"</span>: <span style="color: #fbbf24;">"Other services"</span>,
-    <span style="color: #60a5fa;">"heading"</span>: <span style="color: #fbbf24;">"Other services"</span>,
-    <span style="color: #60a5fa;">"remarks"</span>: <span style="color: #fbbf24;">"Standard GST rate applicable"</span>,
-    <span style="color: #60a5fa;">"gstType"</span>: <span style="color: #fbbf24;">"STANDARD"</span>,
-    <span style="color: #60a5fa;">"gstTypeInfo"</span>: <span style="color: #fbbf24;">"GST charged based on the applicable standard rate slab."</span>,
-    <span style="color: #60a5fa;">"gstConditionType"</span>: <span style="color: #ef4444;">null</span>,
-    <span style="color: #60a5fa;">"gstConditionTypeInfo"</span>: <span style="color: #ef4444;">null</span>,
-    <span style="color: #60a5fa;">"taxes"</span>: <span style="color: #e5e7eb;">[</span>
-      <span style="color: #e5e7eb;">{</span>
-        <span style="color: #60a5fa;">"rate"</span>: <span style="color: #34d399;">18</span>,
-        <span style="color: #60a5fa;">"displayText"</span>: <span style="color: #fbbf24;">"18%"</span>,
-        <span style="color: #60a5fa;">"option"</span>: <span style="color: #fbbf24;">"Standard rate"</span>,
-        <span style="color: #60a5fa;">"paidBy"</span>: <span style="color: #e5e7eb;">{</span>
-          <span style="color: #60a5fa;">"payer"</span>: <span style="color: #fbbf24;">"SUPPLIER"</span>,
-          <span style="color: #60a5fa;">"reason"</span>: <span style="color: #fbbf24;">"GST will be collected and paid by the supplier."</span>
-        <span style="color: #e5e7eb;">}</span>,
-        <span style="color: #60a5fa;">"gstSlab"</span>: <span style="color: #34d399;">3</span>
-      <span style="color: #e5e7eb;">}</span>
-    <span style="color: #e5e7eb;">]</span>
-  <span style="color: #e5e7eb;">}</span>,
-  <span style="color: #60a5fa;">"pagination"</span>: <span style="color: #ef4444;">null</span>
-<span style="color: #e5e7eb;">}</span></code></pre>
-                                    </div>
-                                </div>
-                                
-                                <!-- Hierarchical Parent Tab -->
-                                <div id="tab-content-parent" class="tab-content hidden">
-                                    <div class="mb-3">
-                                        <div class="flex flex-wrap items-center gap-2 mb-2">
-                                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
-                                            <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/hsn/996601/parent</span>
-                                        </div>
-                                        <div class="text-xs text-gray-400 mb-3">Response:</div>
-                                        <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code><span style="color: #e5e7eb;">{</span>
-  <span style="color: #60a5fa;">"data"</span>: <span style="color: #e5e7eb;">{</span>
-    <span style="color: #60a5fa;">"parentCode"</span>: <span style="color: #fbbf24;">"9966"</span>,
-    <span style="color: #60a5fa;">"description"</span>: <span style="color: #fbbf24;">"Other services"</span>,
-    <span style="color: #60a5fa;">"level"</span>: <span style="color: #34d399;">2</span>
-  <span style="color: #e5e7eb;">}</span>,
-  <span style="color: #60a5fa;">"pagination"</span>: <span style="color: #ef4444;">null</span>
-<span style="color: #e5e7eb;">}</span></code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
-                                Get Your API Key & Start
-                            </a>
+                    <h3 class="text-2xl font-bold text-white mb-6">Example Scenerios</h3>
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <button class="px-2 sm:px-3 py-1 bg-primary-500 text-white rounded-full text-xs sm:text-sm hover:bg-primary-600 transition-colors" onclick="showTab('validation')">GST HSN: 996601</button>
                         </div>
+
+                        <!-- Tab Navigation -->
+                        <div class="flex flex-wrap gap-1 mb-4 bg-gray-800 p-1 rounded-lg">
+                            <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('validation')" id="tab-validation">
+                                HSN Validation
+                            </button>
+                            <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('taxes')" id="tab-taxes">
+                                Tax Info
+                            </button>
+                            <button class="tab-btn px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors flex-1 min-w-0" onclick="showTab('parent')" id="tab-parent">
+                                Hierarchical Parent
+                            </button>
+                        </div>
+
+                        <!-- Tab Content -->
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <!-- HSN Validation Tab -->
+                            <div id="tab-content-validation" class="tab-content">
+                                <div class="mb-3">
+                                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                                        <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
+                                        <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/product/996601/validate</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400 mb-3">Response:</div>
+                                    <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code><span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"data"</span>: <span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"hsn"</span>: <span style="color: #fbbf24;">"996601"</span>,
+                                    <span style="color: #60a5fa;">"isValid"</span>: <span style="color: #34d399;">true</span>,
+                                    <span style="color: #60a5fa;">"classification"</span>: <span style="color: #fbbf24;">"SubHeading"</span>,
+                                    <span style="color: #60a5fa;">"lastRefreshed"</span>: <span style="color: #fbbf24;">"2025-07-26"</span>
+                                    <span style="color: #e5e7eb;">}</span>,
+                                    <span style="color: #60a5fa;">"pagination"</span>: <span style="color: #ef4444;">null</span>
+<span style="color: #e5e7eb;">}</span></code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Tax Info Tab -->
+                            <div id="tab-content-taxes" class="tab-content hidden">
+                                <div class="mb-3">
+                                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                                        <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
+                                        <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/product/996601/taxes/gst</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400 mb-3">Response:</div>
+                                    <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code><span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"data"</span>: <span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"hsn"</span>: <span style="color: #fbbf24;">"996601"</span>,
+                                    <span style="color: #60a5fa;">"section"</span>: <span style="color: #fbbf24;">"Services"</span>,
+                                    <span style="color: #60a5fa;">"chapter"</span>: <span style="color: #fbbf24;">"Other services"</span>,
+                                    <span style="color: #60a5fa;">"heading"</span>: <span style="color: #fbbf24;">"Other services"</span>,
+                                    <span style="color: #60a5fa;">"remarks"</span>: <span style="color: #fbbf24;">"Standard GST rate applicable"</span>,
+                                    <span style="color: #60a5fa;">"gstType"</span>: <span style="color: #fbbf24;">"STANDARD"</span>,
+                                    <span style="color: #60a5fa;">"gstTypeInfo"</span>: <span style="color: #fbbf24;">"GST charged based on the applicable standard rate slab."</span>,
+                                    <span style="color: #60a5fa;">"gstConditionType"</span>: <span style="color: #ef4444;">null</span>,
+                                    <span style="color: #60a5fa;">"gstConditionTypeInfo"</span>: <span style="color: #ef4444;">null</span>,
+                                    <span style="color: #60a5fa;">"taxes"</span>: <span style="color: #e5e7eb;">[</span>
+                                    <span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"rate"</span>: <span style="color: #34d399;">18</span>,
+                                    <span style="color: #60a5fa;">"displayText"</span>: <span style="color: #fbbf24;">"18%"</span>,
+                                    <span style="color: #60a5fa;">"option"</span>: <span style="color: #fbbf24;">"Standard rate"</span>,
+                                    <span style="color: #60a5fa;">"paidBy"</span>: <span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"payer"</span>: <span style="color: #fbbf24;">"SUPPLIER"</span>,
+                                    <span style="color: #60a5fa;">"reason"</span>: <span style="color: #fbbf24;">"GST will be collected and paid by the supplier."</span>
+                                    <span style="color: #e5e7eb;">}</span>,
+                                    <span style="color: #60a5fa;">"gstSlab"</span>: <span style="color: #34d399;">3</span>
+                                    <span style="color: #e5e7eb;">}</span>
+                                    <span style="color: #e5e7eb;">]</span>
+                                    <span style="color: #e5e7eb;">}</span>,
+                                    <span style="color: #60a5fa;">"pagination"</span>: <span style="color: #ef4444;">null</span>
+<span style="color: #e5e7eb;">}</span></code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Hierarchical Parent Tab -->
+                            <div id="tab-content-parent" class="tab-content hidden">
+                                <div class="mb-3">
+                                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                                        <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-mono">GET</span>
+                                        <span class="text-gray-300 text-xs sm:text-sm font-mono break-all">/api/v1/hsn/996601/parent</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400 mb-3">Response:</div>
+                                    <pre class="text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"><code><span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"data"</span>: <span style="color: #e5e7eb;">{</span>
+                                    <span style="color: #60a5fa;">"parentCode"</span>: <span style="color: #fbbf24;">"9966"</span>,
+                                    <span style="color: #60a5fa;">"description"</span>: <span style="color: #fbbf24;">"Other services"</span>,
+                                    <span style="color: #60a5fa;">"level"</span>: <span style="color: #34d399;">2</span>
+                                    <span style="color: #e5e7eb;">}</span>,
+                                    <span style="color: #60a5fa;">"pagination"</span>: <span style="color: #ef4444;">null</span>
+<span style="color: #e5e7eb;">}</span></code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
+                            Goto Developer Portal
+                        </a>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -537,34 +534,37 @@
                     <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
                         Start free, scale as you grow. No hidden fees, no surprises.
                     </p>
+                    <p class="text-sm text-gray-500 mt-4 max-w-2xl mx-auto">
+                        *Annual plans and dedicated support coming soon. All plans currently include self-service documentation and API access.
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    <!-- Free Plan -->
+                    <!-- Developer Trial Plan -->
                     <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                         <div class="text-center">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Developer Trial</h3>
                             <div class="text-4xl font-bold text-primary-500 mb-2">₹0<span class="text-lg text-gray-600">/month</span></div>
-                            <p class="text-gray-600 mb-6">Perfect for development</p>
+                            <p class="text-gray-600 mb-6">Testing only (7 days)</p>
                         </div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">1,000 requests / mo</span>
+                                <span class="text-gray-700">300 requests / mo</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">100 requests / day</span>
+                                <span class="text-gray-700">15 requests / day</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">2 requests / sec</span>
+                                <span class="text-gray-700">1 req/sec</span>
                             </li>
                         </ul>
                         <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-gray-100 text-gray-700 text-center py-3 rounded-lg hover:bg-gray-200 transition-colors font-semibold">
@@ -573,33 +573,30 @@
                     </div>
 
                     <!-- Starter Plan -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-primary-500 relative">
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                            <span class="bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-semibold">MOST POPULAR</span>
-                        </div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                         <div class="text-center">
                             <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
-                            <div class="text-4xl font-bold text-primary-500 mb-2">₹199<span class="text-lg text-gray-600">/month</span></div>
-                            <p class="text-gray-600 mb-6">Ideal for growing applications</p>
+                            <div class="text-4xl font-bold text-primary-500 mb-2">₹999<span class="text-lg text-gray-600">/month</span></div>
+                            <p class="text-gray-600 mb-6">Small apps, freelancers</p>
                         </div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">25,000 requests / mo</span>
+                                <span class="text-gray-700">8,000 requests / mo</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">500 requests / day</span>
+                                <span class="text-gray-700">350 requests / day</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">5 requests / sec</span>
+                                <span class="text-gray-700">3 req/sec</span>
                             </li>
                         </ul>
                         <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
@@ -608,30 +605,33 @@
                     </div>
 
                     <!-- Professional Plan -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-primary-500 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                            <span class="bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-semibold">MOST POPULAR</span>
+                        </div>
                         <div class="text-center">
                             <h3 class="text-2xl font-bold text-gray-900 mb-2">Professional</h3>
-                            <div class="text-4xl font-bold text-primary-500 mb-2">₹499<span class="text-lg text-gray-600">/month</span></div>
-                            <p class="text-gray-600 mb-6">Production-ready with support</p>
+                            <div class="text-4xl font-bold text-primary-500 mb-2">₹1,999<span class="text-lg text-gray-600">/month</span></div>
+                            <p class="text-gray-600 mb-6">Growing SaaS, CA firms</p>
                         </div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">100,000 requests / mo</span>
+                                <span class="text-gray-700">40,000 requests / mo</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">4,000 requests / day</span>
+                                <span class="text-gray-700">1,500 requests / day</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">25 requests / sec</span>
+                                <span class="text-gray-700">8 req/sec</span>
                             </li>
                         </ul>
                         <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
@@ -639,31 +639,31 @@
                         </a>
                     </div>
 
-                    <!-- Bussiness Plan -->
+                    <!-- Business Plan -->
                     <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                         <div class="text-center">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Bussiness</h3>
-                            <div class="text-4xl font-bold text-primary-500 mb-2">₹1499<span class="text-lg text-gray-600">/month</span></div>
-                            <p class="text-gray-600 mb-6">Unlimited with premium support</p>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Business</h3>
+                            <div class="text-4xl font-bold text-primary-500 mb-2">₹3,999<span class="text-lg text-gray-600">/month</span></div>
+                            <p class="text-gray-600 mb-6">Established businesses</p>
                         </div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">500,000 requests / mo</span>
+                                <span class="text-gray-700">120,000 requests / mo</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">Unlimited daily</span>
+                                <span class="text-gray-700">4,500 requests / day</span>
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-700">1000 requests / sec</span>
+                                <span class="text-gray-700">20 req/sec</span>
                             </li>
                         </ul>
                         <a href="https://developers.fastgst.in" target="_blank" class="block w-full bg-primary-500 text-white text-center py-3 rounded-lg hover:bg-primary-600 transition-colors font-semibold">
@@ -744,8 +744,8 @@
         </section>
     </main>
 
-            <!-- Footer -->
-        <footer class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white overflow-x-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">
@@ -851,28 +851,28 @@
             tabContents.forEach(content => {
                 content.classList.add('hidden');
             });
-            
+
             // Remove active class from all tab buttons
             const tabButtons = document.querySelectorAll('.tab-btn');
             tabButtons.forEach(btn => {
                 btn.classList.remove('active');
             });
-            
+
             // Show selected tab content
             const selectedContent = document.getElementById(`tab-content-${tabName}`);
             if (selectedContent) {
                 selectedContent.classList.remove('hidden');
             }
-            
+
             // Add active class to selected tab button
             const selectedButton = document.getElementById(`tab-${tabName}`);
             if (selectedButton) {
                 selectedButton.classList.add('active');
             }
         }
-        
+
         // Initialize with first tab active
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             showTab('validation');
         });
     </script>
