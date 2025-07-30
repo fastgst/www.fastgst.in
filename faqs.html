@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - FastGST.in | Tax Lookup API</title>
+    <meta name="description" content="FAQs for FastGST.in - Find answers to common questions about our GST Tax Lookup API, pricing, integration, and support.">
+    <meta name="keywords" content="FAQs, frequently asked questions, FastGST, GST API, tax lookup, support, help">
+    <meta name="author" content="Sangeeth Nandakumar">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fastgst.in/faqs">
+    <meta property="og:title" content="Frequently Asked Questions - FastGST.in">
+    <meta property="og:description" content="FAQs for FastGST.in - Find answers to common questions about our GST Tax Lookup API, pricing, integration, and support.">
+    <meta property="og:site_name" content="FastGST.in">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.fastgst.in/faqs">
+    <meta name="twitter:title" content="Frequently Asked Questions - FastGST.in">
+    <meta name="twitter:description" content="FAQs for FastGST.in - Find answers to common questions about our GST Tax Lookup API, pricing, integration, and support.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.fastgst.in/faqs">
+    
+    <!-- Robots -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.fastgst.in/sitemap.xml">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is FastGST.in?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "FastGST.in is a platform that provides GST Tax Lookup API services, offering access to accurate GST tax rates, HSN/SAC codes, and classification data for Indian businesses and developers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is there a free plan available?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we offer a Developer Trial plan that's completely free with 300 requests per month, 15 requests per day, and 1 request per second rate limit."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How accurate is the tax data?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our data is sourced from official CBIC and GST Council notifications and is updated regularly to ensure accuracy and compliance with current tax regulations."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f0ff',
+                            500: 'rgb(71 66 239)',
+                            600: 'rgb(59 53 202)',
+                            700: 'rgb(47 40 165)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FTSN7KVKLV');
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-content.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-900 antialiased">
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">F</span>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">FastGST.in</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary-500 transition-colors">Home</a>
+                    <a href="https://docs.fastgst.in/api/taxlookup" target="_blank" class="text-gray-600 hover:text-primary-500 transition-colors">Documentation</a>
+                    <a href="https://developers.fastgst.in" target="_blank" class="text-gray-600 hover:text-primary-500 transition-colors">Developers</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary-500 transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16 overflow-x-hidden">
+        <!-- Hero Section -->
+        <section class="py-20 bg-gradient-to-br from-primary-500 to-primary-700 text-white overflow-x-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+                    Frequently Asked Questions
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                    Find answers to common questions about our GST Tax Lookup API, pricing, and integration.
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="py-20 bg-white overflow-x-hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="space-y-6">
+                    <!-- General Questions -->
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">What is FastGST.in?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                FastGST.in is a platform that provides GST Tax Lookup API services, offering access to accurate GST tax rates, HSN/SAC codes, and classification data for Indian businesses and developers. We're operated by Sangeeth Nandakumar, an independent developer building GST-compliant solutions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">What services do you offer?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700 mb-3">
+                                Currently, we offer:
+                            </p>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                <li>GST Tax Lookup API with HSN/SAC code search</li>
+                                <li>Real-time tax rate information</li>
+                                <li>Fuzzy search capabilities</li>
+                                <li>Hierarchical classification data</li>
+                                <li>Cess details and conditional tax scenarios</li>
+                            </ul>
+                            <p class="text-gray-700 mt-3">
+                                We're also developing a full GST-compliant invoicing platform that will be available soon.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Questions -->
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">Is there a free plan available?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                Yes! We offer a Developer Trial plan that's completely free with 300 requests per month, 15 requests per day, and 1 request per second rate limit. This allows you to test our API without any commitment. For higher usage, we have paid plans starting at ₹999/month.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">What are your pricing plans?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <div class="text-gray-700 space-y-3">
+                                <p><strong>Developer Trial:</strong> ₹0/month - 300 requests/month, 15/day, 1 req/sec</p>
+                                <p><strong>Starter:</strong> ₹999/month - 8,000 requests/month, 350/day, 3 req/sec</p>
+                                <p><strong>Professional:</strong> ₹1,999/month - 40,000 requests/month, 1,500/day, 8 req/sec</p>
+                                <p><strong>Business:</strong> ₹3,999/month - 120,000 requests/month, 4,500/day, 20 req/sec</p>
+                                <p class="text-sm text-gray-600 mt-4">
+                                    All plans include API access, documentation, and self-service support. Annual plans and dedicated support coming soon.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Questions -->
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">How accurate is the tax data?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                Our data is sourced from official CBIC and GST Council notifications and is updated regularly to ensure accuracy and compliance with current tax regulations. We strive to stay in sync with the latest government notifications to keep our data fresh and relevant.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">How do I integrate the API?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700 mb-3">
+                                Integration is straightforward:
+                            </p>
+                            <ol class="list-decimal pl-6 text-gray-700 space-y-1">
+                                <li>Sign up at <a href="https://developers.fastgst.in" target="_blank" class="text-primary-500 hover:text-primary-600">developers.fastgst.in</a></li>
+                                <li>Get your API key from the dashboard</li>
+                                <li>Make HTTP requests to our endpoints</li>
+                                <li>Receive JSON responses with tax information</li>
+                            </ol>
+                            <p class="text-gray-700 mt-3">
+                                Check out our <a href="https://docs.fastgst.in/api/taxlookup" target="_blank" class="text-primary-500 hover:text-primary-600">documentation</a> for detailed integration guides and examples.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">What programming languages are supported?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                Our API is RESTful and can be used with any programming language that supports HTTP requests. We provide examples in popular languages like JavaScript, Python, PHP, Java, and more in our documentation. The API returns standard JSON responses that are easy to parse in any language.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Support Questions -->
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">What kind of support do you provide?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700 mb-3">
+                                We provide comprehensive self-service support:
+                            </p>
+                            <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                <li>Detailed API documentation with examples</li>
+                                <li>Integration guides and tutorials</li>
+                                <li>This FAQ page for common questions</li>
+                                <li>Email support for technical issues</li>
+                                <li>Phone support during business hours</li>
+                            </ul>
+                            <p class="text-gray-700 mt-3">
+                                As an indie developer, I focus on providing excellent documentation and self-service resources. For urgent issues, you can reach me directly via email or phone.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">What's your response time for support?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                I typically respond to emails within 24-48 hours. For urgent technical issues, I aim to respond within 4 hours during business hours (IST).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Business Questions -->
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">Do you offer refunds?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                Due to the digital nature of our services, we generally do not provide refunds for API usage that has already been consumed. However, we may consider refunds in exceptional circumstances like service unavailability, billing errors, or duplicate charges. Please see our <a href="refund-cancellation-policy.html" class="text-primary-500 hover:text-primary-600">Refund & Cancellation Policy</a> for complete details.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">Can I cancel my subscription anytime?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                Yes, you can cancel your subscription at any time through your account dashboard or by contacting us. Cancellation takes effect at the end of your current billing period, and no additional charges will be applied after cancellation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-gray-50 rounded-xl">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                            <h3 class="text-lg font-semibold text-gray-900">When will the invoicing platform be available?</h3>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-700">
+                                We're actively developing a comprehensive GST-compliant invoicing platform. While I can't provide an exact launch date, it's expected to be available within the next 6 months. The platform will integrate seamlessly with our existing Tax Lookup API and provide end-to-end invoicing solutions for businesses.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="mt-16 text-center">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Still have questions?</h2>
+                    <p class="text-gray-600 mb-6">
+                        Can't find what you're looking for? I'm here to help!
+                    </p>
+                    <a href="contact.html" class="bg-primary-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white overflow-x-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">F</span>
+                        </div>
+                        <span class="text-xl font-bold">FastGST.in</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Powering GST-compliant invoicing for India with smart APIs and seamless integration.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://developers.fastgst.in" target="_blank" class="text-gray-400 hover:text-white transition-colors">Developer Portal</a>
+                        <a href="https://docs.fastgst.in/api/taxlookup" target="_blank" class="text-gray-400 hover:text-white transition-colors">Documentation</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy-policy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms-and-conditions.html" class="text-gray-400 hover:text-white transition-colors">Terms & Conditions</a></li>
+                        <li><a href="refund-cancellation-policy.html" class="text-gray-400 hover:text-white transition-colors">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="faqs.html" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 FastGST.in. All rights reserved. Operated by Sangeeth Nandakumar.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            // Track FAQ interaction
+            gtag('event', 'faq_toggle', {
+                'event_category': 'FAQ',
+                'event_label': button.querySelector('h3').textContent
+            });
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html> 
