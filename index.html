@@ -222,11 +222,10 @@
                         <span class="text-xl font-bold text-gray-900">FastGST.in</span>
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#api" class="text-gray-600 hover:text-gray-900 transition-colors">API</a>
+                <div class="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+                    <a href="#top" class="text-gray-600 hover:text-gray-900 transition-colors">API</a>
                     <a href="#pricing" class="text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
                     <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors">About</a>
-                    <a href="https://developers.fastgst.in" target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors">Developers</a>
                 </div>
                 <div class="flex items-center space-x-4">
                 </div>
@@ -236,7 +235,7 @@
 
     <!-- Hero Section -->
     <main class="overflow-x-hidden">
-        <section class="gradient-bg hero-pattern min-h-screen flex items-center relative overflow-hidden">
+        <section id="top" class="gradient-bg hero-pattern min-h-screen flex items-center relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center">
                     
@@ -284,27 +283,14 @@
                                     </div>
                                     <div class="text-center sm:text-left">
                                         <span class="text-amber-800 font-bold text-lg sm:text-xl">🚨 Important Update!</span>
-                                        <p class="text-amber-700 font-semibold text-base sm:text-lg">The new GST rates are set to take effect from <strong>Monday, October 20, 2025</strong> 
+                                                                                 <p class="text-amber-700 font-semibold text-base sm:text-lg">The new GST rates are set to take effect from <strong>Monday, October 20, 2025</strong></p> 
                                     </div>
                                 </div>
                                 <div class="hidden sm:block w-2 h-2 bg-amber-400 rounded-full animate-ping"></div>
                             </div>
                         </div>
 
-                        <!-- Enhanced Free Testing Badge -->
-                        <div class="mb-8">
-                            <div class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-all duration-300 group">
-                                <div class="flex items-center gap-2">
-                                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <span class="text-green-800 font-semibold text-base sm:text-lg">Sign in to console and start with free developer plan:</span>
-                                </div>
-                                <svg class="w-5 h-5 text-green-600 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
+
                         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
                             <a href="https://documents.fastgst.in/api/taxlookup" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'See API Documentation'});" class="group relative overflow-hidden bg-white text-green-700 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold hover:bg-gray-50 transition-all duration-300 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-3 border-2 border-green-200 hover:border-green-300">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9GlozyrEsA25S68xqsWEgejZkSQPi2L7SBw&s" alt="API Documentation" class="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform duration-300 rounded">
@@ -344,11 +330,9 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- First Row: Image Left, Text Right -->
                 <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
-                    <div class="order-2 lg:order-1">
-                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-3xl shadow-xl border border-gray-200">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="API Integration Door" class="w-full h-80 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        </div>
-                    </div>
+                                         <div class="order-2 lg:order-1">
+                         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="API Integration Door" class="w-full h-80 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                     </div>
                     <div class="order-1 lg:order-2 text-center lg:text-left">
                         <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                             Seamless API Integration
@@ -369,20 +353,16 @@
                             Stay compliant with automatically updated GST rates, HSN codes, and tax classifications. Our system syncs with CBIC notifications and GST Council updates to ensure your business always has the latest information.
                         </p>
                     </div>
-                    <div>
-                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-3xl shadow-xl border border-gray-200">
-                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Real-time Updates Door" class="w-full h-80 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        </div>
-                    </div>
+                                         <div>
+                         <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Real-time Updates Door" class="w-full h-80 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                     </div>
                 </div>
 
                 <!-- Third Row: Image Left, Text Right -->
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="order-2 lg:order-1">
-                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-3xl shadow-xl border border-gray-200">
-                            <img src="images/console-dashboard.png" alt="Developer Console Dashboard" class="w-full h-80 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        </div>
-                    </div>
+                                         <div class="order-2 lg:order-1">
+                         <img src="images/console-dashboard.png" alt="Developer Console Dashboard" class="w-full h-80 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                     </div>
                     <div class="order-1 lg:order-2 text-center lg:text-left">
                         <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                             Management Console
