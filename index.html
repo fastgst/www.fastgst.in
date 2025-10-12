@@ -240,6 +240,24 @@
             }
         }
 
+        /* API Demo Tabs */
+        .api-tab-btn {
+            color: #6b7280; /* gray-500 */
+        }
+            .api-tab-btn.active {
+                background-color: #374151; /* gray-700 */
+                color: #ffffff;
+            }
+
+        .api-tab-content.hidden { display: none; }
+
+        /* JSON syntax highlighting */
+        .json-key { color: #93c5fd; }
+        .json-string { color: #86efac; }
+        .json-number { color: #fde68a; }
+        .json-boolean { color: #fca5a5; }
+        .json-null { color: #fda4af; font-style: italic; }
+
     </style>
 </head>
 <body class="font-sans text-gray-900 antialiased">
@@ -283,12 +301,13 @@
                             </h1>
                         </div>
 
-                                                 <!-- Enhanced Subtitle with Better Visual Hierarchy -->
-                         <div class="mb-8">
-                             <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 mb-6 max-w-4xl mx-auto font-medium leading-relaxed">
-                                 Assistive AI integrated REST API for HSN/SAC fuzzy searches, GST taxes & cess info
-                             </p>
-                         </div>
+                        <div class="mb-8 text-center">
+                            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 max-w-4xl mx-auto leading-relaxed">
+                              AI-powered REST API for intelligent HSN/SAC fuzzy searches, Hierarchy traversals, GST tax breakdowns, and cess information.
+                            </p>
+                          </div>
+                          
+                                                  
 
                         <!-- Decorative Divider with Animation -->
                         <div class="flex justify-center mb-8">
@@ -299,23 +318,20 @@
 
                         <!-- Enhanced Description with Better Typography -->
                         <div class="mb-8 relative">
-                             <!-- NEW Badge - Outside the box for proper z-index -->
-                             <div class="absolute -top-2 right-4 sm:right-8 z-50">
-                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg animate-pulse">
-                                     <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                         <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"></path>
-                                     </svg>
-                                     NEW
-                                 </span>
-                             </div>
-                             
-                             <div class="relative max-w-3xl mx-auto mb-6 px-5 py-4 bg-gradient-to-br from-orange-100/70 via-orange-50/60 to-orange-100/60 border border-orange-300/70 rounded-xl shadow-md overflow-hidden shimmer-panel">
-                                 <!-- Shimmer Effect Overlay -->
-                                 <div class="shimmer-effect"></div>
+                             <div class="relative max-w-3xl mx-auto mb-6">
+                                 <!-- NEW Badge - Positioned near top right -->
+                                 <div class="absolute -top-1 right-0 z-10">
+                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg animate-pulse">
+                                         <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                             <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"></path>
+                                         </svg>
+                                         NEW
+                                     </span>
+                                 </div>
                                  
-                                 <p class="text-sm sm:text-base text-gray-800 leading-relaxed relative z-10">
-                                     <span class="block font-semibold text-base sm:text-lg text-orange-600 mb-1.5">56<sup class="text-xs">th</sup> GST Council – Updated GST Rates</span>
-                                     <span class="block text-orange-800 text-sm">Access the latest GST rates, including revisions from the 56<sup class="text-xs">th</sup> GST Council (effective 22 Sept 2025).</span>
+                                 <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
+                                     <span class="block font-semibold text-base sm:text-lg text-gray-900 mb-1.5">56<sup class="text-xs">th</sup> GST Council – Updated GST Rates</span>
+                                     <span class="block text-orange-500 text-sm">Access the latest GST rates, including revisions from the 56<sup class="text-xs">th</sup> GST Council (effective 22 Sept 2025).</span>
                                  </p>
                              </div>
                         </div>
@@ -407,7 +423,184 @@
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <!-- Interactive API Playground -->
+                <div id="api-demo" class="mt-0">
+                    <!-- Tabs -->
+                    <div class="flex flex-wrap gap-2 bg-gray-100 p-2 rounded-xl border border-gray-200">
+                        <button id="api-tab-scenario1" class="api-tab-btn px-4 py-2 rounded-lg text-sm font-medium hover:text-gray-900" onclick="showApiTab('scenario1')">Fuzzy Search HSN</button>
+                        <button id="api-tab-scenario2" class="api-tab-btn px-4 py-2 rounded-lg text-sm font-medium hover:text-gray-900" onclick="showApiTab('scenario2')">Get HSN Hierarchy</button>
+                        <button id="api-tab-scenario3" class="api-tab-btn active px-4 py-2 rounded-lg text-sm font-medium hover:text-gray-900" onclick="showApiTab('scenario3')">Get HSN Taxes/Cess</button>
+                        <button id="api-tab-scenario4" class="api-tab-btn px-4 py-2 rounded-lg text-sm font-medium hover:text-gray-900" onclick="showApiTab('scenario4')">Fuzzy Search SAC</button>
+                        <button id="api-tab-scenario5" class="api-tab-btn px-4 py-2 rounded-lg text-sm font-medium hover:text-gray-900" onclick="showApiTab('scenario5')">Get SAC Hierarchy</button>
+                        <button id="api-tab-scenario6" class="api-tab-btn px-4 py-2 rounded-lg text-sm font-medium hover:text-gray-900" onclick="showApiTab('scenario6')">Get SAC Taxes</button>
+                    </div>
+
+                    <!-- Panels - Top and Bottom Layout -->
+                    <div class="mt-4 space-y-6">
+                        <!-- Request Details -->
+                        <div class="space-y-4">
+                            <!-- Scenario 1: Fuzzy Search HSN -->
+                            <div id="api-tab-content-scenario1" class="api-tab-content hidden bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">GET</span>
+                                        <code class="text-xs sm:text-sm text-gray-800 break-all">https://api.taxlookup.fastgst.in/search/hsn?query=milk</code>
+                                    </div>
+                                    <button id="api-send-scenario1" class="inline-flex items-center gap-2 bg-primary-600 text-white px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed" onclick="sendDemoRequest('scenario1')">
+                                        <span class="inline-block" data-label>Send</span>
+                                        <svg class="hidden animate-spin h-4 w-4 text-white" data-spinner xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                        <div class="text-xs font-semibold text-gray-600 mb-2">cURL</div>
+                                        <pre class="text-xs overflow-x-auto"><code>curl --location 'https://api.taxlookup.fastgst.in/search/hsn?query=milk' \
+--header 'X-API-Key: ****&lt;YOUR API KEY&gt;****'</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scenario 2: Get HSN Hierarchy -->
+                            <div id="api-tab-content-scenario2" class="api-tab-content hidden bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">GET</span>
+                                        <code class="text-xs sm:text-sm text-gray-800 break-all">https://api.taxlookup.fastgst.in/search/hsn/04041010</code>
+                                    </div>
+                                    <button id="api-send-scenario2" class="inline-flex items-center gap-2 bg-primary-600 text-white px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed" onclick="sendDemoRequest('scenario2')">
+                                        <span class="inline-block" data-label>Send</span>
+                                        <svg class="hidden animate-spin h-4 w-4 text-white" data-spinner xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                        <div class="text-xs font-semibold text-gray-600 mb-2">cURL</div>
+                                        <pre class="text-xs overflow-x-auto"><code>curl --location 'https://api.taxlookup.fastgst.in/search/hsn/04041010' \
+--header 'X-API-Key: ****&lt;YOUR API KEY&gt;****'</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scenario 3: Get HSN Taxes/Cess -->
+                            <div id="api-tab-content-scenario3" class="api-tab-content bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">GET</span>
+                                        <code class="text-xs sm:text-sm text-gray-800 break-all">https://api.taxlookup.fastgst.in/search/hsn/04041010/taxes</code>
+                                    </div>
+                                    <button id="api-send-scenario3" class="inline-flex items-center gap-2 bg-primary-600 text-white px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed" onclick="sendDemoRequest('scenario3')">
+                                        <span class="inline-block" data-label>Send</span>
+                                        <svg class="hidden animate-spin h-4 w-4 text-white" data-spinner xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                        <div class="text-xs font-semibold text-gray-600 mb-2">cURL</div>
+                                        <pre class="text-xs overflow-x-auto"><code>curl --location 'https://api.taxlookup.fastgst.in/search/hsn/04041010/taxes' \
+--header 'X-API-Key: ****&lt;YOUR API KEY&gt;****'</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scenario 4: Fuzzy Search SAC -->
+                            <div id="api-tab-content-scenario4" class="api-tab-content hidden bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">GET</span>
+                                        <code class="text-xs sm:text-sm text-gray-800 break-all">https://api.taxlookup.fastgst.in/search/sac?query=tex</code>
+                                    </div>
+                                    <button id="api-send-scenario4" class="inline-flex items-center gap-2 bg-primary-600 text-white px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed" onclick="sendDemoRequest('scenario4')">
+                                        <span class="inline-block" data-label>Send</span>
+                                        <svg class="hidden animate-spin h-4 w-4 text-white" data-spinner xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                        <div class="text-xs font-semibold text-gray-600 mb-2">cURL</div>
+                                        <pre class="text-xs overflow-x-auto"><code>curl --location 'https://api.taxlookup.fastgst.in/search/sac?query=tex' \
+--header 'X-API-Key: ****&lt;YOUR API KEY&gt;****'</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scenario 5: Get SAC Hierarchy -->
+                            <div id="api-tab-content-scenario5" class="api-tab-content hidden bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">GET</span>
+                                        <code class="text-xs sm:text-sm text-gray-800 break-all">https://api.taxlookup.fastgst.in/search/sac/997326</code>
+                                    </div>
+                                    <button id="api-send-scenario5" class="inline-flex items-center gap-2 bg-primary-600 text-white px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed" onclick="sendDemoRequest('scenario5')">
+                                        <span class="inline-block" data-label>Send</span>
+                                        <svg class="hidden animate-spin h-4 w-4 text-white" data-spinner xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                        <div class="text-xs font-semibold text-gray-600 mb-2">cURL</div>
+                                        <pre class="text-xs overflow-x-auto"><code>curl --location 'https://api.taxlookup.fastgst.in/search/sac/997326' \
+--header 'X-API-Key: ****&lt;YOUR API KEY&gt;****'</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Scenario 6: Get SAC Taxes/Conditions -->
+                            <div id="api-tab-content-scenario6" class="api-tab-content hidden bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="inline-flex items-center px-2 py-0.5 text-xs font-semibold rounded bg-green-100 text-green-700">GET</span>
+                                        <code class="text-xs sm:text-sm text-gray-800 break-all">https://api.taxlookup.fastgst.in/search/sac/997326/taxes</code>
+                                    </div>
+                                    <button id="api-send-scenario6" class="inline-flex items-center gap-2 bg-primary-600 text-white px-3 py-1.5 rounded-md text-sm font-semibold hover:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed" onclick="sendDemoRequest('scenario6')">
+                                        <span class="inline-block" data-label>Send</span>
+                                        <svg class="hidden animate-spin h-4 w-4 text-white" data-spinner xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                                        <div class="text-xs font-semibold text-gray-600 mb-2">cURL</div>
+                                        <pre class="text-xs overflow-x-auto"><code>curl --location 'https://api.taxlookup.fastgst.in/search/sac/997326/taxes' \
+--header 'X-API-Key: ****&lt;YOUR API KEY&gt;****'</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Response -->
+                        <div class="space-y-3">
+                            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+                                    <div class="text-sm font-semibold text-gray-800">Response</div>
+                                    <div id="api-meta" class="text-xs text-gray-500">Status — • Time — • Size —</div>
+                                </div>
+                                <div id="api-response" class="p-4 bg-gray-900 text-gray-100 text-sm font-mono overflow-x-auto min-h-[220px]">
+                                    <div class="text-gray-400">Click "Send" to run the request.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Cards Below API Tester -->
+                <div class="grid md:grid-cols-3 gap-8 mt-16">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg class="w-8 h-8 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -424,8 +617,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">100% GST Compliant</h3>
-                        <p class="text-gray-600">Built with India's GST regulations in mind, ensuring best effort compliance and accuracy.</p>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Best Effort Compliance</h3>
+                        <p class="text-gray-600">Built with India's GST system in mind, ensuring best effort compliance and accuracy.</p>
                     </div>
 
                     <div class="text-center">
@@ -438,7 +631,6 @@
                         <p class="text-gray-600">Comprehensive API documentation and developer tools to accelerate your integration.</p>
                     </div>
                 </div>
-
 
             </div>
         </section>
@@ -583,7 +775,7 @@
             observer.observe(section);
         });
 
-        // Tab functionality
+        // Tab functionality (legacy)
         function showTab(tabName) {
             // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
@@ -699,7 +891,7 @@
             pricingObserver.observe(pricingSection);
         }
 
-        // Tab interaction tracking
+        // Tab interaction tracking (legacy)
         function showTab(tabName) {
             // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
@@ -731,6 +923,126 @@
                 'event_label': 'Tab: ' + tabName.charAt(0).toUpperCase() + tabName.slice(1)
             });
         }
+
+        // API Demo: Tabs and Request Handling
+        function showApiTab(tabName) {
+            // Hide all API tab contents
+            const contents = document.querySelectorAll('#api-demo .api-tab-content');
+            contents.forEach(c => c.classList.add('hidden'));
+
+            // Deactivate all API tab buttons
+            const buttons = document.querySelectorAll('#api-demo .api-tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+
+            // Activate selected
+            const content = document.getElementById('api-tab-content-' + tabName);
+            if (content) content.classList.remove('hidden');
+            const btn = document.getElementById('api-tab-' + tabName);
+            if (btn) btn.classList.add('active');
+
+            // Clear meta and response placeholder when switching
+            const meta = document.getElementById('api-meta');
+            if (meta) meta.textContent = 'Status — • Time — • Size —';
+            const resp = document.getElementById('api-response');
+            if (resp) resp.innerHTML = '<div class="text-gray-400">Click "Send" to run the request.</div>';
+
+            // Track
+            if (typeof gtag === 'function') {
+                gtag('event', 'select_content', {
+                    'event_category': 'API Demo',
+                    'event_label': 'Tab: ' + tabName
+                });
+            }
+        }
+
+        // Pretty-print and colorize JSON
+        function syntaxHighlightJson(jsonValue) {
+            const jsonString = typeof jsonValue === 'string' ? jsonValue : JSON.stringify(jsonValue, null, 2);
+            const escaped = jsonString
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+            return escaped.replace(/("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"\s*:?)|(\b(true|false|null)\b)|(-?\d+(?:\.\d+)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                if (/^".*":$/.test(match)) {
+                    return '<span class="json-key">' + match + '</span>';
+                } else if (/^"/.test(match)) {
+                    return '<span class="json-string">' + match + '</span>';
+                } else if (/true|false/.test(match)) {
+                    return '<span class="json-boolean">' + match + '</span>';
+                } else if (/null/.test(match)) {
+                    return '<span class="json-null">' + match + '</span>';
+                }
+                return '<span class="json-number">' + match + '</span>';
+            });
+        }
+
+        async function sendDemoRequest(tabName) {
+            // Map each scenario to its respective URL
+            const urlMap = {
+                'scenario1': 'https://api.taxlookup.fastgst.in/search/hsn?query=milk',
+                'scenario2': 'https://api.taxlookup.fastgst.in/search/hsn/04041010',
+                'scenario3': 'https://api.taxlookup.fastgst.in/search/hsn/04041010/taxes',
+                'scenario4': 'https://api.taxlookup.fastgst.in/search/sac?query=tex',
+                'scenario5': 'https://api.taxlookup.fastgst.in/search/sac/997326',
+                'scenario6': 'https://api.taxlookup.fastgst.in/search/sac/997326/taxes'
+            };
+            
+            const url = urlMap[tabName] || 'https://api.taxlookup.fastgst.in/search/sac/997326/taxes';
+            const headers = {
+                'X-API-Key': '****<YOUR API KEY>****'
+            };
+
+            const button = document.getElementById('api-send-' + tabName);
+            const label = button ? button.querySelector('[data-label]') : null;
+            const spinner = button ? button.querySelector('[data-spinner]') : null;
+            const resp = document.getElementById('api-response');
+            const meta = document.getElementById('api-meta');
+
+            try {
+                if (button) button.disabled = true;
+                if (label) label.textContent = 'Sending...';
+                if (spinner) spinner.classList.remove('hidden');
+                if (resp) resp.innerHTML = '<div class="text-gray-400">Loading…</div>';
+
+                const start = performance.now();
+                const response = await fetch(url, { method: 'GET', headers });
+                const timeMs = Math.round(performance.now() - start);
+
+                const contentType = response.headers.get('content-type') || '';
+                let bodyText = await response.text();
+                let parsed = null;
+                if (contentType.includes('application/json')) {
+                    try { parsed = JSON.parse(bodyText); } catch (_) {}
+                }
+
+                const bytes = new TextEncoder().encode(bodyText).length;
+                const sizeText = bytes < 1024 ? bytes + ' B' : (bytes / 1024).toFixed(1) + ' KB';
+                if (meta) meta.textContent = 'Status ' + response.status + ' • Time ' + timeMs + ' ms • Size ' + sizeText;
+
+                const html = parsed ? syntaxHighlightJson(parsed) : syntaxHighlightJson(bodyText);
+                if (resp) resp.innerHTML = '<pre class="whitespace-pre-wrap">' + html + '</pre>';
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'api_call', {
+                        'event_category': 'API Demo',
+                        'event_label': tabName,
+                        'value': response.status
+                    });
+                }
+            } catch (err) {
+                if (meta) meta.textContent = 'Error';
+                if (resp) resp.innerHTML = '<div class="text-red-300">' + (err && err.message ? err.message : 'Request failed') + '</div>';
+            } finally {
+                if (button) button.disabled = false;
+                if (label) label.textContent = 'Send';
+                if (spinner) spinner.classList.add('hidden');
+            }
+        }
+
+        // Initialize API tabs default
+        document.addEventListener('DOMContentLoaded', function () {
+            showApiTab('scenario3');
+        });
     </script>
 </body>
 </html>
