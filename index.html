@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastGST.in - Centralized HSN & SAC Lookup APIs for GST Integration | Powered by FastGST</title>
     <meta name="description" content="Explore centralized, continuously updated HSN & SAC lookup APIs for GST integrations. Free tier available. Developer portal at developers.fastgst.in">
-    <meta name="keywords" content="GST invoicing, HSN codes, SAC codes, tax lookup API, India GST, SaaS invoicing, developer API">
     <meta name="author" content="FastGST.in">
 
     <!-- Favicon -->
@@ -17,7 +16,9 @@
     <meta property="og:url" content="https://www.fastgst.in/">
     <meta property="og:title" content="FastGST.in - Centralized HSN & SAC Lookup APIs for GST Integration">
     <meta property="og:description" content="Explore centralized, continuously updated HSN & SAC lookup APIs for GST integrations. Free tier available with 1,000 requests/month.">
-    <meta property="og:image" content="https://www.fastgst.in/og-image.jpg">
+    <meta property="og:image" content="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="FastGST.in">
 
     <!-- Twitter -->
@@ -25,7 +26,7 @@
     <meta property="twitter:url" content="https://www.fastgst.in/">
     <meta property="twitter:title" content="FastGST.in - Centralized HSN & SAC Lookup APIs for GST Integration">
     <meta property="twitter:description" content="Explore centralized, continuously updated HSN & SAC lookup APIs for GST integrations. Free tier available with 1,000 requests/month.">
-    <meta property="twitter:image" content="https://www.fastgst.in/og-image.jpg">
+    <meta property="twitter:image" content="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://www.fastgst.in/">
@@ -67,32 +68,135 @@
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "FastGST.in",
-            "description": "Parent organisation providing GST-compliant solutions including HSN & SAC lookup APIs",
-            "url": "https://www.fastgst.in",
-            "provider": {
-                "@type": "Organization",
-                "name": "FastGST.in",
-                "url": "https://www.fastgst.in"
-            }
-        }
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "FastGST.in",
+        "legalName": "FastGST.in",
+        "description": "GST-compliant solutions for India including HSN & SAC lookup APIs",
+        "url": "https://www.fastgst.in",
+        "logo": "https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png",
+        "foundingDate": "2024",
+        "founder": {
+            "@type": "Person",
+            "name": "Sangeeth Nandakumar",
+            "jobTitle": "Founder & Developer"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-7012129961",
+            "contactType": "customer service",
+            "email": "twileloop@outlook.com",
+            "availableLanguage": ["English"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IN"
+        },
+        "sameAs": [
+            "https://www.fastgst.in",
+            "https://console.fastgst.in",
+            "https://docs.taxlookupapi.fastgst.in"
+        ]
+    }
     </script>
 
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebAPI",
-            "name": "FastGST HSN & SAC Lookup API",
-            "description": "Centralized, frequently updated on CBIC and GST Council notifications for HSN & SAC lookup APIs for GST integrations",
-            "url": "https://developers.fastgst.in",
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "FastGST HSN & SAC Lookup API",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "description": "AI-powered REST API for intelligent HSN/SAC fuzzy searches, hierarchy traversals, GST tax breakdowns, and cess information",
+        "url": "https://developers.fastgst.in",
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "INR",
+            "lowPrice": "0",
+            "highPrice": "3999",
+            "offerCount": "4",
+            "offers": [
+                {
+                    "@type": "Offer",
+                    "name": "Developer Trial",
+                    "price": "0",
+                    "priceCurrency": "INR",
+                    "description": "300 requests/month, 15/day, 1 req/sec"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Starter Plan",
+                    "price": "999",
+                    "priceCurrency": "INR",
+                    "description": "8,000 requests/month, 350/day, 3 req/sec"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Professional Plan",
+                    "price": "1999",
+                    "priceCurrency": "INR",
+                    "description": "40,000 requests/month, 1,500/day, 8 req/sec"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Business Plan",
+                    "price": "3999",
+                    "priceCurrency": "INR",
+                    "description": "120,000 requests/month, 4,500/day, 20 req/sec"
+                }
+            ]
+        },
         "provider": {
             "@type": "Organization",
-            "name": "FastGST.in"
+            "name": "FastGST.in",
+            "url": "https://www.fastgst.in"
         },
-        "documentation": "https://documents.fastgst.in"
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "42",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "featureList": [
+            "HSN/SAC Code Fuzzy Search",
+            "Hierarchical Classification Data",
+            "GST Tax Rate Information",
+            "Cess Details",
+            "Real-time Updates",
+            "RESTful API",
+            "Comprehensive Documentation"
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.fastgst.in/"
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FastGST.in",
+        "url": "https://www.fastgst.in",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.fastgst.in/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
     }
     </script>
 
@@ -267,7 +371,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="https://www.fastgst.in/" class="flex items-center space-x-2">
-                        <img src="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png" alt="FastGST.in Logo" class="h-8 w-auto">
+                        <img src="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png" alt="FastGST.in - GST Tax Lookup API Logo" class="h-8 w-auto" loading="eager" width="32" height="32">
                         <span class="text-xl font-bold text-gray-900">FastGST.in</span>
                     </a>
                 </div>
@@ -360,7 +464,7 @@
                                 <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Try Swagger API'});" class="group relative overflow-hidden text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background-color: #000000;">
                                     <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                                        <img src="images/swagger.png" alt="Swagger" class="w-7 h-7 group-hover:scale-110 transition-transform duration-300">
+                                        <img src="images/swagger.png" alt="Swagger API Documentation Tool" class="w-7 h-7 group-hover:scale-110 transition-transform duration-300" loading="lazy" width="28" height="28">
                                     </div>
                                     <div class="text-left">
                                         <div class="text-xs text-white/90 font-medium uppercase tracking-wider">Swagger</div>
@@ -663,21 +767,26 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="col-span-2">
                     <div class="flex items-center space-x-2 mb-4">
-                        <img src="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png" alt="FastGST.in Logo" class="h-8 w-auto">
+                        <img src="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png" alt="FastGST.in - GST Tax Lookup API Logo" class="h-8 w-auto" loading="lazy" width="32" height="32">
                         <span class="text-xl font-bold">FastGST.in</span>
                     </div>
                     <p class="text-gray-400 mb-4 max-w-md">
                         Powering GST-compliant invoicing for India with smart APIs and seamless integration.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <a href="https://twitter.com/fastgst_in" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Follow us on Twitter">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                             </svg>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <a href="https://linkedin.com/company/fastgst" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Connect with us on LinkedIn">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="https://github.com/fastgst" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="View our projects on GitHub">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
                             </svg>
                         </a>
                     </div>
@@ -711,10 +820,16 @@
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-                    © 2024 FastGST.in. All rights reserved. Made with ❤️ for India's GST ecosystem.
-                </p>
+            <div class="border-t border-gray-800 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm">
+                        © 2025 FastGST.in. All rights reserved. Made with ❤️ for India's GST ecosystem.
+                    </p>
+                    <div class="flex gap-4 text-sm">
+                        <a href="sitemap.xml" class="text-gray-400 hover:text-white transition-colors">Sitemap</a>
+                        <a href="robots.txt" class="text-gray-400 hover:text-white transition-colors">Robots</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
