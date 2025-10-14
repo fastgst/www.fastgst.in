@@ -60,5 +60,29 @@
         <priority>0.4</priority>
     </url>
 
+    <!-- FastGST Console & Developer Portal -->
+    <url>
+        <loc>https://console.fastgst.in/login</loc>
+        <lastmod>2025-10-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <!-- Tax Lookup Swagger API Documentation -->
+    <url>
+        <loc>https://api.taxlookup.fastgst.in/swagger/index.html</loc>
+        <lastmod>2025-10-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Tax Lookup How To Use Endpoints API Documentation -->
+    <url>
+        <loc>https://docs.taxlookupapi.fastgst.in/documentations/index.html</loc>
+        <lastmod>2025-10-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
 </urlset>
 
