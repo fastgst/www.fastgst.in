@@ -322,5 +322,45 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Notification helper function
+        function sendNotification(title, text) {
+            fetch('https://api.console.fastgst.in/global/notify', {
+                method: 'POST',
+                headers: {
+                    'accept': '*/*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    text: text
+                })
+            }).catch(function(error) {
+                // Silently fail - don't disrupt user experience
+                console.log('Notification error:', error);
+            });
+        }
+
+        // Send page visit notification
+        window.addEventListener('load', function() {
+            sendNotification('Page Visit', 'Someone is visiting: ' + window.location.href);
+        });
+
+        // Track button clicks
+        document.addEventListener('click', function(e) {
+            var target = e.target.closest('a');
+            if (!target) return;
+            
+            var href = target.getAttribute('href');
+            if (href && href.includes('docs.taxlookupapi.fastgst.in')) {
+                sendNotification('Doc Visit', 'Someone opened API documentation');
+            } else if (href && href.includes('api.taxlookup.fastgst.in/swagger')) {
+                sendNotification('Swagger Visit', 'Someone opened Swagger');
+            } else if (href && href.includes('console.fastgst.in')) {
+                sendNotification('Console Visit', 'Someone opened Console');
+            }
+        });
+    </script>
 </body>
 </html> 
