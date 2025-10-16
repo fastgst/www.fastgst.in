@@ -286,8 +286,35 @@
         </div>
     </footer>
 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Notification helper function
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            500: 'rgb(34 197 94)',
+                            600: 'rgb(22 163 74)',
+                            700: 'rgb(21 128 61)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FTSN7KVKLV');
+    </script>
+
+    <!-- Notification helper function -->
+    <script>
         function sendNotification(title, text) {
             fetch('https://api.console.fastgst.in/global/notify', {
                 method: 'POST',
@@ -301,7 +328,6 @@
                 })
             }).catch(function(error) {
                 // Silently fail - don't disrupt user experience
-                console.log('Notification error:', error);
             });
         }
 
@@ -331,5 +357,6 @@
             'event_label': '404 Page'
         });
     </script>
+
 </body>
 </html> 
