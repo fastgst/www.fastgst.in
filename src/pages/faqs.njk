@@ -1,0 +1,195 @@
+---
+layout: base.njk
+permalink: /faqs/
+title: Frequently Asked Questions - FastGST.in | Tax Lookup API
+description: FAQs for FastGST.in - Find answers to common questions about our GST Tax Lookup API, pricing, integration, and support.
+author: Sangeeth Nandakumar
+canonical: https://www.fastgst.in/faqs
+preloadFonts: true
+schemaData: |
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.fastgst.in/"
+          },
+          {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "FAQs",
+              "item": "https://www.fastgst.in/faqs.html"
+          }
+      ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+          {
+              "@type": "Question",
+              "name": "What is FastGST.in?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "FastGST.in is a platform that provides GST Tax Lookup API services, offering access to accurate GST tax rates, HSN/SAC codes, and classification data for Indian businesses and developers."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Is there a free plan available?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we offer a Developer Trial plan that's completely free with 300 requests per month, 15 requests per day, and 1 request per second rate limit."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How accurate is the tax data?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our data is sourced from official CBIC and GST Council notifications and is updated regularly to ensure accuracy and compliance with current tax regulations."
+              }
+          }
+      ]
+  }
+  </script>
+customStyles: |
+  .faq-item {
+      transition: all 0.3s ease;
+  }
+
+  .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+  }
+
+  .faq-content.active {
+      max-height: 500px;
+  }
+customScripts: |
+  <script>
+      function toggleFAQ(button) {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector('svg');
+          
+          // Track FAQ interaction
+          gtag('event', 'faq_toggle', {
+              'event_category': 'FAQ',
+              'event_label': button.querySelector('h3').textContent
+          });
+          
+          if (content.classList.contains('active')) {
+              content.classList.remove('active');
+              icon.style.transform = 'rotate(0deg)';
+          } else {
+              content.classList.add('active');
+              icon.style.transform = 'rotate(180deg)';
+          }
+      }
+  </script>
+---
+
+<!-- Main Content -->
+<main class="pt-16 overflow-x-hidden">
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Frequently Asked Questions
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Common questions about our GST Tax Lookup API
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-12">
+                <div class="prose prose-lg max-w-none">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">General Questions</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What is FastGST.in?</h3>
+                    <p class="text-gray-700 mb-6">
+                        FastGST.in is a platform that provides GST Tax Lookup API services, offering access to accurate GST tax rates, HSN/SAC codes, and classification data for Indian businesses and developers. We're operated by Sangeeth Nandakumar, an independent developer building GST-compliant solutions.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Is there a free plan available?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Yes! We offer a Developer Trial plan that's completely free with 300 requests per month, 15 requests per day, and 1 request per second rate limit. This allows you to test our API without any commitment.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">How accurate is the tax data?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Our data is sourced from official CBIC and GST Council notifications and is updated regularly to ensure accuracy and compliance with current tax regulations.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration & Technical</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">How do I integrate the API?</h3>
+                    <p class="text-gray-700 mb-4">
+                        Integration is straightforward:
+                    </p>
+                    <ul class="list-disc pl-6 mb-6 text-gray-700 space-y-2">
+                        <li>Sign up at <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">console.fastgst.in</a></li>
+                        <li>Get your API key from the dashboard</li>
+                        <li>Make HTTP requests to our endpoints</li>
+                        <li>Receive JSON responses with tax information</li>
+                    </ul>
+                    <p class="text-gray-700 mb-6">
+                        Check out our <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">documentation</a> for detailed integration guides and examples.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What programming languages are supported?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Our API is RESTful and returns JSON responses, making it compatible with any programming language that can make HTTP requests. This includes Python, JavaScript, Java, PHP, Ruby, .NET, and many others.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What are the rate limits?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Rate limits vary by plan. The free Developer Trial plan allows 1 request per second, 15 requests per day, and 300 requests per month. Paid plans offer higher limits to accommodate production workloads.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Pricing & Billing</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What payment methods do you accept?</h3>
+                    <p class="text-gray-700 mb-6">
+                        We accept major credit cards, debit cards, and other payment methods through our secure payment processor. All transactions are encrypted and secure.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Can I upgrade or downgrade my plan?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Yes, you can upgrade or downgrade your plan at any time from your account dashboard. Changes take effect immediately, and billing is prorated accordingly.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Support & Contact</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">How can I get support?</h3>
+                    <p class="text-gray-700 mb-6">
+                        You can reach us through our <a href="/contact/" class="text-primary-500 hover:text-primary-600">contact page</a> or email us directly at <a href="mailto:twileloop@outlook.com" class="text-primary-500 hover:text-primary-600">twileloop@outlook.com</a>. We typically respond within 24-48 hours.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Is there documentation available?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Yes! We have comprehensive documentation available at <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">docs.taxlookupapi.fastgst.in</a> with API references, code examples, and integration guides.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Still Have Questions?</h2>
+                    <p class="text-gray-700 mb-6">
+                        Can't find what you're looking for? We're here to help! Contact us and we'll be happy to answer any questions you have.
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <p class="text-gray-700 mb-2"><strong>Email:</strong> <a href="mailto:twileloop@outlook.com" class="text-primary-500 hover:text-primary-600">twileloop@outlook.com</a></p>
+                        <p class="text-gray-700"><strong>Contact Page:</strong> <a href="/contact/" class="text-primary-500 hover:text-primary-600">Get in Touch</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

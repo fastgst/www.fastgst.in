@@ -1,4 +1,4 @@
-name: Copy to Azure Blob
+name: Build and Deploy to Azure Blob
 
 on:
   push:
@@ -7,20 +7,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  upload:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Copy static site to Azure Blob Storage
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site with Eleventy
+        run: npm run build
+
+      - name: Deploy to Azure Blob Storage
         uses: azure/cli@v1
         with:
           inlineScript: |
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
-              --source ./ \
+              --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --overwrite

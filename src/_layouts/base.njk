@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="{{ author or 'FastGST.in' }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png">
+    <link rel="apple-touch-icon" href="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ canonical or ('https://www.fastgst.in' + page.url) }}">
+    <meta property="og:title" content="{{ ogTitle or title }}">
+    <meta property="og:description" content="{{ ogDescription or description }}">
+    <meta property="og:image" content="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="FastGST.in">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ canonical or ('https://www.fastgst.in' + page.url) }}">
+    <meta property="twitter:title" content="{{ twitterTitle or title }}">
+    <meta property="twitter:description" content="{{ twitterDescription or description }}">
+    <meta property="twitter:image" content="https://fastgstdevelopers.blob.core.windows.net/artifacts/tax-lookup-api-logo.png">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ canonical or ('https://www.fastgst.in' + page.url) }}">
+    
+    <!-- Robots -->
+    <meta name="robots" content="{{ robots or 'index, follow' }}">
+    <meta name="googlebot" content="{{ googlebot or 'index, follow' }}">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    
+    {% if preloadFonts %}
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    {% endif %}
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            500: 'rgb(34 197 94)',
+                            600: 'rgb(22 163 74)',
+                            700: 'rgb(21 128 61)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    {% if schemaData %}
+    <!-- Schema.org JSON-LD -->
+    {{ schemaData | safe }}
+    {% endif %}
+    
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FTSN7KVKLV');
+    </script>
+    
+    <style>
+        /* Critical CSS */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        .container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        {% if customStyles %}
+        {{ customStyles | safe }}
+        {% endif %}
+    </style>
+</head>
+<body class="font-sans text-gray-900 antialiased">
+    {% include "header.njk" %}
+    
+    {{ content | safe }}
+    
+    {% include "footer.njk" %}
+    
+    {% include "scripts.njk" %}
+</body>
+</html>
+

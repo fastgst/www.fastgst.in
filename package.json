@@ -1,0 +1,20 @@
+{
+  "name": "fastgst-website",
+  "version": "1.0.0",
+  "description": "FastGST.in static website built with Eleventy",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "start": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "keywords": [
+    "eleventy",
+    "static-site"
+  ],
+  "author": "FastGST.in",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
