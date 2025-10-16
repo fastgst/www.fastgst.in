@@ -1,11 +1,11 @@
 # FastGST.in - Robots.txt
-# https://www.fastgst.in/robots.txt
+# /robots.txt
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.fastgst.in/sitemap.xml
+Sitemap: /sitemap.xml
 
 # Crawl-delay for polite crawling
 Crawl-delay: 1
