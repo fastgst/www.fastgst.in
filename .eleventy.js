@@ -3,6 +3,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
+  // Add global data for current year
+  eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
+
   return {
     dir: {
       input: "src",

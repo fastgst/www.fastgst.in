@@ -46,7 +46,7 @@ schemaData: |
               "name": "Is there a free plan available?",
               "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes, we offer a Developer Trial plan that's completely free with 300 requests per month, 15 requests per day, and 1 request per second rate limit."
+                  "text": "Yes, Please check on Console"
               }
           },
           {
@@ -62,38 +62,113 @@ schemaData: |
   </script>
 customStyles: |
   .faq-item {
-      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .faq-item:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-item.active {
+      border-color: #3b82f6;
+      background-color: #ffffff;
+  }
+
+  .faq-button {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+  }
+
+  .faq-button:active {
+      transform: scale(0.99);
+  }
+
+  .faq-icon {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+  }
+
+  .faq-icon.rotated {
+      transform: rotate(180deg);
   }
 
   .faq-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-content-inner {
+      padding: 0 1.5rem;
+      padding-bottom: 0;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .faq-content.active {
-      max-height: 500px;
+      max-height: 2000px;
+  }
+
+  .faq-content.active .faq-content-inner {
+      padding-bottom: 1.5rem;
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+  }
+
+  .faq-question {
+      transition: color 0.2s ease;
+  }
+
+  .faq-item.active .faq-question {
+      color: #3b82f6;
   }
 customScripts: |
   <script>
       function toggleFAQ(button) {
+          const faqItem = button.closest('.faq-item');
           const content = button.nextElementSibling;
-          const icon = button.querySelector('svg');
+          const icon = button.querySelector('.faq-icon');
+          const isActive = faqItem.classList.contains('active');
           
           // Track FAQ interaction
-          gtag('event', 'faq_toggle', {
-              'event_category': 'FAQ',
-              'event_label': button.querySelector('h3').textContent
-          });
+          if (typeof gtag !== 'undefined') {
+              gtag('event', 'faq_toggle', {
+                  'event_category': 'FAQ',
+                  'event_label': button.querySelector('h3').textContent,
+                  'event_action': isActive ? 'close' : 'open'
+              });
+          }
           
-          if (content.classList.contains('active')) {
+          if (isActive) {
+              // Close accordion
+              faqItem.classList.remove('active');
               content.classList.remove('active');
-              icon.style.transform = 'rotate(0deg)';
+              icon.classList.remove('rotated');
           } else {
+              // Open accordion
+              faqItem.classList.add('active');
               content.classList.add('active');
-              icon.style.transform = 'rotate(180deg)';
+              icon.classList.add('rotated');
           }
       }
+
+      // Close all accordions on page load for a clean start
+      document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.faq-item').forEach(item => {
+              item.classList.remove('active');
+          });
+          document.querySelectorAll('.faq-content').forEach(content => {
+              content.classList.remove('active');
+          });
+          document.querySelectorAll('.faq-icon').forEach(icon => {
+              icon.classList.remove('rotated');
+          });
+      });
   </script>
 ---
 
@@ -103,89 +178,279 @@ customScripts: |
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Frequently Asked Questions
-                </h1>
+                Frequently Asked Questions
+            </h1>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                     Common questions about our GST Tax Lookup API
-                </p>
-            </div>
+            </p>
+        </div>
 
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-12">
-                <div class="prose prose-lg max-w-none">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">General Questions</h2>
-                    
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What is FastGST.in?</h3>
-                    <p class="text-gray-700 mb-6">
-                        FastGST.in is a platform that provides GST Tax Lookup API services, offering access to accurate GST tax rates, HSN/SAC codes, and classification data for Indian businesses and developers. We're operated by Sangeeth Nandakumar, an independent developer building GST-compliant solutions.
-                    </p>
+                <div class="space-y-8">
+                <!-- General Questions -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">General Questions</h2>
+                        <div class="space-y-4">
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">What is the Tax Lookup API?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            The Tax Lookup API is an AI-powered REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Is there a free plan available?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Yes! We offer a Developer Trial plan that's completely free with 300 requests per month, 15 requests per day, and 1 request per second rate limit. This allows you to test our API without any commitment.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">What are the main features of the Tax Lookup API?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <ul class="text-gray-700 space-y-2">
+                                            <li><strong>Fuzzy Search:</strong> Find HSN/SAC codes even if the input is incomplete or slightly incorrect.</li>
+                                            <li><strong>Hierarchy Traversal:</strong> Explore the parent-child relationships of HSN/SAC codes.</li>
+                                            <li><strong>GST Tax and Cess Lookup:</strong> Access best effort latest GST rates, including updates from the 56th GST Council (effective 22 Sept 2025).</li>
+                                            <li><strong>Real-Time Data:</strong> Ensure your application always uses up-to-date information.</li>
+                                            <li><strong>Developer-Friendly Tools:</strong> Interactive API playground, Swagger, and sample code for easy integration.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">How accurate is the tax data?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Our data is sourced from official CBIC and GST Council notifications and is updated regularly to ensure accuracy and compliance with current tax regulations.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How do I test the API?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            You can use the provided Swagger page or API testing tools like Postman, Insomnia etc..
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Integration & Technical</h2>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How do I integrate the API into my application?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700 mb-3">Integration is straightforward:</p>
+                                        <ol class="list-decimal pl-6 text-gray-700 space-y-2">
+                                            <li>Sign up on <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">FastGST Console</a> and generate your API key.</li>
+                                            <li>Use our REST API endpoints</li>
+                                            <li>Refer to our <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">Swagger</a> and <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">documentation</a> for detailed examples.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">How do I integrate the API?</h3>
-                    <p class="text-gray-700 mb-4">
-                        Integration is straightforward:
-                    </p>
-                    <ul class="list-disc pl-6 mb-6 text-gray-700 space-y-2">
-                        <li>Sign up at <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">console.fastgst.in</a></li>
-                        <li>Get your API key from the dashboard</li>
-                        <li>Make HTTP requests to our endpoints</li>
-                        <li>Receive JSON responses with tax information</li>
-                    </ul>
-                    <p class="text-gray-700 mb-6">
-                        Check out our <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">documentation</a> for detailed integration guides and examples.
-                    </p>
+                    <!-- Pricing and Access -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Pricing and Access</h2>
+                        <div class="space-y-4">
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Is there a free trial for the Tax Lookup API?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            Yes, Please check on Console
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What programming languages are supported?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Our API is RESTful and returns JSON responses, making it compatible with any programming language that can make HTTP requests. This includes Python, JavaScript, Java, PHP, Ruby, .NET, and many others.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How many API calls are allowed?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            Usage limits depend on your subscription plan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What are the rate limits?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Rate limits vary by plan. The free Developer Trial plan allows 1 request per second, 15 requests per day, and 300 requests per month. Paid plans offer higher limits to accommodate production workloads.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How much does the Tax Lookup API cost?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            Pricing depends on the plan you choose. Visit the Pricing page on <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">FastGST.in</a> for details on plans, features, and limits.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Pricing & Billing</h2>
+                    <!-- Data Accuracy and Compliance -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Data Accuracy and Compliance</h2>
+                        <div class="space-y-4">
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How accurate is the Tax Lookup API?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">What payment methods do you accept?</h3>
-                    <p class="text-gray-700 mb-6">
-                        We accept major credit cards, debit cards, and other payment methods through our secure payment processor. All transactions are encrypted and secure.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Which GST updates are included?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            The API includes the latest GST rates and cess details, including updates from the 56th GST Council (effective 22 Sept 2025).
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Can I upgrade or downgrade my plan?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Yes, you can upgrade or downgrade your plan at any time from your account dashboard. Changes take effect immediately, and billing is prorated accordingly.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Can the API be used for statutory compliance?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            The API is designed to assist in GST-related workflows, but users are responsible for verifying information against official government sources before filing taxes.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Support & Contact</h2>
+                    <!-- Developer & Technical Questions -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Developer & Technical Questions</h2>
+                        <div class="space-y-4">
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Which programming languages are supported?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            The Tax Lookup API is a REST API, so it can be accessed from any language that supports HTTP requests, including Python, JavaScript, Java, PHP, Ruby, and more.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">How can I get support?</h3>
-                    <p class="text-gray-700 mb-6">
-                        You can reach us through our <a href="/contact/" class="text-primary-500 hover:text-primary-600">contact page</a> or email us directly at <a href="mailto:twileloop@outlook.com" class="text-primary-500 hover:text-primary-600">twileloop@outlook.com</a>. We typically respond within 24-48 hours.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Is there detailed documentation?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            Yes. FastGST.in provides comprehensive <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">API documentation</a>, including <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">Swagger examples</a>, interactive console access, and sample requests/responses to accelerate integration.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Is there documentation available?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Yes! We have comprehensive documentation available at <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">docs.taxlookupapi.fastgst.in</a> with API references, code examples, and integration guides.
-                    </p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Can I request new features?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            Absolutely. We value feedback from developers and businesses. Feature requests help shape our roadmap and improve our API offerings.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Still Have Questions?</h2>
-                    <p class="text-gray-700 mb-6">
-                        Can't find what you're looking for? We're here to help! Contact us and we'll be happy to answer any questions you have.
-                    </p>
-                    <div class="bg-gray-50 rounded-lg p-6">
-                        <p class="text-gray-700 mb-2"><strong>Email:</strong> <a href="mailto:twileloop@outlook.com" class="text-primary-500 hover:text-primary-600">twileloop@outlook.com</a></p>
-                        <p class="text-gray-700"><strong>Contact Page:</strong> <a href="/contact/" class="text-primary-500 hover:text-primary-600">Get in Touch</a></p>
+                            <div class="faq-item bg-gray-50 rounded-xl">
+                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How can I get support?</h3>
+                                    <svg class="faq-icon w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <p class="text-gray-700">
+                                            Contact our support team via <a href="mailto:twileloop@outlook.com" class="text-primary-500 hover:text-primary-600">email</a> or through the <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">developer console</a>. We assist with integration, technical queries, and general product guidance.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Still Have Questions -->
+                    <div class="mt-12 text-center p-8 bg-gray-50 rounded-xl">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h2>
+                <p class="text-gray-600 mb-6">
+                            Can't find what you're looking for? We're here to help!
+                </p>
+                        <a href="/contact/" class="inline-block bg-primary-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors">
+                    Contact Us
+                </a>
                     </div>
                 </div>
             </div>
