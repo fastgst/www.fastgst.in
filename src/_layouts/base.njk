@@ -75,39 +75,46 @@
     
     <!-- Analytics - Deferred for better performance -->
     <script>
-        // Defer Google Analytics loading until after page is interactive
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    
+    function loadGoogleAnalytics() {
+        if (window.gaLoaded) return;
+        window.gaLoaded = true;
         
-        function loadGoogleAnalytics() {
-            if (window.gaLoaded) return;
-            window.gaLoaded = true;
-            
-            var script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-00HMKXKXG7';
-            document.head.appendChild(script);
-            
-            script.onload = function() {
-                gtag('js', new Date());
-                gtag('config', 'G-00HMKXKXG7');
-            };
-        }
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-00HMKXKXG7';
+        document.head.appendChild(script);
         
-        // Load analytics after page is fully loaded
-        if (document.readyState === 'complete') {
-            setTimeout(loadGoogleAnalytics, 1000);
+        script.onload = function() {
+            gtag('js', new Date());
+            gtag('config', 'G-00HMKXKXG7');
+        };
+    }
+    
+    // Load on page load with idle callback
+    if (document.readyState === 'complete') {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
         } else {
-            window.addEventListener('load', function() {
-                setTimeout(loadGoogleAnalytics, 1000);
-            });
+            setTimeout(loadGoogleAnalytics, 100);
         }
-        
-        // Also load on first user interaction (whichever comes first)
-        ['scroll', 'click', 'mousemove', 'touchstart'].forEach(function(event) {
-            document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+    } else {
+        window.addEventListener('load', function() {
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+            } else {
+                setTimeout(loadGoogleAnalytics, 100);
+            }
         });
-    </script>
+    }
+    
+    // Load on first user interaction
+    ['scroll', 'click', 'mousemove', 'touchstart'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+    });
+</script>
     
     <style>
         /* Critical CSS */
