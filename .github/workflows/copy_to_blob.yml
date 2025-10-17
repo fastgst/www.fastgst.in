@@ -42,3 +42,8 @@ jobs:
               --destination '$web' \
               --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }}
+
+      - name: Purge Bunny CDN Cache
+        run: |
+          curl --location --request POST 'https://api.bunny.net/pullzone/4346060/purgeCache' \
+            --header 'AccessKey: ${{ secrets.BUNNY_CDN_APIKEY }}'
