@@ -73,13 +73,40 @@
     {{ schemaData | safe }}
     {% endif %}
     
-    <!-- Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
+    <!-- Analytics - Deferred for better performance -->
     <script>
+        // Defer Google Analytics loading until after page is interactive
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-FTSN7KVKLV');
+        
+        function loadGoogleAnalytics() {
+            if (window.gaLoaded) return;
+            window.gaLoaded = true;
+            
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-00HMKXKXG7';
+            document.head.appendChild(script);
+            
+            script.onload = function() {
+                gtag('js', new Date());
+                gtag('config', 'G-00HMKXKXG7');
+            };
+        }
+        
+        // Load analytics after page is fully loaded
+        if (document.readyState === 'complete') {
+            setTimeout(loadGoogleAnalytics, 1000);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(loadGoogleAnalytics, 1000);
+            });
+        }
+        
+        // Also load on first user interaction (whichever comes first)
+        ['scroll', 'click', 'mousemove', 'touchstart'].forEach(function(event) {
+            document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+        });
     </script>
     
     <style>
