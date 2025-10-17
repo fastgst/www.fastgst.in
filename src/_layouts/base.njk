@@ -38,15 +38,21 @@
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
+    <!-- DNS Prefetch & Preconnect for Analytics (reduces load time when triggered) -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    
     {% if preloadFonts %}
-    <!-- Preload critical resources -->
+    <!-- Optimized Font Loading - Reduced weights for faster mobile -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     {% endif %}
     
     <style>
+        /* Critical CSS - Inlined for instant rendering */
+        
         /* Font fallback to prevent layout shift */
         @font-face {
             font-family: 'Inter Fallback';
@@ -63,57 +69,135 @@
         body {
             font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
         }
+        
+        /* CRITICAL: Above-the-fold styles for hero section */
+        .gradient-bg {
+            background: white;
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Mobile: Disable expensive animations to improve render time */
+        @media (max-width: 768px) {
+            .fade-in,
+            .float-animation,
+            .glow-border::before,
+            .shimmer-effect {
+                animation: none !important;
+            }
+            
+            /* Simplify transforms on mobile */
+            .float-animation {
+                transform: none !important;
+            }
+        }
+        
+        /* Desktop: Keep animations */
+        @media (min-width: 769px) {
+            .fade-in {
+                animation: fadeIn 0.8s ease-in-out;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .float-animation {
+                animation: float 6s ease-in-out infinite;
+            }
+            
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+        }
+        
+        /* Content-visibility for below-the-fold sections on mobile */
+        @media (max-width: 768px) {
+            section:not(:first-of-type) {
+                content-visibility: auto;
+                contain-intrinsic-size: auto 500px;
+            }
+        }
     </style>
     
-    <!-- Optimized Tailwind CSS (Production Build) -->
-    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Optimized CSS Loading: Async for non-critical styles -->
+    <link rel="preload" href="/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/css/styles.css"></noscript>
     
     {% if schemaData %}
     <!-- Schema.org JSON-LD -->
     {{ schemaData | safe }}
     {% endif %}
     
-    <!-- Analytics - Deferred for better performance -->
+    <!-- Analytics - Optimized for minimal impact on performance -->
     <script>
+    // Minimal dataLayer initialization
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     
+    // Pre-configure before script loads (reduces execution time)
+    gtag('js', new Date());
+    gtag('config', 'G-00HMKXKXG7', {
+        'send_page_view': false  // We'll send it manually after load
+    });
+    
+    var gaLoadStarted = false;
+    
     function loadGoogleAnalytics() {
-        if (window.gaLoaded) return;
-        window.gaLoaded = true;
+        if (gaLoadStarted) return;
+        gaLoadStarted = true;
         
+        // Use async + defer technique for minimal blocking
         var script = document.createElement('script');
         script.async = true;
+        script.defer = true;
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-00HMKXKXG7';
-        document.head.appendChild(script);
         
         script.onload = function() {
-            gtag('js', new Date());
-            gtag('config', 'G-00HMKXKXG7');
+            // Send initial pageview only after script fully loads
+            gtag('event', 'page_view');
         };
+        
+        // Insert before first script (faster than appendChild)
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
     }
     
-    // Load on page load with idle callback
+    // Strategy 1: Load after user interaction (fastest for interactive users)
+    ['mousedown', 'touchstart', 'keydown', 'wheel'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+    });
+    
+    // Strategy 2: Fallback - Load after page becomes idle (for non-interactive users)
     if (document.readyState === 'complete') {
         if ('requestIdleCallback' in window) {
-            requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+            requestIdleCallback(loadGoogleAnalytics, { timeout: 5000 });
         } else {
-            setTimeout(loadGoogleAnalytics, 100);
+            setTimeout(loadGoogleAnalytics, 3000);
         }
     } else {
         window.addEventListener('load', function() {
             if ('requestIdleCallback' in window) {
-                requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+                requestIdleCallback(loadGoogleAnalytics, { timeout: 5000 });
             } else {
-                setTimeout(loadGoogleAnalytics, 100);
+                setTimeout(loadGoogleAnalytics, 3000);
             }
         });
     }
-    
-    // Load on first user interaction
-    ['scroll', 'click', 'mousemove', 'touchstart'].forEach(function(event) {
-        document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
-    });
 </script>
     
     <style>

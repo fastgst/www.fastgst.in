@@ -30,18 +30,69 @@ jobs:
         uses: azure/cli@v1
         with:
           inlineScript: |
-            # Delete all existing blobs in $web container
+            # 🧹 Step 1: Delete all existing blobs
             az storage blob delete-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --source '$web' \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }}
-            
-            # Upload all files fresh
+
+            # 🌐 Step 2a: Upload HTML and CSS with short cache (5 min)
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
               --source ./_site \
-              --account-key ${{ secrets.AZURE_STORAGE_KEY }}
+              --pattern "*.html" \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --content-cache-control "public, max-age=300, must-revalidate"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --pattern "*.css" \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --content-cache-control "public, max-age=300, must-revalidate"
+
+            # 🖼️ Step 2b: Upload images & other static assets with long cache (1 year)
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.webp" \
+              --content-cache-control "public, max-age=31536000, immutable"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.png" \
+              --content-cache-control "public, max-age=31536000, immutable"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.jpg" \
+              --content-cache-control "public, max-age=31536000, immutable"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.jpeg" \
+              --content-cache-control "public, max-age=31536000, immutable"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.svg" \
+              --content-cache-control "public, max-age=31536000, immutable"
 
       - name: Purge Bunny CDN Cache
         run: |
