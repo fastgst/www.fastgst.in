@@ -30,17 +30,10 @@ jobs:
         uses: azure/cli@v1
         with:
           inlineScript: |
-            # Delete the entire $web container
-            az storage container delete \
+            # Delete all existing blobs in $web container
+            az storage blob delete-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-              --name '$web' \
-              --account-key ${{ secrets.AZURE_STORAGE_KEY }}
-            
-            # Recreate the $web container with public access
-            az storage container create \
-              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-              --name '$web' \
-              --public-access blob \
+              --source '$web' \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }}
             
             # Upload all files fresh
