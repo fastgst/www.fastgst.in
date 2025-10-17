@@ -38,35 +38,57 @@
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     
+    <!-- Preload critical images to prevent layout shift -->
+    <link rel="preload" href="/images/fastgst.webp" as="image" type="image/webp">
+    
     <!-- DNS Prefetch & Preconnect for Analytics (reduces load time when triggered) -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     
-    {% if preloadFonts %}
-    <!-- Optimized Font Loading - Reduced weights for faster mobile -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
-    {% endif %}
-    
     <style>
         /* Critical CSS - Inlined for instant rendering */
         
-        /* Font fallback to prevent layout shift */
+        /* Optimized Font fallback to prevent layout shift - Matches Inter metrics precisely */
         @font-face {
             font-family: 'Inter Fallback';
             font-style: normal;
-            font-weight: 300 700;
+            font-weight: 400;
             src: local('Arial');
-            ascent-override: 90%;
-            descent-override: 22%;
+            ascent-override: 90.20%;
+            descent-override: 22.48%;
             line-gap-override: 0%;
-            size-adjust: 107%;
+            size-adjust: 107.40%;
         }
         
-        /* Ensure text is visible while fonts load */
+        @font-face {
+            font-family: 'Inter Fallback';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Arial');
+            ascent-override: 90.20%;
+            descent-override: 22.48%;
+            line-gap-override: 0%;
+            size-adjust: 107.40%;
+        }
+        
+        @font-face {
+            font-family: 'Inter Fallback';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Arial');
+            ascent-override: 90.20%;
+            descent-override: 22.48%;
+            line-gap-override: 0%;
+            size-adjust: 107.40%;
+        }
+        
+        /* Use fallback font immediately - no flash of unstyled text */
         body {
+            font-family: 'Inter Fallback', system-ui, -apple-system, sans-serif;
+        }
+        
+        /* Load Inter font and apply when ready */
+        .fonts-loaded body {
             font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
         }
         
@@ -132,11 +154,28 @@
                 contain-intrinsic-size: auto 500px;
             }
         }
+        
+        /* Prevent layout shifts by reserving space for elements */
+        section {
+            min-height: 0;
+        }
+        
+        /* Reserve space for footer to prevent shift */
+        footer {
+            min-height: 200px;
+        }
     </style>
     
-    <!-- Optimized CSS Loading: Async for non-critical styles -->
-    <link rel="preload" href="/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/css/styles.css"></noscript>
+    {% if preloadFonts %}
+    <!-- Optimized Font Loading - Reduced weights, font-display: optional prevents layout shift -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=optional" media="print" onload="this.media='all';document.documentElement.classList.add('fonts-loaded')">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=optional"></noscript>
+    {% endif %}
+    
+    <!-- Load Tailwind CSS synchronously to prevent FOUC -->
+    <link rel="stylesheet" href="/css/styles.css">
     
     {% if schemaData %}
     <!-- Schema.org JSON-LD -->
