@@ -43,13 +43,47 @@
     <!-- Optimized Tailwind CSS (Production Build) -->
     <link rel="stylesheet" href="/css/styles.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
+    <!-- Analytics - Deferred for better performance -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-FTSN7KVKLV');
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    
+    function loadGoogleAnalytics() {
+        if (window.gaLoaded) return;
+        window.gaLoaded = true;
+        
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-00HMKXKXG7';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+            gtag('js', new Date());
+            gtag('config', 'G-00HMKXKXG7');
+        };
+    }
+    
+    // Load on page load with idle callback
+    if (document.readyState === 'complete') {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+        } else {
+            setTimeout(loadGoogleAnalytics, 100);
+        }
+    } else {
+        window.addEventListener('load', function() {
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+            } else {
+                setTimeout(loadGoogleAnalytics, 100);
+            }
+        });
+    }
+    
+    // Load on first user interaction
+    ['scroll', 'click', 'mousemove', 'touchstart'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+    });
     </script>
 
     <style>
@@ -75,7 +109,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2">
-                        <img src="/images/fastgst.webp" alt="FastGST.in Logo" class="h-8 w-auto">
+                        <img src="/images/fastgst.webp" alt="FastGST.in Logo" class="h-8 w-auto" width="32" height="32" loading="eager">
                         <span class="text-xl font-bold text-gray-900">FastGST.in</span>
                     </a>
                 </div>
@@ -232,7 +266,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
                     <div class="flex items-center space-x-2 mb-4">
-                        <img src="/images/fastgst.webp" alt="FastGST.in Logo" class="h-8 w-auto">
+                        <img src="/images/fastgst.webp" alt="FastGST.in Logo" class="h-8 w-auto" width="32" height="32" loading="eager">
                         <span class="text-xl font-bold">FastGST.in</span>
                     </div>
                     <p class="text-gray-400 mb-4">
@@ -270,13 +304,47 @@
         </div>
     </footer>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSN7KVKLV"></script>
+    <!-- Analytics - Deferred for better performance -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-FTSN7KVKLV');
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    
+    function loadGoogleAnalytics() {
+        if (window.gaLoaded) return;
+        window.gaLoaded = true;
+        
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-00HMKXKXG7';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+            gtag('js', new Date());
+            gtag('config', 'G-00HMKXKXG7');
+        };
+    }
+    
+    // Load on page load with idle callback
+    if (document.readyState === 'complete') {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+        } else {
+            setTimeout(loadGoogleAnalytics, 100);
+        }
+    } else {
+        window.addEventListener('load', function() {
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadGoogleAnalytics, { timeout: 2000 });
+            } else {
+                setTimeout(loadGoogleAnalytics, 100);
+            }
+        });
+    }
+    
+    // Load on first user interaction
+    ['scroll', 'click', 'mousemove', 'touchstart'].forEach(function(event) {
+        document.addEventListener(event, loadGoogleAnalytics, { once: true, passive: true });
+    });
     </script>
 
     <!-- Notification helper function -->

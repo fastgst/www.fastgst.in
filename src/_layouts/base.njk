@@ -46,6 +46,25 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
     {% endif %}
     
+    <style>
+        /* Font fallback to prevent layout shift */
+        @font-face {
+            font-family: 'Inter Fallback';
+            font-style: normal;
+            font-weight: 300 700;
+            src: local('Arial');
+            ascent-override: 90%;
+            descent-override: 22%;
+            line-gap-override: 0%;
+            size-adjust: 107%;
+        }
+        
+        /* Ensure text is visible while fonts load */
+        body {
+            font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+        }
+    </style>
+    
     <!-- Optimized Tailwind CSS (Production Build) -->
     <link rel="stylesheet" href="/css/styles.css">
     
