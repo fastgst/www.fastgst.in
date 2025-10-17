@@ -45,5 +45,18 @@ jobs:
 
       - name: Purge Bunny CDN Cache
         run: |
-          curl --location --request POST 'https://api.bunny.net/pullzone/4346060/purgeCache' \
-            --header 'AccessKey: ${{ secrets.BUNNY_CDN_APIKEY }}'
+          HTTP_STATUS=$(curl --location --request POST 'https://api.bunny.net/pullzone/4346060/purgeCache' \
+            --header 'AccessKey: ${{ secrets.BUNNY_CDN_APIKEY }}' \
+            --write-out '%{http_code}' \
+            --silent \
+            --output /dev/null)
+          
+          echo "Bunny CDN API Response Status: $HTTP_STATUS"
+          
+          if [[ "$HTTP_STATUS" =~ ^2[0-9][0-9]$ ]]; then
+            echo "✅ Cache purged successfully"
+            exit 0
+          else
+            echo "❌ Failed to purge cache. Expected 2XX, got $HTTP_STATUS"
+            exit 1
+          fi
