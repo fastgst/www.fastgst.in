@@ -81,7 +81,7 @@ schemaData: |
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "/"
+              "item": "https://www.fastgst.in/"
           }
       ]
   }
@@ -98,6 +98,21 @@ schemaData: |
           "target": "/search?q={search_term_string}",
           "query-input": "required name=search_term_string"
       }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "WebAPI",
+      "name": "FastGST HSN & SAC Lookup API",
+      "description": "Centralized, frequently updated on CBIC and GST Council notifications for HSN & SAC lookup APIs for GST integrations",
+      "url": "https://developers.fastgst.in",
+      "provider": {
+          "@type": "Organization",
+          "name": "FastGST.in"
+      },
+      "documentation": "https://documents.fastgst.in"
   }
   </script>
 customStyles: |

@@ -15,13 +15,13 @@ schemaData: |
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "/"
+              "item": "https://www.fastgst.in/"
           },
           {
               "@type": "ListItem",
               "position": 2,
               "name": "FAQs",
-              "item": "/faqs/"
+              "item": "https://www.fastgst.in/faqs/"
           }
       ]
   }
@@ -34,15 +34,39 @@ schemaData: |
       "mainEntity": [
           {
               "@type": "Question",
-              "name": "What is FastGST.in?",
+              "name": "What is the Tax Lookup API?",
               "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "FastGST.in is a platform that provides GST Tax Lookup API services, offering access to accurate GST tax rates, HSN/SAC codes, and classification data for Indian businesses and developers."
+                  "text": "The Tax Lookup API is an AI-powered REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically."
               }
           },
           {
               "@type": "Question",
-              "name": "Is there a free plan available?",
+              "name": "What are the main features of the Tax Lookup API?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The main features include: Fuzzy Search to find HSN/SAC codes even if the input is incomplete or slightly incorrect; Hierarchy Traversal to explore parent-child relationships of HSN/SAC codes; GST Tax and Cess Lookup for accessing best effort latest GST rates, including updates from the 56th GST Council (effective 22 Sept 2025); Real-Time Data to ensure your application always uses up-to-date information; and Developer-Friendly Tools including interactive API playground, Swagger, and sample code for easy integration."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How do I test the API?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can use the provided Swagger page or API testing tools like Postman, Insomnia etc."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How do I integrate the API into my application?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Integration is straightforward: 1) Sign up on FastGST Console and generate your API key. 2) Use our REST API endpoints. 3) Refer to our Swagger and documentation for detailed examples."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Is there a free trial for the Tax Lookup API?",
               "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Yes, Please check on Console"
@@ -50,10 +74,74 @@ schemaData: |
           },
           {
               "@type": "Question",
-              "name": "How accurate is the tax data?",
+              "name": "How many API calls are allowed?",
               "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Our data is sourced from official CBIC and GST Council notifications and is updated regularly to ensure accuracy and compliance with current tax regulations."
+                  "text": "Usage limits depend on your subscription plan."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How much does the Tax Lookup API cost?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Pricing depends on the plan you choose. Visit the Pricing page on FastGST.in for details on plans, features, and limits."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How accurate is the Tax Lookup API?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Which GST updates are included?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The API includes the latest GST rates and cess details, including updates from the 56th GST Council (effective 22 Sept 2025)."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Can the API be used for statutory compliance?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The API is designed to assist in GST-related workflows, but users are responsible for verifying information against official government sources before filing taxes."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Which programming languages are supported?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The Tax Lookup API is a REST API, so it can be accessed from any language that supports HTTP requests, including Python, JavaScript, Java, PHP, Ruby, and more."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Is there detailed documentation?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. FastGST.in provides comprehensive API documentation, including Swagger examples, interactive console access, and sample requests/responses to accelerate integration."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "Can I request new features?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. We value feedback from developers and businesses. Feature requests help shape our roadmap and improve our API offerings."
+              }
+          },
+          {
+              "@type": "Question",
+              "name": "How can I get support?",
+              "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Contact our support team via email or through the developer console. We assist with integration, technical queries, and general product guidance."
               }
           }
       ]
