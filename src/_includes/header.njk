@@ -8,6 +8,7 @@
                     <span class="text-xl font-bold text-gray-900">FastGST.in</span>
                 </a>
             </div>
+            <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
                 <a href="/" class="text-gray-600 hover:text-gray-900 transition-colors">Home</a>
                 <a href="/pricing/" class="text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
@@ -28,9 +29,35 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center space-x-4">
+            <!-- Mobile menu button -->
+            <div class="flex items-center md:hidden">
+                <button id="mobile-menu-button" type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900" aria-label="Toggle menu" aria-expanded="false">
+                    <svg id="menu-open-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="menu-close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <div class="px-4 pt-2 pb-4 space-y-1">
+            <a href="/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Home</a>
+            <a href="/pricing/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Pricing</a>
+            <a href="/about/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">About</a>
+            <a href="/faqs/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">FAQs</a>
+            <a href="/contact/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Contact</a>
+            <!-- Mobile Legal Submenu -->
+            <div class="pt-2 border-t border-gray-100">
+                <div class="px-3 py-2 text-sm font-semibold text-gray-900">Legal</div>
+                <a href="/privacy-policy/" class="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Privacy Policy</a>
+                <a href="/terms-and-conditions/" class="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Terms & Conditions</a>
+                <a href="/refund-cancellation-policy/" class="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Refund Policy</a>
+            </div>
+        </div>
+    </div>
 </header>
 
