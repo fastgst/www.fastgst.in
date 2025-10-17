@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site with Eleventy
+      - name: Build site (Eleventy + Tailwind CSS)
         run: npm run build
 
       - name: Deploy to Azure Blob Storage
