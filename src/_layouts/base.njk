@@ -163,10 +163,11 @@
     </style>
     
     {% if preloadFonts %}
-    <!-- Optimized Font Loading - display=swap for faster render, fallback metrics prevent shift -->
+    <!-- Optimized Font Loading - Async load with swap, fallback metrics prevent shift -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"></noscript>
     {% endif %}
     
     <!-- Load Tailwind CSS synchronously to prevent FOUC -->
