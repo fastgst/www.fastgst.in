@@ -78,11 +78,21 @@
         }
     }
 
-    // Send page visit notification
+    // Send page visit notification - Low priority, non-blocking
     window.addEventListener('load', function() {
+        // Defer notification to idle time to avoid blocking rendering or interactions
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(function() {
+                sendNotification('👀 FastGST', window.location.href);
+            }, { timeout: 5000 });
+        } else {
+            setTimeout(function() {
+                sendNotification('👀 FastGST', window.location.href);
+            }, 3000);
+        }
+        
         {% if page.url == '/' %}
         window.scrollTo(0, 0);
-        sendNotification('👀 FastGST.in', window.location.href);
         
         // Track Funnel Step 1: Homepage Visit
         safeGtag('event', 'funnel_step', {
@@ -91,8 +101,6 @@
             'step_number': 1,
             'step_name': 'Homepage Visit'
         });
-        {% else %}
-        sendNotification('👀 FastGST.in', window.location.href);
         {% endif %}
 
         // Track Pricing Page View (High Purchase Intent)
@@ -130,7 +138,6 @@
         
         // Track API Documentation Access (Learning Intent)
         if (href && href.includes('docs.taxlookupapi.fastgst.in')) {
-            sendNotification('👀 FastGST.in', window.location.href);
             safeGtag('event', 'select_content', {
                 'content_type': 'documentation',
                 'event_category': 'Documentation',
@@ -147,7 +154,6 @@
         } 
         // Track Swagger UI Access (Technical Intent)
         else if (href && href.includes('api.taxlookup.fastgst.in/swagger')) {
-            sendNotification('👀 FastGST.in', window.location.href);
             safeGtag('event', 'select_content', {
                 'content_type': 'swagger',
                 'event_category': 'Technical_Docs',
@@ -164,7 +170,6 @@
         } 
         // Track API Console Launch (Product Trial - Critical!)
         else if (href && href.includes('console.fastgst.in')) {
-            sendNotification('👀 FastGST.in', window.location.href);
             safeGtag('event', 'begin_checkout', {
                 'event_category': 'Product_Trial',
                 'event_label': 'Console_Launched'
@@ -455,9 +460,6 @@
     }
 
     async function sendDemoRequest(tabName) {
-        // Send notification when user tries an API call
-        sendNotification('👀 FastGST.in', window.location.href);
-        
         // Map each scenario to its respective URL
         const urlMap = {
             'scenario1': 'https://api.taxlookup.fastgst.in/search/hsn?query=milk',
