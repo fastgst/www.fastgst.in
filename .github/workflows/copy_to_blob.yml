@@ -36,31 +36,41 @@ jobs:
               --source '$web' \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }}
 
-            # 🌐 Step 2a: Upload HTML and CSS with short cache (5 min)
+            # 🌐 Step 2a: Upload HTML (1 day - balance of freshness & speed)
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
               --source ./_site \
               --pattern "*.html" \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
-              --content-cache-control "public, max-age=300, must-revalidate"
+              --content-cache-control "public, max-age=86400, s-maxage=86400, must-revalidate"
 
+            # 🎨 Step 2b: Upload CSS (1 day - iterative styling with good PageSpeed)
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
               --source ./_site \
               --pattern "*.css" \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
-              --content-cache-control "public, max-age=300, must-revalidate"
+              --content-cache-control "public, max-age=86400, s-maxage=86400, must-revalidate"
 
-            # 🖼️ Step 2b: Upload images & other static assets with long cache (1 year)
+            # 📜 Step 2c: Upload JavaScript (1 day - consistent with CSS)
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --pattern "*.js" \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --content-cache-control "public, max-age=86400, s-maxage=86400, must-revalidate"
+
+            # 🖼️ Step 2d: Upload images & static assets (7 days - improves load time)
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
               --destination '$web' \
               --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --pattern "*.webp" \
-              --content-cache-control "public, max-age=31536000, immutable"
+              --content-cache-control "public, max-age=604800, immutable"
 
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
@@ -68,7 +78,7 @@ jobs:
               --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --pattern "*.png" \
-              --content-cache-control "public, max-age=31536000, immutable"
+              --content-cache-control "public, max-age=604800, immutable"
 
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
@@ -76,7 +86,7 @@ jobs:
               --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --pattern "*.jpg" \
-              --content-cache-control "public, max-age=31536000, immutable"
+              --content-cache-control "public, max-age=604800, immutable"
 
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
@@ -84,7 +94,7 @@ jobs:
               --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --pattern "*.jpeg" \
-              --content-cache-control "public, max-age=31536000, immutable"
+              --content-cache-control "public, max-age=604800, immutable"
 
             az storage blob upload-batch \
               --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
@@ -92,7 +102,50 @@ jobs:
               --source ./_site \
               --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
               --pattern "*.svg" \
-              --content-cache-control "public, max-age=31536000, immutable"
+              --content-cache-control "public, max-age=604800, immutable"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.woff2" \
+              --content-cache-control "public, max-age=604800, immutable"
+
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.woff" \
+              --content-cache-control "public, max-age=604800, immutable"
+
+            # 🗺️ Step 2e: Upload sitemap (1 day - helps Google see new pages daily)
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.xml" \
+              --content-cache-control "public, max-age=86400, must-revalidate"
+
+            # 📄 Step 2f: Upload robots.txt (1 day - rarely changes, rechecked daily)
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.txt" \
+              --content-cache-control "public, max-age=86400, must-revalidate"
+
+            # 🎯 Step 2g: Upload favicon (7 days - improves load time)
+            az storage blob upload-batch \
+              --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+              --destination '$web' \
+              --source ./_site \
+              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --pattern "*.ico" \
+              --content-cache-control "public, max-age=604800, immutable"
 
       - name: Purge Bunny CDN Cache
         run: |
