@@ -229,167 +229,151 @@ customStyles: |
   .json-number { color: #fde68a; }
   .json-boolean { color: #fca5a5; }
   .json-null { color: #fda4af; font-style: italic; }
+
+  .gst-shimmer-text {
+      background: linear-gradient(
+          90deg,
+          #111827 0%,
+          #111827 30%,
+          #f97316 50%,
+          #fbbf24 55%,
+          #111827 70%,
+          #111827 100%
+      );
+      background-size: 200% 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-shimmer 3s linear infinite;
+  }
+
+  @keyframes text-shimmer {
+      0% {
+          background-position: 200% 0;
+      }
+      100% {
+          background-position: -200% 0;
+      }
+  }
 ---
 
 <!-- Hero Section -->
 <main class="overflow-x-hidden">
     <section id="top" class="gradient-bg hero-pattern py-16 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center">
+            
+            <!-- Two Column Layout -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
                 
+                <!-- Left Column: Content -->
                 <div class="fade-in">
                     <!-- Main Heading with Enhanced Typography -->
                     <div class="mb-8 mt-12">
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
-                            Centralized, Smart<br>
-                            <span class="text-transparent bg-clip-text relative" style="background-image: linear-gradient(to right, rgb(71, 66, 239), rgb(55, 50, 200), rgb(71, 66, 239));">
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
+                            <span class="text-black">HSN/SAC </span><span class="text-transparent bg-clip-text relative" style="background-image: linear-gradient(to right, rgb(71, 66, 239), rgb(55, 50, 200), rgb(71, 66, 239));">
                                 Tax Lookup API
                                 <div class="absolute -bottom-2 left-0 right-0 h-1 rounded-full opacity-60" style="background: linear-gradient(to right, rgba(71, 66, 239, 0.6), rgb(71, 66, 239));"></div>
                             </span>
                         </h1>
                     </div>
 
-                    <div class="mb-8 text-center">
-                        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 max-w-4xl mx-auto leading-relaxed">
+                    <div class="mb-8">
+                        <p class="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed">
                           AI-powered REST API for intelligent HSN/SAC fuzzy searches, Hierarchy traversals, GST tax breakdowns, and cess information.
                         </p>
-                      </div>
-                      
-                                              
-
-                    <!-- Decorative Divider with Animation -->
-                    <div class="flex justify-center mb-8">
-                        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent rounded-full"></div>
-                        <div class="w-3 h-3 bg-primary-500 rounded-full mx-2 animate-pulse"></div>
-                        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent rounded-full"></div>
                     </div>
+                </div>
 
-                    <!-- Enhanced Description with Better Typography -->
-                    <div class="mb-8 relative">
-                         <div class="relative max-w-3xl mx-auto mb-6">
-                             <!-- NEW Badge - Positioned near top right -->
-                             <div class="absolute -top-1 right-0 z-10">
-                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-orange-500 to-amber-600 text-white shadow-lg animate-pulse">
-                                     <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                         <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd"></path>
-                                     </svg>
-                                     NEW
-                                 </span>
+                <!-- Right Column: YouTube Video -->
+                <div class="fade-in lg:order-last order-first mt-12">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom: 56.25%; height: 0;">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/UAJ_k5lsa9I" 
+                            title="" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen
+                            loading="lazy"
+                            style="object-fit: cover;">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 56th GST Council Update - Wide Section -->
+            <div class="max-w-4xl mx-auto mb-16 relative">
+                <div class="relative text-center">
+                    <div class="px-4">
+                        <h2 class="text-lg sm:text-xl md:text-2xl font-bold mb-2">
+                            <span class="gst-shimmer-text">56</span><sup class="text-sm text-gray-900">th</sup><span class="gst-shimmer-text"> GST Council – Updated GST Rates</span>
+                        </h2>
+                        <p class="text-base sm:text-lg">
+                            <span class="gst-shimmer-text">Access the latest GST rates, including revisions from the 56</span><sup class="text-xs text-gray-900">th</sup><span class="gst-shimmer-text"> GST Council (effective 22 Sept 2025).</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Below Split: Buttons, Disclaimer -->
+            <div class="max-w-5xl mx-auto">
+
+                <!-- Enhanced Button Section with Better Visual Hierarchy -->
+                <div class="mb-8">
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+                        <!-- API Documentation Button -->
+                        <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'See API Documentation'}); sendNotification('Doc Visit', 'Someone opened API documentation');" class="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-sky-50 text-blue-800 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold hover:from-blue-100 hover:to-sky-100 transition-all duration-500 text-lg sm:text-xl shadow-lg hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-2 border-blue-200 hover:border-blue-400 hover:shadow-blue-200/50">
+                            <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-blue-100 rounded-xl group-hover:bg-blue-200 transition-all duration-300">
+                                <svg class="w-6 h-6 text-blue-600 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs text-blue-600 font-medium uppercase tracking-wider">Documentation</div>
+                                <div class="font-bold">See API Docs</div>
+                            </div>
+                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
+                        </a>
+
+                        <!-- Swagger API Button -->
+                        <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Try Swagger API'}); sendNotification('Swagger Visit', 'Someone opened Swagger');" class="group relative overflow-hidden text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background-color: #000000;">
+                            <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
+                                <img src="/images/swagger.webp" alt="Swagger API Documentation Tool" style="width: 28px; height: 28px;" class="w-7 h-7 group-hover:scale-110 transition-transform duration-300" loading="lazy" width="28" height="28" decoding="async">
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs text-white/90 font-medium uppercase tracking-wider">Swagger</div>
+                                <div class="font-bold">Open Swagger</div>
+                            </div>
+                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
+                        </a>
+
+                        <!-- Launch Console Button -->
+                        <a href="https://console.fastgst.in/login" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Launch Console'}); sendNotification('Console Visit', 'Someone opened Console');" class="group relative overflow-hidden text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background: linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200));">
+                            <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
+                                <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                 <div class="text-xs text-white/90 font-medium uppercase tracking-wider">Start Using</div>
+                                 <div class="font-bold">Launch Console ➔</div>
                              </div>
-                             
-                             <p class="text-sm sm:text-base text-gray-700 leading-relaxed" fetchpriority="high">
-                                <span class="block font-semibold text-base sm:text-lg text-gray-900 mb-1.5">56<sup class="text-xs">th</sup> GST Council – Updated GST Rates</span>
-                                <span class="block text-orange-500 text-sm">Access the latest GST rates, including revisions from the 56<sup class="text-xs">th</sup> GST Council (effective 22 Sept 2025).</span>
-                             </p>
-                         </div>
+                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
+                        </a>
                     </div>
-
-                    <!-- Compact Getting Started Guide -->
-                    <div class="mb-8">
-                        <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 max-w-3xl mx-auto">
-                            <!-- Step 1 -->
-                            <a href="https://console.fastgst.in" target="_blank" class="w-full md:w-auto flex items-center gap-2 rounded-full px-3 py-1.5 border hover:shadow-md transition-all hover:scale-105 cursor-pointer text-xs" style="background: linear-gradient(to right, rgba(71, 66, 239, 0.1), rgba(71, 66, 239, 0.15)); border-color: rgba(71, 66, 239, 0.3);">
-                                <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center shadow-sm" style="background-color: rgb(71, 66, 239);">
-                                    <span class="text-white text-xs font-bold">1</span>
-                                </div>
-                                <div class="flex-grow">
-                                    <h3 class="font-bold text-gray-900 text-xs">Goto Console</h3>
-                                </div>
-                            </a>
-
-                            <!-- Arrow -->
-                            <div class="hidden md:block flex-shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: rgba(71, 66, 239, 0.6);">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                </svg>
-                            </div>
-
-                            <!-- Step 2 -->
-                            <a href="https://console.fastgst.in" target="_blank" class="w-full md:w-auto flex items-center gap-2 rounded-full px-3 py-1.5 border hover:shadow-md transition-all hover:scale-105 cursor-pointer text-xs" style="background: linear-gradient(to right, rgba(71, 66, 239, 0.1), rgba(71, 66, 239, 0.15)); border-color: rgba(71, 66, 239, 0.3);">
-                                <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center shadow-sm" style="background-color: rgb(71, 66, 239);">
-                                    <span class="text-white text-xs font-bold">2</span>
-                                </div>
-                                <div class="flex-grow">
-                                    <h3 class="font-bold text-gray-900 text-xs">Generate API Key</h3>
-                                </div>
-                            </a>
-
-                            <!-- Arrow -->
-                            <div class="hidden md:block flex-shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: rgba(71, 66, 239, 0.6);">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                </svg>
-                            </div>
-
-                            <!-- Step 3 -->
-                            <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" class="w-full md:w-auto flex items-center gap-2 rounded-full px-3 py-1.5 border hover:shadow-md transition-all hover:scale-105 cursor-pointer text-xs" style="background: linear-gradient(to right, rgba(71, 66, 239, 0.1), rgba(71, 66, 239, 0.15)); border-color: rgba(71, 66, 239, 0.3);">
-                                <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center shadow-sm" style="background-color: rgb(71, 66, 239);">
-                                    <span class="text-white text-xs font-bold">3</span>
-                                </div>
-                                <div class="flex-grow">
-                                    <h3 class="font-bold text-gray-900 text-xs">Test & Integrate</h3>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Enhanced Button Section with Better Visual Hierarchy -->
-                    <div class="mb-8">
-                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                            <!-- API Documentation Button -->
-                            <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'See API Documentation'}); sendNotification('Doc Visit', 'Someone opened API documentation');" class="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-sky-50 text-blue-800 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold hover:from-blue-100 hover:to-sky-100 transition-all duration-500 text-lg sm:text-xl shadow-lg hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-2 border-blue-200 hover:border-blue-400 hover:shadow-blue-200/50">
-                                <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-blue-100 rounded-xl group-hover:bg-blue-200 transition-all duration-300">
-                                    <svg class="w-6 h-6 text-blue-600 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                    </svg>
-                                </div>
-                                <div class="text-left">
-                                    <div class="text-xs text-blue-600 font-medium uppercase tracking-wider">Documentation</div>
-                                    <div class="font-bold">See API Docs</div>
-                                </div>
-                                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
-                            </a>
-
-                            <!-- Swagger API Button -->
-                            <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Try Swagger API'}); sendNotification('Swagger Visit', 'Someone opened Swagger');" class="group relative overflow-hidden text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background-color: #000000;">
-                                <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                                    <img src="/images/swagger.webp" alt="Swagger API Documentation Tool" style="width: 28px; height: 28px;" class="w-7 h-7 group-hover:scale-110 transition-transform duration-300" loading="lazy" width="28" height="28" decoding="async">
-                                </div>
-                                <div class="text-left">
-                                    <div class="text-xs text-white/90 font-medium uppercase tracking-wider">Swagger</div>
-                                    <div class="font-bold">Open Swagger</div>
-                                </div>
-                                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
-                            </a>
-
-                            <!-- Launch Console Button -->
-                            <a href="https://console.fastgst.in/login" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Launch Console'}); sendNotification('Console Visit', 'Someone opened Console');" class="group relative overflow-hidden text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background: linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200));">
-                                <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div class="relative z-10 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                                    <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
-                                </div>
-                                                                     <div class="text-left">
-                                     <div class="text-xs text-white/90 font-medium uppercase tracking-wider">Start Using</div>
-                                     <div class="font-bold">Launch Console ➔</div>
-                                 </div>
-                                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
-                            </a>
-                        </div>
-                    </div>
+                </div>
 
                     <!-- Disclaimer Badge -->
-                    <div class="mt-4 max-w-4xl mx-auto">
+                <div class="mt-4">
                         <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2">
                             <p class="text-xs text-gray-600 leading-relaxed text-center">
                                 <span class="font-semibold text-gray-800">Disclaimer:</span> We strive to provide the most up-to-date data using multiple automated and manual tax notification detection systems, sourced from trusted channels, but always verify against official government notifications for statutory compliance. Note: fastgst.in ("we", "our", "the API") provides this data based on publicly available sources. While we aim for accuracy, occasional discrepancies may occur, and users are responsible for verifying all GST-related information.
                             </p>
                         </div>
                     </div>
-                </div>
-
             </div>
 
         </div>
