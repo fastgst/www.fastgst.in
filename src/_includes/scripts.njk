@@ -459,6 +459,22 @@
         });
     }
 
+    // Helper function to add UTM source parameter to URL
+    function addUTMParameters(url, endpointName, tabName) {
+        try {
+            const urlObj = new URL(url);
+            
+            // Add only UTM source parameter
+            urlObj.searchParams.set('utm_source', 'fastgst.in');
+            
+            return urlObj.toString();
+        } catch (e) {
+            // Fallback: manually append if URL parsing fails
+            const separator = url.includes('?') ? '&' : '?';
+            return url + separator + 'utm_source=fastgst.in';
+        }
+    }
+
     async function sendDemoRequest(tabName) {
         // Map each scenario to its respective URL
         const urlMap = {
@@ -479,8 +495,12 @@
             'scenario6': 'Get SAC Taxes'
         };
         
-        const url = urlMap[tabName] || 'https://api.taxlookup.fastgst.in/search/sac/997326/taxes';
+        const baseUrl = urlMap[tabName] || 'https://api.taxlookup.fastgst.in/search/sac/997326/taxes';
         const endpointName = endpointNames[tabName] || tabName;
+        
+        // Add UTM parameters to the URL
+        const url = addUTMParameters(baseUrl, endpointName, tabName);
+        
         const headers = {
             'X-API-Key': '****<YOUR API KEY>****'
         };
@@ -561,6 +581,69 @@
     document.addEventListener('DOMContentLoaded', function () {
         showApiTab('scenario3');
     });
+
+    // YouTube IFrame API - Track video play events
+    var youtubePlayerReady = false;
+    var youtubePlayTracked = false;
+
+    // Load YouTube IFrame API script only if container exists
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('youtube-player-container');
+        if (!container) return;
+
+        // Load YouTube IFrame API script
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    });
+
+    // This function will be called when YouTube IFrame API is ready
+    function onYouTubeIframeAPIReady() {
+        var container = document.getElementById('youtube-player-container');
+        if (!container) return;
+
+        // Initialize YouTube player
+        window.youtubePlayer = new YT.Player('youtube-player-container', {
+            videoId: 'UAJ_k5lsa9I',
+            playerVars: {
+                'autoplay': 0,
+                'controls': 1,
+                'rel': 0,
+                'modestbranding': 1,
+                'playsinline': 1
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    // Make onYouTubeIframeAPIReady globally available
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+    function onPlayerReady(event) {
+        youtubePlayerReady = true;
+    }
+
+    function onPlayerStateChange(event) {
+        // YT.PlayerState.PLAYING = 1
+        if (event.data === YT.PlayerState.PLAYING && !youtubePlayTracked) {
+            youtubePlayTracked = true;
+            
+            // Send notification when video starts playing
+            sendNotification('🎥 YouTube Video', 'Someone started watching the video on ' + window.location.href);
+            
+            // Also track with Google Analytics
+            safeGtag('event', 'video_play', {
+                'event_category': 'Video_Engagement',
+                'event_label': 'YouTube_Video_Started',
+                'video_title': 'FastGST Demo Video',
+                'video_id': 'UAJ_k5lsa9I'
+            });
+        }
+    }
 </script>
 {% endif %}
 
@@ -626,6 +709,104 @@
             });
         });
     });
+</script>
+{% endif %}
+
+{% if page.url and '/faqs' in page.url %}
+<script>
+    // YouTube IFrame API - Track video play events on FAQs page
+    var youtubePlayerReadyFaqs = false;
+    var youtubePlayTrackedFaqs = false;
+
+    function initFaqsYouTubePlayer() {
+        var container = document.getElementById('youtube-player-container-faqs');
+        if (!container || window.youtubePlayerFaqs) return;
+
+        // Initialize YouTube player
+        window.youtubePlayerFaqs = new YT.Player('youtube-player-container-faqs', {
+            videoId: 'UAJ_k5lsa9I',
+            playerVars: {
+                'autoplay': 0,
+                'controls': 1,
+                'rel': 0,
+                'modestbranding': 1,
+                'playsinline': 1
+            },
+            events: {
+                'onReady': onPlayerReadyFaqs,
+                'onStateChange': onPlayerStateChangeFaqs
+            }
+        });
+    }
+
+    // Load YouTube IFrame API script only if container exists
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('youtube-player-container-faqs');
+        if (!container) return;
+
+        // Check if YouTube API is already loaded
+        if (typeof YT !== 'undefined' && YT.Player) {
+            initFaqsYouTubePlayer();
+        } else {
+            // Store reference to original callback if it exists
+            var originalCallback = window.onYouTubeIframeAPIReady;
+            
+            // Set up callback for when API loads
+            window.onYouTubeIframeAPIReady = function() {
+                // Call original callback if it exists (for homepage)
+                if (originalCallback) {
+                    originalCallback();
+                }
+                // Initialize FAQs player
+                initFaqsYouTubePlayer();
+            };
+
+            // Load YouTube IFrame API script if not already loading
+            var existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+            if (!existingScript) {
+                var tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            } else {
+                // Script is loading, wait for it
+                var checkYT = setInterval(function() {
+                    if (typeof YT !== 'undefined' && YT.Player) {
+                        clearInterval(checkYT);
+                        initFaqsYouTubePlayer();
+                    }
+                }, 100);
+                
+                // Timeout after 5 seconds
+                setTimeout(function() {
+                    clearInterval(checkYT);
+                }, 5000);
+            }
+        }
+    });
+
+    function onPlayerReadyFaqs(event) {
+        youtubePlayerReadyFaqs = true;
+    }
+
+    function onPlayerStateChangeFaqs(event) {
+        // YT.PlayerState.PLAYING = 1
+        if (event.data === YT.PlayerState.PLAYING && !youtubePlayTrackedFaqs) {
+            youtubePlayTrackedFaqs = true;
+            
+            // Send notification when video starts playing
+            sendNotification('🎥 YouTube Video', 'Someone started watching the video on ' + window.location.href);
+            
+            // Also track with Google Analytics
+            safeGtag('event', 'video_play', {
+                'event_category': 'Video_Engagement',
+                'event_label': 'YouTube_Video_Started_FAQs',
+                'video_title': 'FastGST Demo Video',
+                'video_id': 'UAJ_k5lsa9I',
+                'page_location': '/faqs/'
+            });
+        }
+    }
 </script>
 {% endif %}
 
