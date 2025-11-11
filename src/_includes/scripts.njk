@@ -296,29 +296,32 @@
     });
 
     // Newsletter form handling with conversion tracking
-    document.getElementById('newsletterForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const email = this.querySelector('input[type="email"]').value;
-        if (email) {
-            // Track newsletter subscription as sign_up event (Critical Lead Generation!)
-            safeGtag('event', 'sign_up', {
-                'method': 'Email',
-                'event_category': 'Newsletter',
-                'event_label': 'Invoicing_Platform_Waitlist'
-            });
-            
-            // Also track as lead generation
-            safeGtag('event', 'generate_lead', {
-                'event_category': 'Newsletter',
-                'event_label': 'Email_Subscription',
-                'value': 1,
-                'currency': 'INR'
-            });
-            
-            alert('Thank you for subscribing! We\'ll notify you when our platform launches.');
-            this.reset();
-        }
-    });
+    var newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                // Track newsletter subscription as sign_up event (Critical Lead Generation!)
+                safeGtag('event', 'sign_up', {
+                    'method': 'Email',
+                    'event_category': 'Newsletter',
+                    'event_label': 'Invoicing_Platform_Waitlist'
+                });
+                
+                // Also track as lead generation
+                safeGtag('event', 'generate_lead', {
+                    'event_category': 'Newsletter',
+                    'event_label': 'Email_Subscription',
+                    'value': 1,
+                    'currency': 'INR'
+                });
+                
+                alert('Thank you for subscribing! We\'ll notify you when our platform launches.');
+                this.reset();
+            }
+        });
+    }
 
     // Defer animations and scroll tracking for better initial load
     function initScrollAndAnimations() {
