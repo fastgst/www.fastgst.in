@@ -29,6 +29,28 @@
       ]
     },
     {
+      "id": "console",
+      "title": "Console and API Keys",
+      "items": [
+        {
+          "question": "What is Console?",
+          "answer": "<p class=\"text-gray-700\">\n    Console is a centralised administration portal for managing your plans, API keys, billings, usage and more. You must register in Console and activate 'Tax lookup API' inorder to start using the service.\n</p>"
+        },
+        {
+          "question": "What I need to do in Console?",
+          "answer": "<p class=\"text-gray-700\">\n    Signup/Login to Console, Activate 'Tax lookup API', Generate API Key, Use API Key to test API\n</p>"
+        },
+        {
+          "question": "Is Plan selection and Billing managed in Console?",
+          "answer": "<p class=\"text-gray-700\">\n    Yes, All your account and billing details are managed in Console.\n</p>"
+        },
+        {
+          "question": "Can I upgrade or downgrade plans in between?",
+          "answer": "<p class=\"text-gray-700\">\n    Yes, Your active plan and benifits will be lost and benifits of new plan will be applied from the same day to it's tenure.\n</p>"
+        }
+      ]
+    },
+    {
       "id": "invoice",
       "title": "GST Invoices",
       "items": [
