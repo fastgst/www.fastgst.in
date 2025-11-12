@@ -1,0 +1,56 @@
+{
+  "sections": [
+    {
+      "id": "general",
+      "title": "General Questions",
+      "items": [
+        {
+          "question": "What is the Tax Lookup API?",
+          "answer": "<p class=\"text-gray-700\">\n    The Tax Lookup API is a REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically.\n</p>"
+        },
+        {
+          "question": "How It Works?",
+          "answer": "<p class=\"text-gray-700\">\n    FastGST runs services that operates 24×7 on cloud infrastructure designed to streamline tax rate change detection, data ingestion, validation, and notification. We implemented state-of-the-art automated and manual process pipelines that continuously monitor official sources for tax updates and CBIC notifications. Automated workflows paired with human verification provides additional layer of validation to ensure best-effort data accuracy\n</p>"
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "title": "Free Plans",
+      "items": [
+        {
+          "question": "Any Free Plans?",
+          "answer": "<p class=\"text-gray-700\">\n    Yes, You can opt the limited free plan to test the API and ensure it matches your needs. If you need higher quotas you can always upgrade. To do that Signup in Console and create an account, then choose a plan, and finaly generate an API Key.\n</p>"
+        },
+        {
+          "question": "Does Free Plans Expire?",
+          "answer": "<p class=\"text-gray-700\">\n    Free plan comes with daily and total limits. As long as you use within limits it's always free\n</p>"
+        }
+      ]
+    },
+    {
+      "id": "invoice",
+      "title": "GST Invoices",
+      "items": [
+        {
+          "question": "Can I get a GST Invoice for purchases?",
+          "answer": "<p class=\"text-gray-700\">\n    FastGST currently operates without GST registration under Section 22 of the CGST Act. You can download standard non-GST invoices from Console for any payments you made\n</p>"
+        }
+      ]
+    },
+    {
+      "id": "accuracy",
+      "title": "Data Accuracy and Compliance",
+      "items": [
+        {
+          "question": "How accurate is the Tax Lookup API?",
+          "answer": "<p class=\"text-gray-700\">\n    We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance.\n</p>"
+        },
+        {
+          "question": "Does FastGST offers any warranties?",
+          "answer": "<p class=\"text-gray-700\">\n    No. The services, API, and all related materials are provided on an \"as is\" and \"as available\" basis without warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. FastGST.in does not provide professional tax advisory, legal counsel, or accounting services, and the information made available should not be construed as such. Users retain sole responsibility for ensuring compliance with applicable tax laws and regulations.\n</p>"
+        }
+      ]
+    }
+  ]
+}
