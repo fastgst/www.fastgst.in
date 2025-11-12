@@ -5,6 +5,66 @@ title: Frequently Asked Questions - FastGST.in | Tax Lookup API
 description: FAQs for FastGST.in - Find answers to common questions about our GST Tax Lookup API, pricing, integration, and support.
 canonical: /faqs/
 preloadFonts: true
+faqSections:
+  - id: general
+    title: General Questions
+    items:
+      - question: What is the Tax Lookup API?
+        answer_html: |
+          <p class="text-gray-700">
+              The Tax Lookup API is a REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically.
+          </p>
+        schema_answer: The Tax Lookup API is a REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically.
+      - question: How It Works?
+        answer_html: |
+          <p class="text-gray-700">
+              FastGST runs services that operates 24×7 on cloud infrastructure designed to streamline tax rate change detection, data ingestion, validation, and notification. We implemented state-of-the-art automated and manual process pipelines that continuously monitor official sources for tax updates and CBIC notifications. Automated workflows paired with human verification provides additional layer of validation to ensure best-effort data accuracy
+          </p>
+        schema_answer: FastGST runs services that operates 24×7 on cloud infrastructure designed to streamline tax rate change detection, data ingestion, validation, and notification. We implemented state-of-the-art automated and manual process pipelines that continuously monitor official sources for tax updates and CBIC notifications. Automated workflows paired with human verification provides additional layer of validation to ensure best-effort data accuracy
+
+
+  - id: free
+    title: Free Plans
+    items:
+      - question: Any Free Plans?
+        answer_html: |
+          <p class="text-gray-700">
+              Yes, You can opt the limited free plan to test the API and ensure it matches your needs. If you need higher quotas you can always upgrade. To do that Signup in Console and create an account, then choose a plan, and finaly generate an API Key.
+          </p>
+        schema_answer: Yes, You can opt the limited free plan to test the API and ensure it matches your needs. If you need higher quotas you can always upgrade. To do that Signup in Console and create an account, then choose a plan, and finaly generate an API Key.
+      - question: Does Free Plans Expire?
+        answer_html: |
+          <p class="text-gray-700">
+              Free plan comes with daily and total limits. As long as you use within limits it's always free
+          </p>
+        schema_answer: No, Free plan comes with daily and total limits. As long as you use within limits it's always free
+
+  - id: invoice
+    title: GST Invoices
+    items:
+      - question: Can I get a GST Invoice for purchases?
+        answer_html: |
+          <p class="text-gray-700">
+              FastGST currently operates without GST registration under Section 22 of the CGST Act. You can download standard non-GST invoices from Console for any payments you made
+          </p>
+        schema_answer: FastGST currently operates without GST registration under Section 22 of the CGST Act. You can download standard non-GST invoices from Console for any payments you made
+
+  - id: accuracy
+    title: Data Accuracy and Compliance
+    items:
+      - question: How accurate is the Tax Lookup API?
+        answer_html: |
+          <p class="text-gray-700">
+              We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance.
+          </p>
+        schema_answer: We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance.
+      - question: Does FastGST offers any warranties?
+        answer_html: |
+          <p class="text-gray-700">
+              No. The services, API, and all related materials are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. FastGST.in does not provide professional tax advisory, legal counsel, or accounting services, and the information made available should not be construed as such. Users retain sole responsibility for ensuring compliance with applicable tax laws and regulations.
+          </p>
+        schema_answer: No. The services, API, and all related materials are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. FastGST.in does not provide professional tax advisory, legal counsel, or accounting services, and the information made available should not be construed as such. Users retain sole responsibility for ensuring compliance with applicable tax laws and regulations.
+
 schemaData: |
   <script type="application/ld+json">
   {
@@ -32,118 +92,18 @@ schemaData: |
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
+          {% for section in faqSections %}
+              {% for item in section.items %}
           {
               "@type": "Question",
-              "name": "What is the Tax Lookup API?",
+              "name": "{{ item.question | escape }}",
               "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "The Tax Lookup API is an AI-powered REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically."
+                  "text": "{{ (item.schema_answer | default(item.answer_html | striptags)) | trim | escape }}"
               }
-          },
-          {
-              "@type": "Question",
-              "name": "What are the main features of the Tax Lookup API?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The main features include: Fuzzy Search to find HSN/SAC codes even if the input is incomplete or slightly incorrect; Hierarchy Traversal to explore parent-child relationships of HSN/SAC codes; GST Tax and Cess Lookup for accessing best effort latest GST rates, including updates from the 56th GST Council (effective 22 Sept 2025); Real-Time Data to ensure your application always uses up-to-date information; and Developer-Friendly Tools including interactive API playground, Swagger, and sample code for easy integration."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "How do I test the API?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "You can use the provided Swagger page or API testing tools like Postman, Insomnia etc."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "How do I integrate the API into my application?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Integration is straightforward: 1) Sign up on FastGST Console and generate your API key. 2) Use our REST API endpoints. 3) Refer to our Swagger and documentation for detailed examples."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "Is there a free trial for the Tax Lookup API?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, Please check on Console"
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "How many API calls are allowed?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Usage limits depend on your subscription plan."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "How much does the Tax Lookup API cost?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Pricing depends on the plan you choose. Visit the Pricing page on FastGST.in for details on plans, features, and limits."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "How accurate is the Tax Lookup API?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "Which GST updates are included?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The API includes the latest GST rates and cess details, including updates from the 56th GST Council (effective 22 Sept 2025)."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "Can the API be used for statutory compliance?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The API is designed to assist in GST-related workflows, but users are responsible for verifying information against official government sources before filing taxes."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "Which programming languages are supported?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The Tax Lookup API is a REST API, so it can be accessed from any language that supports HTTP requests, including Python, JavaScript, Java, PHP, Ruby, and more."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "Is there detailed documentation?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. FastGST.in provides comprehensive API documentation, including Swagger examples, interactive console access, and sample requests/responses to accelerate integration."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "Can I request new features?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Absolutely. We value feedback from developers and businesses. Feature requests help shape our roadmap and improve our API offerings."
-              }
-          },
-          {
-              "@type": "Question",
-              "name": "How can I get support?",
-              "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Contact our support team via email or through the developer console. We assist with integration, technical queries, and general product guidance."
-              }
-          }
+          }{% if not loop.last or not loop.parent.last %},{% endif %}
+              {% endfor %}
+          {% endfor %}
       ]
   }
   </script>
@@ -272,8 +232,8 @@ customScripts: |
             </p>
                 
                 <!-- YouTube Video Embed -->
-                <div class="max-w-4xl mx-auto mb-12">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom: 56.25%; height: 0;">
+                <div class="max-w-4xl mx-auto mb-8">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="padding-bottom: 28.125%; height: 0;">
                         <div id="youtube-player-container-faqs" class="absolute top-0 left-0 w-full h-full"></div>
                     </div>
                 </div>
@@ -281,260 +241,28 @@ customScripts: |
 
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-12">
                 <div class="space-y-8">
-                <!-- General Questions -->
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">General Questions</h2>
+                    {% for section in faqSections %}
+                    <div id="faq-section-{{ section.id }}">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ section.title }}</h2>
                         <div class="space-y-4">
+                            {% for item in section.items %}
                             <div class="faq-item bg-gray-50 rounded-xl">
                                 <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">What is the Tax Lookup API?</h3>
+                                    <h3 class="faq-question text-lg font-semibold text-gray-900">{{ item.question }}</h3>
                                     <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
                                 <div class="faq-content">
                                     <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            The Tax Lookup API is an AI-powered REST API that allows developers and businesses to search HSN/SAC codes, navigate hierarchical structures, and retrieve GST tax rates and cess information programmatically.
-                                        </p>
+                                        {{ item.answer_html | safe }}
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">What are the main features of the Tax Lookup API?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <ul class="text-gray-700 space-y-2">
-                                            <li><strong>Fuzzy Search:</strong> Find HSN/SAC codes even if the input is incomplete or slightly incorrect.</li>
-                                            <li><strong>Hierarchy Traversal:</strong> Explore the parent-child relationships of HSN/SAC codes.</li>
-                                            <li><strong>GST Tax and Cess Lookup:</strong> Access best effort latest GST rates, including updates from the 56th GST Council (effective 22 Sept 2025).</li>
-                                            <li><strong>Real-Time Data:</strong> Ensure your application always uses up-to-date information.</li>
-                                            <li><strong>Developer-Friendly Tools:</strong> Interactive API playground, Swagger, and sample code for easy integration.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How do I test the API?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            You can use the provided Swagger page or API testing tools like Postman, Insomnia etc..
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How do I integrate the API into my application?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700 mb-3">Integration is straightforward:</p>
-                                        <ol class="list-decimal pl-6 text-gray-700 space-y-2">
-                                            <li>Sign up on <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">FastGST Console</a> and generate your API key.</li>
-                                            <li>Use our REST API endpoints</li>
-                                            <li>Refer to our <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">Swagger</a> and <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">documentation</a> for detailed examples.</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
-
-                    <!-- Pricing and Access -->
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Pricing and Access</h2>
-                        <div class="space-y-4">
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Is there a free trial for the Tax Lookup API?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            Yes, Please check on Console
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How many API calls are allowed?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            Usage limits depend on your subscription plan.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How much does the Tax Lookup API cost?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            Pricing depends on the plan you choose. Visit the Pricing page on <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">FastGST.in</a> for details on plans, features, and limits.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Data Accuracy and Compliance -->
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Data Accuracy and Compliance</h2>
-                        <div class="space-y-4">
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How accurate is the Tax Lookup API?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            We aggregate data from official CBIC and GST Council notifications, combined with automated and manual verification processes. While we strive for accuracy, users should verify all data against official government notifications for statutory compliance.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Which GST updates are included?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            The API includes the latest GST rates and cess details, including updates from the 56th GST Council (effective 22 Sept 2025).
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Can the API be used for statutory compliance?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            The API is designed to assist in GST-related workflows, but users are responsible for verifying information against official government sources before filing taxes.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Developer & Technical Questions -->
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Developer & Technical Questions</h2>
-                        <div class="space-y-4">
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Which programming languages are supported?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            The Tax Lookup API is a REST API, so it can be accessed from any language that supports HTTP requests, including Python, JavaScript, Java, PHP, Ruby, and more.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Is there detailed documentation?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            Yes. FastGST.in provides comprehensive <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">API documentation</a>, including <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" class="text-primary-500 hover:text-primary-600">Swagger examples</a>, interactive console access, and sample requests/responses to accelerate integration.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">Can I request new features?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            Absolutely. We value feedback from developers and businesses. Feature requests help shape our roadmap and improve our API offerings.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="faq-item bg-gray-50 rounded-xl">
-                                <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-100 transition-colors" onclick="toggleFAQ(this)">
-                                    <h3 class="faq-question text-lg font-semibold text-gray-900">How can I get support?</h3>
-                                    <svg class="faq-icon w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p class="text-gray-700">
-                                            Contact our support team via <a href="mailto:twileloop@outlook.com" class="text-primary-500 hover:text-primary-600">email</a> or through the <a href="https://console.fastgst.in/login" target="_blank" class="text-primary-500 hover:text-primary-600">developer console</a>. We assist with integration, technical queries, and general product guidance.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     <!-- Still Have Questions -->
                     <div class="mt-12 text-center p-8 bg-gray-50 rounded-xl">
