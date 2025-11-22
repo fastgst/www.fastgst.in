@@ -1,1 +1,206 @@
-  const RPAK=(function(){const _0x7f3a=function(_0x2e){return Math['floor'](_0x2e);};const _0x8b2c=function(_0x3f){return String(_0x3f)['padStart'](2,'0');};const _0x9d4e=function(){const _0x4g=new Date();return _0x7f3a(_0x4g['getTime']()/1000);};const _0xa5f=function(){const _0x5h=new Date();const _0x6i=_0x8b2c(_0x5h['getDate']());const _0x7j=_0x8b2c(_0x5h['getMonth']()+1);const _0x8k=_0x5h['getFullYear']();return _0x6i+_0x7j+_0x8k;};const _0xb6g=function(_0x9l){let _0xam='';for(let _0xbn=0;_0xbn<_0x9l['length'];_0xbn++){_0xam+=String['fromCharCode'](_0x9l['charCodeAt'](_0xbn)^42);}if(typeof btoa!=='undefined'){return btoa(_0xam);}else if(typeof Buffer!=='undefined'){return Buffer['from'](_0xam)['toString']('base64');}throw new Error('E1');};const _0xc7h=function(_0xco){let _0xdp;if(typeof atob!=='undefined'){_0xdp=atob(_0xco);}else if(typeof Buffer!=='undefined'){_0xdp=Buffer['from'](_0xco,'base64')['toString']('utf-8');}else{throw new Error('E2');}let _0xeq='';for(let _0xfr=0;_0xfr<_0xdp['length'];_0xfr++){_0xeq+=String['fromCharCode'](_0xdp['charCodeAt'](_0xfr)^42);}return _0xeq;};const _0xd8i=function(_0xgs,_0xht){if(typeof _0xgs!=='number'||_0xgs<1){throw new Error('E3');}if(typeof _0xht!=='string'||_0xht['length']===0){throw new Error('E4');}let _0xiu=_0x9d4e();let _0xjv=_0xa5f();let _0xkw=_0xiu+parseInt(_0xjv,10);let _0xlx=_0x8b2c(_0xgs);let _0xmy=_0xlx+_0xkw;let _0xnz=_0xmy+'|'+_0xht;let _0xoa=_0xnz['split']('')['reverse']()['join']('');let _0xpb=_0xb6g(_0xoa);let _0xqc='RPAK_'+_0xpb;return _0xqc;};const _0xe9j=function(_0xrd){try{if(!_0xrd||!_0xrd['startsWith']('RPAK_')){return{valid:false,error:'E5'};}let _0xse=_0xrd['substring'](5);let _0xtf=_0xc7h(_0xse);_0xtf=_0xtf['split']('')['reverse']()['join']('');let _0xug=_0xtf['split']('|');if(_0xug['length']<2){return{valid:false,error:'E6'};}let _0xvh=_0xug[0];let _0xwi=_0xug['slice'](1)['join']('|');let _0xxj=parseInt(_0xvh['substring'](0,2),10);if(isNaN(_0xxj)){return{valid:false,error:'E7'};}let _0xyk=parseInt(_0xvh['substring'](2),10);if(isNaN(_0xyk)){return{valid:false,error:'E8'};}let _0xzl=_0xa5f();let _0xam=_0xyk-parseInt(_0xzl,10);let _0xbn=_0x9d4e();let _0xco=_0xbn-_0xam;let _0xdp=_0xco>=0&&_0xco<=_0xxj;return{valid:_0xdp,validity:_0xxj,keyEpoch:_0xam,currentEpoch:_0xbn,timeDifference:_0xco,payload:_0xwi,expired:_0xco>_0xxj,notYetValid:_0xco<0};}catch(_0xeq){return{valid:false,error:'E9: '+_0xeq['message']};}};return{generate:_0xd8i,validate:_0xe9j};})();
+/**
+ * RPAK (Restricted Public Access Key) Module - UTC Version
+ * Revealing Module Pattern for generating and validating time-based access keys
+ * Uses UTC time for cross-timezone compatibility
+ */
+const RPAK = (function() {
+  'use strict';
+
+  // Private helper functions
+  function getCurrentEpoch() {
+    return Math.floor(Date.now() / 1000);
+  }
+
+  function getTodaysDateUTC() {
+    const now = new Date();
+    const day = String(now.getUTCDate()).padStart(2, '0');
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+    const year = now.getUTCFullYear();
+    return `${day}${month}${year}`;
+  }
+
+  function formatValidity(validityInSeconds) {
+    return String(validityInSeconds).padStart(2, '0');
+  }
+
+  function xorEncode(str) {
+    let result = '';
+    for (let i = 0; i < str.length; i++) {
+      result += String.fromCharCode(str.charCodeAt(i) ^ 42);
+    }
+    return result;
+  }
+
+  function xorDecode(str) {
+    let result = '';
+    for (let i = 0; i < str.length; i++) {
+      result += String.fromCharCode(str.charCodeAt(i) ^ 42);
+    }
+    return result;
+  }
+
+  function reverseString(str) {
+    return str.split('').reverse().join('');
+  }
+
+  function encodeToBase64(str) {
+    const xored = xorEncode(str);
+    if (typeof btoa !== 'undefined') {
+      return btoa(xored);
+    } else if (typeof Buffer !== 'undefined') {
+      return Buffer.from(xored).toString('base64');
+    }
+    throw new Error('Base64 encoding not supported in this environment');
+  }
+
+  function decodeFromBase64(str) {
+    let decoded;
+    if (typeof atob !== 'undefined') {
+      decoded = atob(str);
+    } else if (typeof Buffer !== 'undefined') {
+      decoded = Buffer.from(str, 'base64').toString('utf-8');
+    } else {
+      throw new Error('Base64 decoding not supported in this environment');
+    }
+    return xorDecode(decoded);
+  }
+
+  // Public API
+  function generate(validityInSeconds, payload) {
+    if (typeof validityInSeconds !== 'number' || validityInSeconds < 1) {
+      throw new Error('Validity must be a positive number');
+    }
+    if (typeof payload !== 'string' || payload.length === 0) {
+      throw new Error('Payload must be a non-empty string');
+    }
+
+    // Get current epoch (UTC)
+    const currentEpoch = getCurrentEpoch();
+
+    // Get today's date in UTC (DDMMYYYY format)
+    const todaysDate = getTodaysDateUTC();
+
+    // Add epoch and date together
+    const combined = currentEpoch + parseInt(todaysDate, 10);
+
+    // Format validity with leading zero if needed
+    const formattedValidity = formatValidity(validityInSeconds);
+
+    // Prefix with validity
+    const prefixedValue = `${formattedValidity}${combined}`;
+
+    // Combine with payload using pipe delimiter
+    const dataString = `${prefixedValue}|${payload}`;
+
+    // Reverse the string
+    const reversed = reverseString(dataString);
+
+    // Convert to Base64 (with XOR encryption)
+    const base64Encoded = encodeToBase64(reversed);
+
+    // Append RPAK_ prefix
+    const rpakKey = `RPAK_${base64Encoded}`;
+
+    return rpakKey;
+  }
+
+  function validate(rpakKey) {
+    try {
+      // Check if key starts with RPAK_
+      if (!rpakKey || !rpakKey.startsWith('RPAK_')) {
+        return {
+          valid: false,
+          error: 'Invalid RPAK format: Missing RPAK_ prefix'
+        };
+      }
+
+      // Remove RPAK_ prefix
+      const base64Part = rpakKey.substring(5);
+
+      // Decode from Base64 (with XOR decryption)
+      let decoded = decodeFromBase64(base64Part);
+
+      // Reverse the string back
+      decoded = reverseString(decoded);
+
+      // Split by pipe to get prefixed value and payload
+      const parts = decoded.split('|');
+      if (parts.length < 2) {
+        return {
+          valid: false,
+          error: 'Invalid RPAK format: Missing pipe delimiter'
+        };
+      }
+
+      const prefixedValue = parts[0];
+      const payload = parts.slice(1).join('|'); // Handle payloads with pipes
+
+      // Extract validity (first 2 characters)
+      const validityInSeconds = parseInt(prefixedValue.substring(0, 2), 10);
+      if (isNaN(validityInSeconds)) {
+        return {
+          valid: false,
+          error: 'Invalid RPAK format: Cannot parse validity'
+        };
+      }
+
+      // Extract combined epoch+date value
+      const combinedValue = parseInt(prefixedValue.substring(2), 10);
+      if (isNaN(combinedValue)) {
+        return {
+          valid: false,
+          error: 'Invalid RPAK format: Cannot parse combined value'
+        };
+      }
+
+      // Calculate the original epoch from the key (using UTC date)
+      const todaysDate = getTodaysDateUTC();
+      const keyEpoch = combinedValue - parseInt(todaysDate, 10);
+
+      // Get current epoch
+      const currentEpoch = getCurrentEpoch();
+
+      // Calculate time difference
+      const timeDifference = currentEpoch - keyEpoch;
+
+      // Check if key is still valid (within validity window)
+      const isValid = timeDifference >= 0 && timeDifference <= validityInSeconds;
+
+      return {
+        valid: isValid,
+        validity: validityInSeconds,
+        keyEpoch: keyEpoch,
+        currentEpoch: currentEpoch,
+        timeDifference: timeDifference,
+        payload: payload,
+        expired: timeDifference > validityInSeconds,
+        notYetValid: timeDifference < 0
+      };
+
+    } catch (error) {
+      return {
+        valid: false,
+        error: `Validation error: ${error.message}`
+      };
+    }
+  }
+
+  // Reveal public API
+  return {
+    generate: generate,
+    validate: validate
+  };
+
+})();
+
+// Export for Node.js (if in Node environment)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = RPAK;
+}
+
+// Example usage:
+// const key = RPAK.generate(3, "Hello how are you");
+// console.log(key);
+// 
+// const result = RPAK.validate(key);
+// console.log(result);
