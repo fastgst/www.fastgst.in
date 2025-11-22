@@ -567,7 +567,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add click event
             matchCard.onclick = (e) => {
                 e.stopPropagation();
-                selectHSNCode(matchCode);
+                // Pass description to selectHSNCode
+                selectHSNCode(matchCode, matchDesc);
             };
             
             groupWrapper.appendChild(matchCard);
@@ -662,8 +663,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+
+    // Helper to send notification
+    function sendNotification(key, operation, description = '') {
+        let messageText = '';
+        
+        if (operation === 'search') {
+            // For search, we want to show the clicked item name (description) if available, otherwise the code
+            messageText = description ? `Clicked: ${description} (${key})` : `Searched Code: ${key}`;
+        } else if (operation === 'lookup') {
+            messageText = `HSN Lookup: ${key}`;
+        } else {
+            messageText = `Action: ${key}`;
+        }
+
+        fetch('https://api.console.fastgst.in/global/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: "🔍 PlayGround",
+                text: messageText
+            })
+        }).catch(err => console.error("Notify error:", err));
+    }
+
     // Select HSN code and display details
-    async function selectHSNCode(hsnCode) {
+    async function selectHSNCode(hsnCode, description = '') {
+        // Send notification (Search operation)
+        // If description is present, it means it came from a search result click
+        // If no description, treat it as a direct code lookup/selection
+        const opType = description ? 'search' : 'lookup';
+        sendNotification(hsnCode, opType, description);
+
         try {
             // Show the results panel
             const resultsPanel = document.getElementById('results-panel');
@@ -1028,7 +1059,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!fullCode || fullCode.length < 4) return;
 
+        // Send notification for partial codes (full codes handled by selectHSNCode)
+        if (fullCode.length !== 8) {
+            // Partial HSN search via button
+            sendNotification(fullCode, 'lookup');
+        }
+
         if (fullCode.length === 8) {
+           // Full HSN lookup
            selectHSNCode(fullCode);
         } else {
            // Perform a search with the partial code
