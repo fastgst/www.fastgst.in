@@ -585,68 +585,6 @@
         showApiTab('scenario3');
     });
 
-    // YouTube IFrame API - Track video play events
-    var youtubePlayerReady = false;
-    var youtubePlayTracked = false;
-
-    // Load YouTube IFrame API script only if container exists
-    document.addEventListener('DOMContentLoaded', function() {
-        var container = document.getElementById('youtube-player-container');
-        if (!container) return;
-
-        // Load YouTube IFrame API script
-        var tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    });
-
-    // This function will be called when YouTube IFrame API is ready
-    function onYouTubeIframeAPIReady() {
-        var container = document.getElementById('youtube-player-container');
-        if (!container) return;
-
-        // Initialize YouTube player
-        window.youtubePlayer = new YT.Player('youtube-player-container', {
-            videoId: 'UAJ_k5lsa9I',
-            playerVars: {
-                'autoplay': 0,
-                'controls': 1,
-                'rel': 0,
-                'modestbranding': 1,
-                'playsinline': 1
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    // Make onYouTubeIframeAPIReady globally available
-    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-
-    function onPlayerReady(event) {
-        youtubePlayerReady = true;
-    }
-
-    function onPlayerStateChange(event) {
-        // YT.PlayerState.PLAYING = 1
-        if (event.data === YT.PlayerState.PLAYING && !youtubePlayTracked) {
-            youtubePlayTracked = true;
-            
-            // Send notification when video starts playing
-            sendNotification('🎥 YouTube Video', 'Someone started watching the video on ' + window.location.href);
-            
-            // Also track with Google Analytics
-            safeGtag('event', 'video_play', {
-                'event_category': 'Video_Engagement',
-                'event_label': 'YouTube_Video_Started',
-                'video_title': 'FastGST Demo Video',
-                'video_id': 'UAJ_k5lsa9I'
-            });
-        }
-    }
 </script>
 {% endif %}
 

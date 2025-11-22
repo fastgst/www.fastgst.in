@@ -1,0 +1,865 @@
+---
+layout: base.njk
+permalink: /playground/
+title: PlayGround - FastGST.in | Search & Find HSN/SAC GST Tax Rates
+description: Interactive playground to search and find HSN/SAC GST tax rates. Test API endpoints, explore tax hierarchies, and access live GST rate information.
+canonical: /playground/
+preloadFonts: true
+schemaData: |
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "PlayGround - FastGST.in | Search & Find HSN/SAC GST Tax Rates",
+      "description": "Interactive playground to search and find HSN/SAC GST tax rates",
+      "url": "/playground/"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.fastgst.in/"
+          },
+          {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "PlayGround",
+              "item": "https://www.fastgst.in/playground/"
+          }
+      ]
+  }
+  </script>
+---
+
+<!-- Hero Section -->
+<main class="overflow-x-hidden">
+    <section class="gradient-bg hero-pattern py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Hero Content -->
+            <div class="text-center mb-16">
+                <!-- Main Heading -->
+                <div class="mb-8 mt-8">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
+                        <span class="text-black">Search & Find </span><span class="text-transparent bg-clip-text relative" style="background-image: linear-gradient(to right, rgb(71, 66, 239), rgb(55, 50, 200), rgb(71, 66, 239));">
+                            GST Rates
+                            <div class="absolute -bottom-2 left-0 right-0 h-1 rounded-full opacity-60" style="background: linear-gradient(to right, rgba(71, 66, 239, 0.6), rgb(71, 66, 239));"></div>
+                        </span>
+                    </h1>
+                </div>
+
+                <!-- Subtitle -->
+                <div class="mb-12 flex justify-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50/80 backdrop-blur-sm border border-blue-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        </span>
+                        <p class="text-sm font-semibold text-blue-700 tracking-wide group-hover:text-blue-800">
+                            Powered By <span class="font-bold">FastGST.in</span> Tax Lookup API
+                        </p>
+                        <svg class="w-4 h-4 text-blue-400 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                </div>
+
+                <!-- Compact GST Search Interface -->
+                <div class="max-w-6xl mx-auto mb-8">
+
+                    <!-- Compact Search Card -->
+                    <div class="gst-search-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 relative z-20">
+                        <!-- Compact Search Input Section -->
+                        <div class="p-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border-b border-gray-200/50">
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    id="gst-search-input"
+                                    placeholder="Search any keyword (e.g., battery, milk...)"
+                                    class="w-full pl-4 pr-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md"
+                                >
+                                <!-- Enhanced Search Results Dropdown (Floating Cards) -->
+                                <div id="search-results" class="hidden relative z-50 w-full mt-4">
+                                    <!-- Transparent container, no background box -->
+                                    <div class="pb-4">
+                                        <div class="space-y-0">
+                                            <!-- Search results will be populated here as independent cards -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Area with Toggle -->
+                        <div class="flex flex-col min-h-[500px]">
+                            
+                            <!-- Toggle Controls (Switch Style) -->
+                            <div class="px-6 pt-6 pb-2 flex justify-center">
+                                <div class="bg-gray-200/80 p-1.5 rounded-full flex items-center relative w-full max-w-md shadow-inner border border-gray-200">
+                                    <button onclick="switchTab('classification')" id="tab-classification" class="flex-1 py-2.5 px-6 rounded-full text-sm font-bold transition-all duration-300 shadow-lg bg-blue-600 text-white transform scale-100 focus:outline-none ring-offset-2 focus:ring-2 focus:ring-blue-500/50">
+                                        Classification
+                                    </button>
+                                    <button onclick="switchTab('tax')" id="tab-tax" class="flex-1 py-2.5 px-6 rounded-full text-sm font-bold transition-all duration-300 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500/20">
+                                        Tax Rates
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Top Panel - Hierarchy Tree (Classification Tab) -->
+                            <div id="panel-classification" class="w-full p-6 transition-all duration-300">
+                                <div id="hierarchy-tree" class="space-y-3">
+                                    <!-- Default state -->
+                                    <div class="text-center py-8 text-gray-400">
+                                        <svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                        </svg>
+                                        <p class="text-sm">Search to view hierarchy</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Panel - Tax Details (Tax Rates Tab) -->
+                            <div id="panel-tax" class="w-full p-6 hidden transition-all duration-300">
+                                <div id="tax-details" class="space-y-6">
+                                    <!-- Default state -->
+                                    <div class="text-center py-8 text-gray-400">
+                                        <svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <p class="text-sm">Select code to view tax details</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 rounded-full float-animation" style="background-color: rgba(71, 66, 239, 0.15);"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 rounded-full float-animation" style="background-color: rgba(71, 66, 239, 0.12); animation-delay: -2s;"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 rounded-full float-animation" style="background-color: rgba(71, 66, 239, 0.18); animation-delay: -1s;"></div>
+        <div class="absolute bottom-40 left-20 w-24 h-24 rounded-full float-animation" style="background-color: rgba(71, 66, 239, 0.14); animation-delay: -3s;"></div>
+    </section>
+</main>
+
+<!-- GST Tax Lookup API Module -->
+<script src="/_includes/tax-lookup-api.js"></script>
+
+<!-- Custom Styles for Playground -->
+<style>
+/* Google-like search dropdown animations */
+#search-results {
+    animation: dropdownFadeIn 0.15s ease-out;
+}
+
+.search-result-item {
+    animation: resultSlideIn 0.2s ease-out forwards;
+    opacity: 0;
+    transform: translateY(4px);
+}
+
+.search-result-item:nth-child(1) { animation-delay: 0.05s; }
+.search-result-item:nth-child(2) { animation-delay: 0.08s; }
+.search-result-item:nth-child(3) { animation-delay: 0.11s; }
+.search-result-item:nth-child(4) { animation-delay: 0.14s; }
+.search-result-item:nth-child(5) { animation-delay: 0.17s; }
+.search-result-item:nth-child(6) { animation-delay: 0.20s; }
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(107, 114, 128, 0.8);
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes resultSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-drop-in {
+    animation: resultSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* ease-out-expoish */
+    opacity: 0; /* Start invisible */
+}
+
+/* Custom Scrollbar */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Compact tree structure styling */
+.tree-node {
+    position: relative;
+    padding-left: 20px;
+}
+
+.tree-node::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 1.5px;
+    background-color: #e5e7eb;
+}
+
+.tree-node::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 1.5px;
+    background-color: #e5e7eb;
+}
+
+.tree-node:last-child::after {
+    height: 50%;
+}
+
+.tree-node .tree-content {
+    padding: 8px 12px;
+    background: #f9fafb;
+    border-radius: 6px;
+    border: 1.5px solid #e5e7eb;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.tree-node.active .tree-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+    box-shadow: 0 3px 8px rgba(102, 126, 234, 0.25);
+}
+
+/* Compact tax detail cards */
+.tax-card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1.5px solid #e5e7eb;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+}
+
+.tax-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.tax-rate {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #059669;
+}
+
+/* Responsive adjustments for compact design */
+@media (max-width: 1024px) {
+    .gst-search-card .flex {
+        flex-direction: column;
+    }
+
+    .gst-search-card .flex > div {
+        border-right: none;
+        border-bottom: 1.5px solid #e5e7eb;
+    }
+
+    .gst-search-card .flex > div:last-child {
+        border-bottom: none;
+    }
+}
+</style>
+
+<!-- JavaScript for Search Functionality -->
+<script>
+// Global state for current search results
+let currentSearchResults = [];
+let currentSelectedHSN = null;
+
+// Global search function (will be initialized after DOM load)
+let performSearch;
+
+// Search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('gst-search-input');
+    const searchResults = document.getElementById('search-results');
+    const resultsContainer = searchResults.querySelector('.space-y-0');
+
+    if (!searchInput) {
+        console.error('Search elements not found!');
+        return;
+    }
+
+    let searchTimeout;
+
+    // Search input handler
+    performSearch = async function(query) {
+        if (!query.trim()) {
+            searchResults.classList.add('hidden');
+            currentSearchResults = [];
+            return;
+        }
+
+        // Show loading state
+        resultsContainer.innerHTML = '<div class="px-4 py-3 text-gray-500 text-sm flex items-center gap-2"><div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>Searching...</div>';
+        searchResults.classList.remove('hidden');
+
+        try {
+            // Use real API
+            const response = await TaxLookupAPI.searchByKeywords(query.trim());
+            console.log('Raw API response:', response);
+            console.log('Response data:', response.data);
+            currentSearchResults = response.data || [];
+            console.log('Processed search results:', currentSearchResults);
+
+            // Show results
+            resultsContainer.innerHTML = '';
+
+            if (currentSearchResults.length > 0) {
+                currentSearchResults.forEach((item, index) => {
+                    // Create a single card for the Hierarchy Group
+                    const resultDiv = createSearchResultDiv(item, index);
+                    if (resultDiv) {
+                        resultsContainer.appendChild(resultDiv);
+                    }
+                });
+            } else {
+                resultsContainer.innerHTML = '<div class="px-4 py-3 text-gray-500 text-sm">No results found</div>';
+            }
+        } catch (error) {
+            console.error('Search failed:', error);
+            resultsContainer.innerHTML = '<div class="px-4 py-3 text-red-500 text-sm">Search failed. Please try again.</div>';
+        }
+    }
+
+    // Helper function to create search result div (Disconnected Cards)
+    function createSearchResultDiv(item, globalIndex = 0) {
+        // If no matches, return null (don't show empty headers or "no items" message)
+        if (!item.matches || item.matches.length === 0) {
+            return null;
+        }
+
+        // Wrapper for the entire group (Parent + Matches)
+        const groupWrapper = document.createElement('div');
+        groupWrapper.className = 'mb-4 animate-drop-in';
+        groupWrapper.style.animationDelay = `${globalIndex * 50}ms`;
+
+        // 1. Parent/Hierarchy Description (Standalone Header)
+        let hierarchyDesc = item.description || '';
+        // Truncate at 50 chars
+        if (hierarchyDesc.length > 50) {
+            hierarchyDesc = hierarchyDesc.substring(0, 50) + '...';
+        }
+        
+        const headerDiv = document.createElement('div');
+        // Reduced padding (px-3 py-1) and enforced truncation
+        headerDiv.className = 'mb-2 px-3 py-1 text-left bg-blue-600 rounded-full border border-blue-500 shadow-md inline-block relative z-50 opacity-100';
+        headerDiv.style.backgroundColor = '#2563eb'; // Force solid Blue hex color (blue-600)
+        headerDiv.innerHTML = `
+            <p class="text-[10px] font-bold text-white uppercase tracking-wider leading-snug opacity-100 whitespace-nowrap" style="color: #ffffff !important;">${hierarchyDesc}</p>
+        `;
+        groupWrapper.appendChild(headerDiv);
+
+        // 2. Nested Matches (Individual Cards)
+        item.matches.forEach((match, index) => {
+            const matchCode = match.hsn_code || '';
+            const matchDesc = match.description || '';
+            const matchScore = match.match_score || 0;
+            const scorePercent = (matchScore * 100).toFixed(0);
+            const scoreVal = parseInt(scorePercent);
+            const isHighMatch = scoreVal > 95;
+            
+            // Define colors based on match score (Lime Green for >95%, Standard Green for others)
+            // Using explicit hex values to ensure they work regardless of Tailwind config
+            const badgeBg = isHighMatch ? 'rgba(132, 204, 22, 0.2)' : 'rgba(34, 197, 94, 0.2)'; // Lime-500 vs Green-500
+            const badgeBorder = isHighMatch ? 'rgba(132, 204, 22, 0.5)' : 'rgba(34, 197, 94, 0.3)';
+            const dotColor = isHighMatch ? '#a3e635' : '#4ade80'; // Lime-400 vs Green-400
+            const shadowColor = isHighMatch ? 'rgba(163, 230, 53, 0.6)' : 'rgba(74, 222, 128, 0.5)';
+
+            const matchCard = document.createElement('div');
+            // Ensure solid opaque background with no transparency
+            matchCard.className = 'mb-2 bg-gray-900 rounded-lg border border-gray-700 hover:border-blue-500 cursor-pointer transition-all duration-150 group shadow-lg relative z-50 opacity-100 animate-drop-in';
+            matchCard.style.backgroundColor = '#111827'; // Force solid hex color (gray-900)
+            matchCard.style.animationDelay = `${index * 30}ms`; // Staggered delay based on global index context (or local if reset)
+            matchCard.dataset.hsn = matchCode;
+            
+            matchCard.innerHTML = `
+                <div class="p-4 text-left">
+                    <div class="flex items-center gap-4">
+                        <!-- Match Score Badge -->
+                        ${matchScore > 0 ? `
+                        <div class="flex-shrink-0 flex items-center gap-1.5 px-2 py-1 rounded-md border" style="background-color: ${badgeBg}; border-color: ${badgeBorder};">
+                            <div class="w-1.5 h-1.5 rounded-full" style="background-color: ${dotColor}; box-shadow: 0 0 8px ${shadowColor};"></div>
+                            <span class="text-xs font-bold text-white tracking-wide" style="color: #ffffff !important;">${scorePercent}%</span>
+                        </div>
+                        ` : ''}
+
+                        <!-- HSN Code Badge -->
+                        ${matchCode ? `
+                        <div class="flex-shrink-0 flex items-center gap-1.5 px-2 py-1 rounded-md border" style="background-color: rgba(236, 72, 153, 0.2); border-color: rgba(236, 72, 153, 0.4);">
+                            <div class="w-1.5 h-1.5 rounded-full" style="background-color: #ec4899; box-shadow: 0 0 8px rgba(236, 72, 153, 0.5);"></div>
+                            <span class="text-xs font-bold text-white tracking-wide font-mono" style="color: #ffffff !important;">${matchCode}</span>
+                        </div>
+                        ` : ''}
+
+                        <!-- Description -->
+                        <p class="text-xs text-white font-medium leading-relaxed opacity-90 flex-1" style="color: #ffffff !important;">
+                            ${matchDesc}
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            // Add click event
+            matchCard.onclick = (e) => {
+                e.stopPropagation();
+                selectHSNCode(matchCode);
+            };
+            
+            groupWrapper.appendChild(matchCard);
+        });
+
+        return groupWrapper;
+    }
+
+    // Input event listener with debounce
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            performSearch(this.value);
+        }, 300);
+    });
+
+    // Enter key support
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch(this.value);
+        }
+    });
+
+    // Make performSearch globally available for debugging
+    window.performSearch = performSearch;
+
+    // Tab Switching Logic
+    window.switchTab = function(tabName) {
+        const classBtn = document.getElementById('tab-classification');
+        const taxBtn = document.getElementById('tab-tax');
+        const classPanel = document.getElementById('panel-classification');
+        const taxPanel = document.getElementById('panel-tax');
+
+        // Helper to restart animations in a container
+        const restartAnimations = (container) => {
+            const animatedElements = container.querySelectorAll('.animate-drop-in');
+            animatedElements.forEach(el => {
+                // Remove animation class
+                el.classList.remove('animate-drop-in');
+                el.style.animation = 'none';
+                
+                // Force reflow (reading offsetHeight triggers reflow)
+                void el.offsetHeight;
+                
+                // Re-add animation class/style
+                el.style.animation = '';
+                el.classList.add('animate-drop-in');
+            });
+            
+            // Re-trigger bar widths if tax panel
+            if (container.id === 'panel-tax') {
+                 setTimeout(() => {
+                    const barIgst = document.getElementById('bar-igst');
+                    const barCgst = document.getElementById('bar-cgst');
+                    const barSgst = document.getElementById('bar-sgst');
+                    // Reset to 0 first
+                    if (barIgst) { const w = barIgst.style.width; barIgst.style.width = '0%'; setTimeout(() => barIgst.style.width = w, 50); }
+                    if (barCgst) { const w = barCgst.style.width; barCgst.style.width = '0%'; setTimeout(() => barCgst.style.width = w, 50); }
+                    if (barSgst) { const w = barSgst.style.width; barSgst.style.width = '0%'; setTimeout(() => barSgst.style.width = w, 50); }
+                }, 50);
+            }
+        };
+
+        // Active Button Styles (Switch Style: Blue BG, White Text, Shadow)
+        const activeClass = ['bg-blue-600', 'text-white', 'shadow-lg', 'scale-100'];
+        const inactiveClass = ['text-gray-500', 'hover:text-gray-700', 'bg-transparent', 'shadow-none', 'scale-95'];
+
+        if (tabName === 'classification') {
+            // Activate Classification
+            classBtn.classList.add(...activeClass);
+            classBtn.classList.remove('text-gray-500', 'hover:text-gray-700', 'bg-transparent', 'shadow-none', 'scale-95');
+            
+            taxBtn.classList.remove(...activeClass);
+            taxBtn.classList.add(...inactiveClass);
+
+            // Show Panel
+            classPanel.classList.remove('hidden');
+            taxPanel.classList.add('hidden');
+            restartAnimations(classPanel);
+        } else {
+            // Activate Tax
+            taxBtn.classList.add(...activeClass);
+            taxBtn.classList.remove('text-gray-500', 'hover:text-gray-700', 'bg-transparent', 'shadow-none', 'scale-95');
+            
+            classBtn.classList.remove(...activeClass);
+            classBtn.classList.add(...inactiveClass);
+
+            // Show Panel
+            taxPanel.classList.remove('hidden');
+            classPanel.classList.add('hidden');
+            restartAnimations(taxPanel);
+        }
+    };
+
+    // Select HSN code and display details
+    async function selectHSNCode(hsnCode) {
+        // Automatically switch to classification tab on selection
+        switchTab('classification');
+
+        searchInput.value = hsnCode;
+        searchResults.classList.add('hidden');
+        currentSelectedHSN = hsnCode;
+
+        // Show loading states
+        showLoadingState();
+
+        try {
+            // Get complete HSN information using the combined API call
+            const completeInfo = await TaxLookupAPI.getCompleteHSNInfo(hsnCode);
+
+            // Update UI with real data
+            updateHierarchyTree(completeInfo.hierarchy);
+            updateTaxDetails(completeInfo.taxInfo);
+
+        } catch (error) {
+            console.error('Failed to get HSN details:', error);
+            showErrorState('Failed to load HSN details. Please try again.');
+        }
+    }
+
+    // Show loading state in both panels
+    function showLoadingState() {
+        const hierarchyTree = document.getElementById('hierarchy-tree');
+        const taxDetails = document.getElementById('tax-details');
+
+        hierarchyTree.innerHTML = '<div class="text-center py-8 text-gray-500"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>Loading hierarchy...</div>';
+        taxDetails.innerHTML = '<div class="text-center py-8 text-gray-500"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>Loading tax details...</div>';
+    }
+
+    // Show error state
+    function showErrorState(message) {
+        const hierarchyTree = document.getElementById('hierarchy-tree');
+        const taxDetails = document.getElementById('tax-details');
+
+        const errorHTML = `<div class="text-center py-8 text-red-500"><svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="text-sm">${message}</p></div>`;
+
+        hierarchyTree.innerHTML = errorHTML;
+        taxDetails.innerHTML = errorHTML;
+    }
+
+    // Update hierarchy tree display (Dark Tree View)
+    function updateHierarchyTree(hierarchyData) {
+        const treeContainer = document.getElementById('hierarchy-tree');
+        const hierarchy = hierarchyData.hierarchy;
+
+        // Define levels with explicit hex colors for visibility
+        const levels = [
+            { key: 'section', label: 'Section', color: '#60a5fa' }, // blue-400
+            { key: 'chapter', label: 'Chapter', color: '#4ade80' }, // green-400
+            { key: 'heading', label: 'Heading', color: '#c084fc' }, // purple-400
+            { key: 'sub_heading', label: 'Sub-heading', color: '#facc15' }, // yellow-400
+            { key: 'tariff_item', label: 'Tariff Item', color: '#f472b6', active: true } // pink-400
+        ];
+
+        let treeHTML = '<div class="relative pl-4 text-left">'; // Enforce text-left
+        
+        levels.forEach((level, index) => {
+            const data = hierarchy[level.key];
+            if (!data) return;
+
+            const isLast = index === levels.length - 1;
+            const indent = index * 24; // Increased indentation for clearer tree structure
+            
+            treeHTML += `
+                <div class="relative mb-3 animate-drop-in" style="margin-left: ${indent}px; animation-delay: ${index * 100}ms">
+                    <!-- Connector Lines (L shape) -->
+                    ${index > 0 ? `
+                        <!-- Vertical Line (Up to parent) -->
+                        <div class="absolute" style="
+                            left: -14px; 
+                            top: -20px; 
+                            bottom: 50%; 
+                            width: 2px; 
+                            background-color: #6b7280; 
+                            z-index: 10;
+                        "></div>
+                        <!-- Horizontal Line (To current item) -->
+                        <div class="absolute" style="
+                            left: -14px; 
+                            top: 50%; 
+                            width: 14px; 
+                            height: 2px; 
+                            background-color: #6b7280; 
+                            z-index: 10;
+                        "></div>
+                    ` : ''}
+
+                    <!-- Node Card -->
+                    <div class="flex items-start gap-4 p-4 rounded-xl border transition-colors duration-200 relative z-20" 
+                         style="background-color: ${level.active ? '#1f2937' : '#111827'}; border-color: ${level.active ? '#3b82f6' : '#374151'}; box-shadow: ${level.active ? '0 10px 15px -3px rgba(59, 130, 246, 0.1)' : 'none'};">
+                        
+                        <!-- Icon (Larger) -->
+                        <div class="flex-shrink-0 mt-1" style="color: ${level.color}">
+                            ${level.active ? 
+                                `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` : 
+                                `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>`
+                            }
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="flex-1 min-w-0 text-left">
+                            <div class="flex items-center gap-3 mb-2">
+                                <!-- Level Badge -->
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide border" 
+                                      style="background-color: ${level.color}33; color: ${level.color}; border-color: ${level.color}66;">
+                                    ${level.label}
+                                </span>
+                                <!-- Code (Large) -->
+                                <span class="text-lg font-mono font-bold" style="color: ${level.color};">${data.code}</span>
+                            </div>
+                            <!-- Description (Larger) -->
+                            <p class="text-sm text-white leading-relaxed font-medium opacity-100" style="color: #ffffff !important; font-size: 0.95rem;">${data.description}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        treeHTML += '</div>';
+
+        treeContainer.innerHTML = treeHTML;
+    }
+
+    // Update tax details display (Dark Theme Redesign)
+    function updateTaxDetails(taxData) {
+        const detailsContainer = document.getElementById('tax-details');
+
+        // Parse rates
+        const igst = parseFloat(taxData.gst_breakdown.igst || 0);
+        const cgst = parseFloat(taxData.gst_breakdown.cgst || 0);
+        const sgst = parseFloat(taxData.gst_breakdown.sgst || 0);
+        const totalTax = igst; // Assumption: IGST is total
+
+        // Calculate relative widths based on the sum of all three components for ratio visualization
+        const sumRates = igst + cgst + sgst;
+        const widthIgst = sumRates > 0 ? (igst / sumRates) * 100 : 0;
+        const widthCgst = sumRates > 0 ? (cgst / sumRates) * 100 : 0;
+        const widthSgst = sumRates > 0 ? (sgst / sumRates) * 100 : 0;
+        
+        const cessDisplay = taxData.cess_breakdown.toLowerCase().includes('no') ? 'Nil' : TaxLookupAPI.formatCurrency(taxData.cess_detail);
+        const cessBreakdown = taxData.cess_breakdown || '';
+        
+        detailsContainer.innerHTML = `
+            <!-- Main Split Layout: GST (Left) | Cess (Right) -->
+            <div class="flex flex-col lg:flex-row gap-8 mb-8">
+                
+                <!-- 1. GST Breakdown Card (Dark) -->
+                <div class="flex-1 bg-gray-900 rounded-3xl border border-gray-700 p-8 shadow-2xl animate-drop-in relative overflow-hidden group hover:shadow-blue-900/20 transition-shadow duration-300">
+                    <!-- Background Glow -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-green-600/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex flex-col items-start mb-6">
+                            <h3 class="text-xl font-bold text-white tracking-tight mb-4">GST Breakdown</h3>
+                            
+                            <!-- Total Tax Display (Main Top Pink) -->
+                            <div class="flex items-baseline gap-3">
+                                <span class="text-7xl font-black text-pink-300 tracking-tighter drop-shadow-2xl" style="text-shadow: 0 0 30px rgba(249, 168, 212, 0.4);">${totalTax}%</span>
+                                <span class="text-sm font-bold uppercase tracking-wider" style="color: #ffffff !important;">Total Tax</span>
+                            </div>
+                        </div>
+
+                        <!-- Animated Multi-Color Bar -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs mb-2 font-bold uppercase tracking-wider" style="color: #ffffff !important;">
+                                <span>Tax Composition</span>
+                                <span class="opacity-90">Ratio Split</span>
+                            </div>
+                            <!-- The Bar Container (Polished) -->
+                            <div class="h-6 w-full bg-gray-800 rounded-full overflow-hidden flex shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] border border-gray-700 relative">
+                                <!-- IGST Segment (Green) -->
+                                <div class="h-full relative group transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1)" style="width: 0%; background: linear-gradient(to bottom, #4ade80, #22c55e); box-shadow: 0 0 15px rgba(34,197,94,0.3);" id="bar-igst">
+                                </div>
+                                <!-- CGST Segment (Red) -->
+                                <div class="h-full relative group transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) delay-100" style="width: 0%; background: linear-gradient(to bottom, #f87171, #ef4444); box-shadow: 0 0 15px rgba(239,68,68,0.3);" id="bar-cgst">
+                                </div>
+                                <!-- SGST Segment (Yellow) -->
+                                <div class="h-full relative group transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) delay-200" style="width: 0%; background: linear-gradient(to bottom, #facc15, #eab308); box-shadow: 0 0 15px rgba(234,179,8,0.3);" id="bar-sgst">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legend/Details Inline Row -->
+                        <div class="flex flex-wrap items-center gap-6 text-sm">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                                <span class="font-bold" style="color: #ffffff !important;">IGST</span>
+                                <span class="font-bold text-white ml-1">${igst}%</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]"></div>
+                                <span class="font-bold" style="color: #ffffff !important;">CGST</span>
+                                <span class="font-bold text-white ml-1">${cgst}%</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.6)]"></div>
+                                <span class="font-bold" style="color: #ffffff !important;">SGST</span>
+                                <span class="font-bold text-white ml-1">${sgst}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Cess Details Card (Dark - Compact) -->
+                <div class="flex-1 bg-gray-900 rounded-3xl border border-gray-700 p-8 shadow-2xl animate-drop-in relative overflow-hidden group hover:shadow-orange-900/20 transition-shadow duration-300" style="animation-delay: 100ms">
+                    <!-- Background Glow -->
+                    <div class="absolute top-0 left-0 w-64 h-64 bg-orange-600/10 rounded-full blur-3xl -ml-16 -mt-16"></div>
+
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold text-white tracking-tight">Compensation Cess</h3>
+                             <div class="flex flex-col items-end">
+                                <span class="text-xs font-bold uppercase tracking-wider bg-orange-500/10 px-2 py-1 rounded border border-orange-500/20" style="color: #ffffff !important;">Additional</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 flex flex-col items-center justify-center text-center">
+                            <div class="text-5xl font-extrabold mb-3 tracking-tighter drop-shadow-lg" style="color: #ffffff !important;">${cessDisplay}</div>
+                            <div class="px-5 py-2.5 bg-gray-800/80 rounded-xl border border-gray-700 inline-block backdrop-blur-sm">
+                                <p class="text-sm font-medium" style="color: #ffffff !important;">${cessBreakdown}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Regulatory Meta Grid (Polished) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-drop-in" style="animation-delay: 200ms">
+                <!-- Status -->
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-lg flex flex-col items-center justify-center relative overflow-hidden group hover:border-gray-600 transition-all">
+                    <div class="absolute inset-0 bg-gradient-to-br ${taxData.is_exempted ? 'from-red-500/10 to-transparent' : 'from-emerald-500/10 to-transparent'} opacity-50"></div>
+                    <div class="text-[10px] font-bold uppercase tracking-widest mb-2 z-10" style="color: #ffffff !important;">Exemption Status</div>
+                    <div class="px-4 py-1.5 rounded-full border ${taxData.is_exempted ? 'bg-red-500/20 border-red-500/40 text-red-200' : 'bg-emerald-500/20 border-emerald-500/40 text-emerald-200'} z-10 shadow-sm backdrop-blur-sm">
+                        <span class="text-sm font-bold tracking-wide">${taxData.exemption_status}</span>
+                    </div>
+                </div>
+
+                <!-- Schedule -->
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-lg flex flex-col items-center justify-center relative overflow-hidden group hover:border-gray-600 transition-all">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-50"></div>
+                    <div class="text-[10px] font-bold uppercase tracking-widest mb-2 z-10" style="color: #ffffff !important;">GST Schedule</div>
+                    <div class="px-4 py-1.5 rounded-full border bg-purple-500/20 border-purple-500/40 text-purple-200 z-10 shadow-sm backdrop-blur-sm">
+                        <span class="text-sm font-bold tracking-wide">${taxData.schedule}</span>
+                    </div>
+                </div>
+
+                <!-- Last Updated -->
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-lg flex flex-col items-center justify-center relative overflow-hidden group hover:border-gray-600 transition-all">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-50"></div>
+                    <div class="text-[10px] font-bold uppercase tracking-widest mb-2 z-10" style="color: #ffffff !important;">Last Updated</div>
+                    <div class="flex items-center gap-2 px-4 py-1.5 rounded-full border bg-blue-500/20 border-blue-500/40 text-blue-200 z-10 shadow-sm backdrop-blur-sm">
+                        <svg class="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <span class="text-sm font-bold font-mono tracking-wide">${taxData.last_updated}</span>
+                    </div>
+                </div>
+
+                <!-- Version -->
+                <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-lg flex flex-col items-center justify-center relative overflow-hidden group hover:border-gray-600 transition-all">
+                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent opacity-50"></div>
+                    <div class="text-[10px] font-bold uppercase tracking-widest mb-2 z-10" style="color: #ffffff !important;">Data Version</div>
+                    <div class="px-4 py-1.5 rounded-full border bg-pink-500/20 border-pink-500/40 text-pink-200 z-10 shadow-sm backdrop-blur-sm">
+                        <span class="text-sm font-bold tracking-wide">${taxData.broad_categeory}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Source Notification (Card Style) -->
+            <div class="mt-6 animate-drop-in" style="animation-delay: 300ms">
+                 <div class="bg-gray-900 rounded-xl border border-gray-700 p-0 overflow-hidden shadow-lg flex flex-col md:flex-row">
+                    <!-- Icon/Label Section -->
+                    <div class="bg-gray-800 p-4 md:w-48 flex flex-col justify-center items-center md:items-start md:border-r border-gray-700 border-b md:border-b-0">
+                        <div class="flex items-center gap-2 mb-1 text-blue-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <span class="text-xs font-bold uppercase tracking-wider">Source</span>
+                        </div>
+                        <span class="text-[10px] font-medium" style="color: #ffffff !important;">Official Notifications</span>
+                    </div>
+                    
+                    <!-- Content Section -->
+                    <div class="p-4 flex-1 bg-gray-900/50 flex items-center">
+                        <p class="text-xs font-mono leading-relaxed opacity-90" style="color: #ffffff !important;">
+                            ${taxData.source}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Trigger Animations after render
+        // We set widths to actual values after a slight delay to trigger CSS transition
+        setTimeout(() => {
+            const barIgst = document.getElementById('bar-igst');
+            const barCgst = document.getElementById('bar-cgst');
+            const barSgst = document.getElementById('bar-sgst');
+            
+            // Visual split logic: 
+            // If total is 18:
+            // Visual Bar: [ 50% IGST (Blue) ][ 25% CGST (Green) ][ 25% SGST (Purple) ] to represent the components
+            // This is a purely visual representation of the available components
+            if (barIgst) barIgst.style.width = `${widthIgst}%`;
+            if (barCgst) barCgst.style.width = `${widthCgst}%`;
+            if (barSgst) barSgst.style.width = `${widthSgst}%`;
+        }, 100);
+    }
+});
+</script>
