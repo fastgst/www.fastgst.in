@@ -70,21 +70,21 @@ schemaData: |
 
                 <!-- Subtitle -->
                 <div class="mb-12 flex justify-center">
-                    <a href="https://console.fastgst.in/login" target="_blank" class="relative inline-flex items-center gap-3 px-6 py-2.5 bg-pink-50 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer text-decoration-none overflow-hidden animate-border">
+                    <a href="https://console.fastgst.in/login" target="_blank" class="relative inline-flex items-center gap-3 px-6 py-2.5 bg-lime-50 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer text-decoration-none overflow-hidden animate-border">
                         
                         <!-- Pulse Dot -->
                         <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500 shadow-sm"></span>
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-lime-500 shadow-sm"></span>
                         </span>
                         
                         <!-- Text Content -->
-                        <p class="text-sm font-medium text-pink-700 tracking-wide">
-                            This tool is powered using <span class="inline-flex items-center px-2.5 py-0.5 rounded-md bg-pink-100 border border-pink-200 text-pink-900 font-bold text-xs shadow-sm mx-1 align-middle">FastGST's Tax Lookup API</span>. Integrate into your apps by getting an API key
+                        <p class="text-sm font-medium text-lime-800 tracking-wide">
+                            This tool is powered using <span class="inline-flex items-center px-2.5 py-0.5 rounded-md bg-lime-100 border border-lime-200 text-lime-900 font-bold text-xs shadow-sm mx-1 align-middle">FastGST's Tax Lookup API</span>. Integrate into your apps by getting an API key
                         </p>
                         
                         <!-- Arrow Icon -->
-                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-pink-200 text-pink-700 group-hover:bg-pink-500 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-lime-200 text-lime-800 group-hover:bg-lime-500 group-hover:text-white transition-all duration-300 group-hover:scale-110">
                             <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </div>
                     </a>
@@ -96,20 +96,25 @@ schemaData: |
                     <!-- Compact Search Card -->
                     <div class="gst-search-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 relative z-20">
                         <!-- Compact Search Input Section -->
-                        <div class="p-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border-b border-gray-200/50">
+                        <div id="search-interface" class="p-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border-b border-gray-200/50">
                             <div class="relative">
-                                <!-- Search Icon -->
-                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                    <svg class="h-6 w-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
+                                <!-- Search Input Container -->
+                                <div class="relative flex items-center">
+                                    <!-- Search Icon (Left) -->
+                                    <div class="absolute left-4 z-10 flex items-center pointer-events-none text-gray-500">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                    </div>
+                                    
+                                    <input
+                                        type="text"
+                                        id="gst-search-input"
+                                        placeholder="Search By Keywords (Milk, Battery, Fish etc...)"
+                                        class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md"
+                                    >
                                 </div>
-                                <input
-                                    type="text"
-                                    id="gst-search-input"
-                                    placeholder="Search any keyword (e.g., battery, milk...)"
-                                    class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md"
-                                >
+
                                 <!-- Enhanced Search Results Dropdown (Floating Cards) -->
                                 <div id="search-results" class="hidden relative z-50 w-full mt-4">
                                     <!-- Transparent container, no background box -->
@@ -117,6 +122,71 @@ schemaData: |
                                         <div class="space-y-0">
                                             <!-- Search results will be populated here as independent cards -->
                                         </div>
+                                    </div>
+                            </div>
+
+                            <!-- Divider with text -->
+                            <div class="relative mt-8 mb-8">
+                                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                    <div class="w-full border-t border-gray-300"></div>
+                                </div>
+                                <div class="relative flex justify-center">
+                                    <span class="bg-white px-6 py-2 rounded-full text-sm font-bold text-gray-500 uppercase tracking-wider shadow-sm border border-gray-200">
+                                        Or Find By Code
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Secondary Search Options -->
+                            <div class="flex flex-col md:flex-row items-center gap-6">
+                                <!-- Left Input (HSN) -->
+                                <div class="relative flex-1 w-full group">
+                                    <div class="relative flex items-center">
+                                        <!-- Icon -->
+                                        <div class="absolute left-4 text-gray-400 group-focus-within:text-gray-800 transition-colors">
+                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Standard Input -->
+                                        <input
+                                            type="text"
+                                            id="hsn-input-field"
+                                            maxlength="8"
+                                            placeholder="Search By HSN Code"
+                                            class="w-full pl-12 pr-[160px] py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
+                                        >
+                                        
+                                        <!-- Rectangular Black Search Button (Inside) -->
+                                        <button id="hsn-search-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-black text-white text-sm font-bold rounded-lg hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm uppercase tracking-wide" disabled>
+                                            Search By HSN
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Right Input (SAC) -->
+                                <div class="relative flex-1 w-full group opacity-60 grayscale select-none pointer-events-none">
+                                    <div class="relative flex items-center">
+                                        <!-- Icon -->
+                                        <div class="absolute left-4 text-gray-400">
+                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Standard Input -->
+                                        <input
+                                            type="text"
+                                            placeholder="Search By SAC Code"
+                                            disabled
+                                            class="w-full pl-12 pr-[160px] py-4 text-lg border-2 border-gray-300 rounded-xl bg-gray-50 cursor-not-allowed outline-none text-gray-400 font-medium shadow-inner"
+                                        >
+                                        
+                                        <!-- Rectangular Search Button (Disabled) -->
+                                        <button class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-gray-200 text-gray-400 text-sm font-bold rounded-lg cursor-not-allowed uppercase tracking-wide">
+                                            Search By SAC
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -244,18 +314,18 @@ schemaData: |
 
 @keyframes borderPulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4);
+        box-shadow: 0 0 0 0 rgba(132, 204, 22, 0.4);
     }
     70% {
-        box-shadow: 0 0 0 6px rgba(236, 72, 153, 0);
+        box-shadow: 0 0 0 6px rgba(132, 204, 22, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0);
+        box-shadow: 0 0 0 0 rgba(132, 204, 22, 0);
     }
 }
 
 .animate-border {
-    border: 2px solid #fbcfe8; /* pink-200 */
+    border: 2px solid #d9f99d; /* lime-200 */
     animation: borderPulse 2s infinite;
 }
 
@@ -395,10 +465,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Use real API
             const response = await TaxLookupAPI.searchByKeywords(query.trim());
-            console.log('Raw API response:', response);
-            console.log('Response data:', response.data);
             currentSearchResults = response.data || [];
-            console.log('Processed search results:', currentSearchResults);
 
             // Show results
             resultsContainer.innerHTML = '';
@@ -415,7 +482,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultsContainer.innerHTML = '<div class="px-4 py-3 text-gray-500 text-sm">No results found</div>';
             }
         } catch (error) {
-            console.error('Search failed:', error);
             resultsContainer.innerHTML = '<div class="px-4 py-3 text-red-500 text-sm">Search failed. Please try again.</div>';
         }
     }
@@ -598,20 +664,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Select HSN code and display details
     async function selectHSNCode(hsnCode) {
-        // Show the results panel
-        document.getElementById('results-panel').classList.remove('hidden');
-
-        // Automatically switch to classification tab on selection
-        switchTab('classification');
-
-        searchInput.value = hsnCode;
-        searchResults.classList.add('hidden');
-        currentSelectedHSN = hsnCode;
-
-        // Show loading states
-        showLoadingState();
-
         try {
+            // Show the results panel
+            const resultsPanel = document.getElementById('results-panel');
+            if (resultsPanel) {
+                resultsPanel.classList.remove('hidden');
+                resultsPanel.style.display = 'flex';
+            }
+
+            // Automatically switch to classification tab on selection
+            switchTab('classification');
+
+            const searchInput = document.getElementById('gst-search-input');
+            const searchResults = document.getElementById('search-results');
+
+            if(searchInput) searchInput.value = hsnCode;
+            if(searchResults) searchResults.classList.add('hidden');
+            currentSelectedHSN = hsnCode;
+
+            // Show loading states
+            showLoadingState();
+
             // Get complete HSN information using the combined API call
             const completeInfo = await TaxLookupAPI.getCompleteHSNInfo(hsnCode);
 
@@ -620,8 +693,14 @@ document.addEventListener('DOMContentLoaded', function() {
             updateTaxDetails(completeInfo.taxInfo);
 
         } catch (error) {
-            console.error('Failed to get HSN details:', error);
             showErrorState('Failed to load HSN details. Please try again.');
+            
+            // Ensure panel is visible even on error to show error message
+            const resultsPanel = document.getElementById('results-panel');
+            if (resultsPanel) {
+                resultsPanel.classList.remove('hidden');
+                resultsPanel.style.display = 'flex';
+            }
         }
     }
 
@@ -908,6 +987,53 @@ document.addEventListener('DOMContentLoaded', function() {
             if (barCgst) barCgst.style.width = `${widthCgst}%`;
             if (barSgst) barSgst.style.width = `${widthSgst}%`;
         }, 100);
+    }
+
+    // HSN Code Input Logic (Unified Input)
+    const hsnInput = document.getElementById('hsn-input-field');
+    const hsnSearchBtn = document.getElementById('hsn-search-btn');
+
+    if (hsnInput && hsnSearchBtn) {
+        // Handle Input
+        hsnInput.addEventListener('input', (e) => {
+            let val = e.target.value;
+            
+            // Allow only numbers
+            if (!/^\d*$/.test(val)) {
+                e.target.value = val.replace(/\D/g, '');
+                val = e.target.value; // update ref
+            }
+
+            // Update Search Button State
+            if (val.length >= 4) {
+                hsnSearchBtn.disabled = false;
+            } else {
+                hsnSearchBtn.disabled = true;
+            }
+        });
+
+        // Handle Enter Key
+        hsnInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                triggerHSNSearch();
+            }
+        });
+        
+        // Search Button Click
+        hsnSearchBtn.addEventListener('click', triggerHSNSearch);
+    }
+
+    function triggerHSNSearch() {
+        const fullCode = hsnInput ? hsnInput.value : '';
+        
+        if (!fullCode || fullCode.length < 4) return;
+
+        if (fullCode.length === 8) {
+           selectHSNCode(fullCode);
+        } else {
+           // Perform a search with the partial code
+           performSearch(fullCode);
+        }
     }
 });
 </script>
