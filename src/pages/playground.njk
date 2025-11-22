@@ -1,18 +1,31 @@
 ---
 layout: base.njk
 permalink: /playground/
-title: PlayGround - FastGST.in | Search & Find HSN/SAC GST Tax Rates
-description: Interactive playground to search and find HSN/SAC GST tax rates. Test API endpoints, explore tax hierarchies, and access live GST rate information.
+title: Free HSN/SAC Code Search & GST Rate Checker - FastGST.in API Playground
+description: Free online HSN code checker and GST rate finder. Search by keyword or code to view classification hierarchy and tax rates. Powered by FastGST Tax REST API.
 canonical: /playground/
 preloadFonts: true
 schemaData: |
   <script type="application/ld+json">
   {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "PlayGround - FastGST.in | Search & Find HSN/SAC GST Tax Rates",
-      "description": "Interactive playground to search and find HSN/SAC GST tax rates",
-      "url": "/playground/"
+      "@type": "WebApplication",
+      "name": "FastGST Free HSN/SAC Code Checker & Tax Rate API Playground",
+      "description": "Free online tool to search HSN/SAC codes, check GST tax rates, and view classification hierarchy. Powered by FastGST Tax Lookup REST API.",
+      "url": "https://www.fastgst.in/playground/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+      },
+      "featureList": [
+          "Search HSN/SAC Codes",
+          "Check GST Tax Rates",
+          "View Compensation Cess",
+          "Browse Classification Hierarchy"
+      ]
   }
   </script>
 
@@ -48,8 +61,8 @@ schemaData: |
                 <!-- Main Heading -->
                 <div class="mb-8 mt-8">
                     <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
-                        <span class="text-black">Search & Find </span><span class="text-transparent bg-clip-text relative" style="background-image: linear-gradient(to right, rgb(71, 66, 239), rgb(55, 50, 200), rgb(71, 66, 239));">
-                            GST Rates
+                        <span class="text-black">Free HSN & SAC </span><span class="text-transparent bg-clip-text relative" style="background-image: linear-gradient(to right, rgb(71, 66, 239), rgb(55, 50, 200), rgb(71, 66, 239));">
+                            GST Rates Checker
                             <div class="absolute -bottom-2 left-0 right-0 h-1 rounded-full opacity-60" style="background: linear-gradient(to right, rgba(71, 66, 239, 0.6), rgb(71, 66, 239));"></div>
                         </span>
                     </h1>
@@ -57,16 +70,24 @@ schemaData: |
 
                 <!-- Subtitle -->
                 <div class="mb-12 flex justify-center">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50/80 backdrop-blur-sm border border-blue-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer">
-                        <span class="relative flex h-2 w-2">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    <a href="https://console.fastgst.in/login" target="_blank" class="relative inline-flex items-center gap-3 px-6 py-2.5 bg-pink-50 rounded-full shadow-md border border-pink-200 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer text-decoration-none overflow-hidden">
+                        
+                        <!-- Pulse Dot -->
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500 shadow-sm"></span>
                         </span>
-                        <p class="text-sm font-semibold text-blue-700 tracking-wide group-hover:text-blue-800">
-                            Powered By <span class="font-bold">FastGST.in</span> Tax Lookup API
+                        
+                        <!-- Text Content -->
+                        <p class="text-sm font-medium text-pink-700 tracking-wide">
+                            This tool is powered using <span class="font-bold text-pink-800">FastGST's</span> Tax Lookup API. Integrate into your apps by getting an API key
                         </p>
-                        <svg class="w-4 h-4 text-blue-400 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </div>
+                        
+                        <!-- Arrow Icon -->
+                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-pink-200 text-pink-700 group-hover:bg-pink-500 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </div>
+                    </a>
                 </div>
 
                 <!-- Compact GST Search Interface -->
@@ -77,11 +98,17 @@ schemaData: |
                         <!-- Compact Search Input Section -->
                         <div class="p-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border-b border-gray-200/50">
                             <div class="relative">
+                                <!-- Search Icon -->
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <svg class="h-6 w-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
                                 <input
                                     type="text"
                                     id="gst-search-input"
                                     placeholder="Search any keyword (e.g., battery, milk...)"
-                                    class="w-full pl-4 pr-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md"
+                                    class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md"
                                 >
                                 <!-- Enhanced Search Results Dropdown (Floating Cards) -->
                                 <div id="search-results" class="hidden relative z-50 w-full mt-4">
@@ -96,7 +123,7 @@ schemaData: |
                         </div>
 
                         <!-- Content Area with Toggle -->
-                        <div class="flex flex-col min-h-[500px]">
+                        <div class="flex flex-col min-h-[500px] hidden" id="results-panel">
                             
                             <!-- Toggle Controls (Switch Style) -->
                             <div class="px-6 pt-6 pb-2 flex justify-center">
@@ -470,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
             performSearch(this.value);
-        }, 300);
+        }, 500);
     });
 
     // Enter key support
@@ -553,6 +580,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Select HSN code and display details
     async function selectHSNCode(hsnCode) {
+        // Show the results panel
+        document.getElementById('results-panel').classList.remove('hidden');
+
         // Automatically switch to classification tab on selection
         switchTab('classification');
 
