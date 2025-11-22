@@ -1,18 +1,18 @@
 ---
 layout: base.njk
-permalink: /playground/
-title: Free HSN/SAC Code Search & GST Rate Checker - FastGST.in API Playground
+permalink: /hsn-sac-finder/
+title: Free HSN/SAC Code Search & GST Rate Checker - FastGST.in
 description: Free online HSN code checker and GST rate finder. Search by keyword or code to view classification hierarchy and tax rates. Powered by FastGST Tax REST API.
-canonical: /playground/
+canonical: /hsn-sac-finder/
 preloadFonts: true
 schemaData: |
   <script type="application/ld+json">
   {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "FastGST Free HSN/SAC Code Checker & Tax Rate API Playground",
+      "name": "FastGST Free HSN/SAC Code Checker & Tax Rate Finder",
       "description": "Free online tool to search HSN/SAC codes, check GST tax rates, and view classification hierarchy. Powered by FastGST Tax Lookup REST API.",
-      "url": "https://www.fastgst.in/playground/",
+      "url": "https://www.fastgst.in/hsn-sac-finder/",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Any",
       "offers": {
@@ -43,8 +43,8 @@ schemaData: |
           {
               "@type": "ListItem",
               "position": 2,
-              "name": "PlayGround",
-              "item": "https://www.fastgst.in/playground/"
+              "name": "HSN/SAC Finder",
+              "item": "https://www.fastgst.in/hsn-sac-finder/"
           }
       ]
   }
@@ -70,7 +70,7 @@ schemaData: |
 
                 <!-- Subtitle -->
                 <div class="mb-12 flex justify-center">
-                    <a href="https://console.fastgst.in/login" target="_blank" class="relative inline-flex items-center gap-3 px-6 py-2.5 bg-pink-50 rounded-full shadow-md border border-pink-200 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer text-decoration-none overflow-hidden">
+                    <a href="https://console.fastgst.in/login" target="_blank" class="relative inline-flex items-center gap-3 px-6 py-2.5 bg-pink-50 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer text-decoration-none overflow-hidden animate-border">
                         
                         <!-- Pulse Dot -->
                         <span class="relative flex h-2.5 w-2.5">
@@ -80,7 +80,7 @@ schemaData: |
                         
                         <!-- Text Content -->
                         <p class="text-sm font-medium text-pink-700 tracking-wide">
-                            This tool is powered using <span class="font-bold text-pink-800">FastGST's</span> Tax Lookup API. Integrate into your apps by getting an API key
+                            This tool is powered using <span class="inline-flex items-center px-2.5 py-0.5 rounded-md bg-pink-100 border border-pink-200 text-pink-900 font-bold text-xs shadow-sm mx-1 align-middle">FastGST's Tax Lookup API</span>. Integrate into your apps by getting an API key
                         </p>
                         
                         <!-- Arrow Icon -->
@@ -177,6 +177,7 @@ schemaData: |
 </main>
 
 <!-- GST Tax Lookup API Module -->
+<script src="/_includes/rpak.js"></script>
 <script src="/_includes/tax-lookup-api.js"></script>
 
 <!-- Custom Styles for Playground -->
@@ -239,6 +240,23 @@ schemaData: |
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+}
+
+@keyframes borderPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(236, 72, 153, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0);
+    }
+}
+
+.animate-border {
+    border: 2px solid #fbcfe8; /* pink-200 */
+    animation: borderPulse 2s infinite;
 }
 
 .animate-drop-in {

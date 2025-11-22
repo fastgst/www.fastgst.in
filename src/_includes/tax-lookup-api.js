@@ -6,15 +6,10 @@
 const TaxLookupAPI = (function() {
     // API Configuration
     const API_BASE_URL = 'https://api.taxlookup.fastgst.in';
-    const API_KEY = 'FGST_TEST_TFLEFA0ZJ50TT9T4LN9XCF6M';
 
     // Default headers for all requests
-    const defaultHeaders = {
-        'X-API-Key': API_KEY,
-        'ext-headers': '--extscr=true',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    };
+    // Headers are now generated dynamically per request
+
 
     /**
      * Helper function to make API requests
@@ -25,7 +20,12 @@ const TaxLookupAPI = (function() {
     async function makeRequest(url, options = {}) {
         const requestOptions = {
             method: 'GET',
-            headers: defaultHeaders,
+            headers: {
+                'X-API-Key': RPAK.generate(2, JSON.stringify({})),
+                'ext-headers': '--extscr=true',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             ...options
         };
 
@@ -158,8 +158,7 @@ const TaxLookupAPI = (function() {
         formatCurrency,
 
         // Constants (read-only)
-        get API_BASE_URL() { return API_BASE_URL; },
-        get API_KEY() { return API_KEY; }
+        get API_BASE_URL() { return API_BASE_URL; }
     };
 })();
 
