@@ -99,10 +99,10 @@ schemaData: |
                         <div id="search-interface" class="p-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border-b border-gray-200/50">
                             
                             <!-- Mobile Tabs -->
-                            <div class="flex md:hidden p-1 bg-white/60 backdrop-blur-md rounded-xl mb-6 border border-gray-200/60 shadow-inner gap-1">
-                                <button onclick="switchMobileSearch('keyword')" id="mob-tab-keyword" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 shadow-sm bg-white text-blue-700 ring-1 ring-black/5">Search By Keywords</button>
-                                <button onclick="switchMobileSearch('hsn')" id="mob-tab-hsn" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 text-gray-500 hover:bg-white/50">Search by HSN</button>
-                                <button onclick="switchMobileSearch('sac')" id="mob-tab-sac" class="flex-1 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 text-gray-500 hover:bg-white/50">Search by SAC</button>
+                            <div class="flex !flex-row md:hidden p-1 bg-white/60 backdrop-blur-md rounded-xl mb-6 border border-gray-200/60 shadow-inner gap-1 overflow-x-auto whitespace-nowrap">
+                                <button onclick="switchMobileSearch('keyword')" id="mob-tab-keyword" class="flex-1 min-w-0 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 shadow-sm bg-white text-blue-700 ring-1 ring-black/5 whitespace-nowrap px-2">By Keywords</button>
+                                <button onclick="switchMobileSearch('hsn')" id="mob-tab-hsn" class="flex-1 min-w-0 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 text-gray-500 hover:bg-white/50 whitespace-nowrap px-2">By HSN</button>
+                                <button onclick="switchMobileSearch('sac')" id="mob-tab-sac" class="flex-1 min-w-0 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 text-gray-500 hover:bg-white/50 whitespace-nowrap px-2">By SAC</button>
                             </div>
 
                             <div id="mobile-keyword-panel" class="relative md:block">
