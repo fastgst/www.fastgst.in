@@ -200,11 +200,11 @@ schemaData: |
                             
                             <!-- Toggle Controls (Switch Style) -->
                             <div class="px-6 pt-6 pb-2 flex justify-center">
-                                <div class="bg-gray-200/80 p-1.5 rounded-full flex items-center relative w-full max-w-md shadow-inner border border-gray-200">
-                                    <button onclick="switchTab('classification')" id="tab-classification" class="flex-1 py-2.5 px-6 rounded-full text-sm font-bold transition-all duration-300 shadow-lg bg-blue-600 text-white transform scale-100 focus:outline-none ring-offset-2 focus:ring-2 focus:ring-blue-500/50">
+                                <div class="bg-gray-200/80 p-1.5 rounded-full flex !flex-row items-center relative w-full max-w-md shadow-inner border border-gray-200 whitespace-nowrap overflow-x-auto">
+                                    <button onclick="switchTab('classification')" id="tab-classification" class="flex-1 min-w-0 py-2.5 px-2 sm:px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg bg-blue-600 text-white transform scale-100 focus:outline-none ring-offset-2 focus:ring-2 focus:ring-blue-500/50 whitespace-nowrap">
                                         Classification
                                     </button>
-                                    <button onclick="switchTab('tax')" id="tab-tax" class="flex-1 py-2.5 px-6 rounded-full text-sm font-bold transition-all duration-300 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500/20">
+                                    <button onclick="switchTab('tax')" id="tab-tax" class="flex-1 min-w-0 py-2.5 px-2 sm:px-6 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500/20 whitespace-nowrap">
                                         Tax Rates
                                     </button>
                                 </div>
@@ -764,6 +764,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateHierarchyTree(hierarchyData) {
         const treeContainer = document.getElementById('hierarchy-tree');
         const hierarchy = hierarchyData.hierarchy;
+        
+        // Mobile optimization for indentation
+        const isMobile = window.innerWidth < 768;
+        const indentMultiplier = isMobile ? 12 : 24;
 
         // Define levels with explicit hex colors for visibility
         const levels = [
@@ -774,17 +778,17 @@ document.addEventListener('DOMContentLoaded', function() {
             { key: 'tariff_item', label: 'Tariff Item', color: '#f472b6', active: true } // pink-400
         ];
 
-        let treeHTML = '<div class="relative pl-4 text-left">'; // Enforce text-left
+        let treeHTML = '<div class="relative pl-2 sm:pl-4 text-left">'; // Enforce text-left
         
         levels.forEach((level, index) => {
             const data = hierarchy[level.key];
             if (!data) return;
 
             const isLast = index === levels.length - 1;
-            const indent = index * 24; // Increased indentation for clearer tree structure
+            const indent = index * indentMultiplier; // Responsive indentation
             
             treeHTML += `
-                <div class="relative mb-3 animate-drop-in" style="margin-left: ${indent}px; animation-delay: ${index * 100}ms">
+                <div class="relative mb-2 sm:mb-3 animate-drop-in" style="margin-left: ${indent}px; animation-delay: ${index * 100}ms">
                     <!-- Connector Lines (L shape) -->
                     ${index > 0 ? `
                         <!-- Vertical Line (Up to parent) -->
@@ -808,30 +812,49 @@ document.addEventListener('DOMContentLoaded', function() {
                     ` : ''}
 
                     <!-- Node Card -->
-                    <div class="flex items-start gap-4 p-4 rounded-xl border transition-colors duration-200 relative z-20" 
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-3 sm:p-4 rounded-xl border transition-colors duration-200 relative z-20" 
                          style="background-color: ${level.active ? '#1f2937' : '#111827'}; border-color: ${level.active ? '#3b82f6' : '#374151'}; box-shadow: ${level.active ? '0 10px 15px -3px rgba(59, 130, 246, 0.1)' : 'none'};">
                         
-                        <!-- Icon (Larger) -->
-                        <div class="flex-shrink-0 mt-1" style="color: ${level.color}">
+                        <!-- Desktop Icon (Hidden on Mobile) -->
+                        <div class="hidden sm:block flex-shrink-0 mt-1" style="color: ${level.color}">
                             ${level.active ? 
-                                `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` : 
-                                `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>`
+                                `<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` : 
+                                `<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>`
                             }
                         </div>
                         
-                        <!-- Content -->
-                        <div class="flex-1 min-w-0 text-left">
-                            <div class="flex items-center gap-3 mb-2">
-                                <!-- Level Badge -->
+                        <!-- Content Body -->
+                        <div class="flex-1 min-w-0 text-left w-full">
+                            
+                            <!-- Mobile Header Row: Icon + Label + Code (One Line!) -->
+                            <div class="flex !flex-row sm:hidden items-center gap-2 mb-1 w-full">
+                                <!-- Mobile Icon -->
+                                <div class="flex-shrink-0" style="color: ${level.color}">
+                                    ${level.active ? 
+                                        `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` : 
+                                        `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>`
+                                    }
+                                </div>
+                                <!-- Label -->
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide border flex-shrink-0" 
+                                      style="background-color: ${level.color}33; color: ${level.color}; border-color: ${level.color}66;">
+                                    ${level.label}
+                                </span>
+                                <!-- Code -->
+                                <span class="text-base font-mono font-bold truncate" style="color: ${level.color};">${data.code}</span>
+                            </div>
+
+                            <!-- Desktop Header (Label + Code) -->
+                            <div class="hidden sm:flex items-center gap-3 mb-2">
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide border" 
                                       style="background-color: ${level.color}33; color: ${level.color}; border-color: ${level.color}66;">
                                     ${level.label}
                                 </span>
-                                <!-- Code (Large) -->
                                 <span class="text-lg font-mono font-bold" style="color: ${level.color};">${data.code}</span>
                             </div>
-                            <!-- Description (Larger) -->
-                            <p class="text-sm text-white leading-relaxed font-medium opacity-100" style="color: #ffffff !important; font-size: 0.95rem;">${data.description}</p>
+                            
+                            <!-- Description -->
+                            <p class="text-xs sm:text-sm text-white leading-relaxed font-medium opacity-100" style="color: #ffffff !important; font-size: ${isMobile ? '0.85rem' : '0.95rem'};">${data.description}</p>
                         </div>
                     </div>
                 </div>
