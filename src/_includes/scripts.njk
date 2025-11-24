@@ -751,3 +751,101 @@
 </script>
 {% endif %}
 
+{% if page.url == '/' %}
+<script>
+    // YouTube IFrame API - Track video play events on Homepage
+    var youtubePlayerReadyHomepage = false;
+    var youtubePlayTrackedHomepage = false;
+
+    function initHomepageYouTubePlayer() {
+        var container = document.getElementById('youtube-player-container-homepage');
+        if (!container || window.youtubePlayerHomepage) return;
+
+        // Initialize YouTube player
+        window.youtubePlayerHomepage = new YT.Player('youtube-player-container-homepage', {
+            videoId: 'UAJ_k5lsa9I',
+            playerVars: {
+                'autoplay': 0,
+                'controls': 1,
+                'rel': 0,
+                'modestbranding': 1,
+                'playsinline': 1
+            },
+            events: {
+                'onReady': onPlayerReadyHomepage,
+                'onStateChange': onPlayerStateChangeHomepage
+            }
+        });
+    }
+
+    // Load YouTube IFrame API script only if container exists
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('youtube-player-container-homepage');
+        if (!container) return;
+
+        // Check if YouTube API is already loaded
+        if (typeof YT !== 'undefined' && YT.Player) {
+            initHomepageYouTubePlayer();
+        } else {
+            // Store reference to original callback if it exists
+            var originalCallback = window.onYouTubeIframeAPIReady;
+            
+            // Set up callback for when API loads
+            window.onYouTubeIframeAPIReady = function() {
+                // Call original callback if it exists (for other pages)
+                if (originalCallback) {
+                    originalCallback();
+                }
+                // Initialize Homepage player
+                initHomepageYouTubePlayer();
+            };
+
+            // Load YouTube IFrame API script if not already loading
+            var existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+            if (!existingScript) {
+                var tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            } else {
+                // Script is loading, wait for it
+                var checkYT = setInterval(function() {
+                    if (typeof YT !== 'undefined' && YT.Player) {
+                        clearInterval(checkYT);
+                        initHomepageYouTubePlayer();
+                    }
+                }, 100);
+                
+                // Timeout after 5 seconds
+                setTimeout(function() {
+                    clearInterval(checkYT);
+                }, 5000);
+            }
+        }
+    });
+
+    function onPlayerReadyHomepage(event) {
+        youtubePlayerReadyHomepage = true;
+    }
+
+    function onPlayerStateChangeHomepage(event) {
+        // YT.PlayerState.PLAYING = 1
+        if (event.data === YT.PlayerState.PLAYING && !youtubePlayTrackedHomepage) {
+            youtubePlayTrackedHomepage = true;
+            
+            // Send notification when video starts playing
+            sendNotification('🎥 YouTube Video', 'Someone started watching the video on ' + window.location.href);
+            
+            // Also track with Google Analytics
+            safeGtag('event', 'video_play', {
+                'event_category': 'Video_Engagement',
+                'event_label': 'YouTube_Video_Started_Homepage',
+                'video_title': 'FastGST Demo Video',
+                'video_id': 'UAJ_k5lsa9I',
+                'page_location': '/'
+            });
+        }
+    }
+</script>
+{% endif %}
+
