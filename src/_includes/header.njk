@@ -1,4 +1,23 @@
 <!-- Header -->
+<style>
+    .hsn-sac-underline {
+        position: relative;
+        display: inline-block;
+    }
+    .hsn-sac-underline::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 12' preserveAspectRatio='none'%3E%3Cpath d='M0,8 C15,2 25,10 40,4 C55,10 65,2 80,8 C95,2 105,10 120,4 C135,10 145,2 160,8 C170,4 175,10 180,6' stroke='%23fbbf24' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2,10 C12,6 18,12 28,8 C38,12 44,6 54,10 C64,6 70,12 80,8 C90,12 96,6 106,10 C116,6 122,12 132,8 C142,12 148,6 158,10 C165,8 170,12 178,9' stroke='%23f59e0b' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.7'/%3E%3Cpath d='M5,6 C20,3 30,9 45,5 C60,9 70,3 85,7 C100,3 110,9 125,5 C140,9 150,3 165,7 C172,5 176,9 180,7' stroke='%23fbbf24' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.5'/%3E%3C/svg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        pointer-events: none;
+    }
+</style>
 <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
@@ -11,7 +30,7 @@
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
                 <a href="/" class="text-gray-600 hover:text-gray-900 transition-colors">Home</a>
-                <a href="/hsn-sac-finder/" class="text-gray-600 hover:text-gray-900 transition-colors">HSN/SAC Finder</a>
+                <a href="/hsn-sac-finder/" class="text-gray-600 hover:text-gray-900 transition-colors hsn-sac-underline">HSN/SAC Finder</a>
                 <a href="/pricing/" class="text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
                 <a href="/faqs/" class="text-gray-600 hover:text-gray-900 transition-colors">FAQs</a>
                 <a href="/about/" class="text-gray-600 hover:text-gray-900 transition-colors">About</a>
@@ -47,7 +66,7 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
         <div class="px-4 pt-2 pb-4 space-y-1">
             <a href="/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Home</a>
-            <a href="/hsn-sac-finder/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">HSN/SAC Finder</a>
+            <a href="/hsn-sac-finder/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors hsn-sac-underline">HSN/SAC Finder</a>
             <a href="/pricing/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Pricing</a>
             <a href="/faqs/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">FAQs</a>
             <a href="/about/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">About</a>
