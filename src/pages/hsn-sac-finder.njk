@@ -68,54 +68,10 @@ schemaData: |
                     </h1>
                 </div>
 
-                <!-- Enhanced Button Section with Better Visual Hierarchy -->
-                <div class="mb-8 hidden md:block">
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                        <!-- Swagger API Button -->
-                        <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Try Swagger API'}); sendNotification('Swagger Visit', 'Someone opened Swagger');" class="group relative overflow-hidden text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background-color: #000000;">
-                            <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                                <img src="/images/swagger.webp" alt="Swagger API Documentation Tool" style="width: 24px; height: 24px;" class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" loading="lazy" width="24" height="24" decoding="async">
-                            </div>
-                            <div class="text-left">
-                                <div class="font-bold">Open Swagger</div>
-                            </div>
-                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
-                        </a>
-
-                        <!-- API Documentation Button -->
-                        <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'See API Documentation'}); sendNotification('Doc Visit', 'Someone opened API documentation');" class="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-sky-50 text-blue-800 px-8 sm:px-10 py-3 sm:py-3.5 rounded-2xl font-bold hover:from-blue-100 hover:to-sky-100 transition-all duration-500 text-lg sm:text-xl shadow-lg hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-2 border-blue-200 hover:border-blue-400 hover:shadow-blue-200/50">
-                            <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-blue-100 rounded-xl group-hover:bg-blue-200 transition-all duration-300">
-                                <svg class="w-5 h-5 text-blue-600 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                </svg>
-                            </div>
-                            <div class="text-left">
-                                <div class="font-bold">See API Docs</div>
-                            </div>
-                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
-                        </a>
-
-                        <!-- Launch Console Button -->
-                        <a href="https://console.fastgst.in/login" target="_blank" onclick="gtag('event', 'click', {'event_category': 'Hero Button', 'event_label': 'Launch Console'}); sendNotification('Console Visit', 'Someone opened Console');" class="group relative overflow-hidden text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-2xl font-bold transition-all duration-500 text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:scale-105 transform flex items-center gap-4 border-0" style="background: linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200));">
-                            <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                                <svg class="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div class="text-left">
-                                 <div class="font-bold">Launch Console ➔</div>
-                             </div>
-                            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:animate-pulse"></div>
-                        </a>
-                    </div>
-                </div>
-
                 <!-- Subtitle -->
-                <div class="mb-12 flex justify-center">
+                <div class="mb-8 flex justify-center">
                     <a href="https://console.fastgst.in/login" target="_blank" style="background-color: #f7fee7 !important; opacity: 1 !important;" class="relative z-20 inline-flex items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-lg sm:rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer text-decoration-none overflow-hidden animate-border">
-                        
+
                         <!-- Text Content -->
                         <p class="text-[10px] sm:text-sm font-medium text-lime-800 tracking-wide text-left leading-tight sm:leading-normal w-full">
                             <span class="block text-center font-bold mb-1">🔥 This tool is powered by <span class="inline-flex items-center px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 rounded-md bg-lime-100 border border-lime-200 text-lime-900 font-bold text-[10px] sm:text-xs shadow-sm mx-0.5 sm:mx-1 align-middle">FastGST Tax Lookup API</span></span>
@@ -123,13 +79,14 @@ schemaData: |
                                 Access this data from your product by generating an <strong>API-KEY</strong> from FastGST Console
                             </span>
                         </p>
-                        
+
                         <!-- Arrow Icon -->
                         <div class="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-lime-200 text-lime-800 group-hover:bg-lime-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 flex-shrink-0">
                             <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </div>
                     </a>
                 </div>
+
 
                 <!-- Compact GST Search Interface -->
                 <div class="max-w-6xl mx-auto mb-8">
@@ -281,12 +238,13 @@ schemaData: |
                                         <p class="text-sm">Select code to view tax details</p>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div>
 
         <!-- Floating elements -->
         <div class="absolute top-20 left-10 w-20 h-20 rounded-full float-animation" style="background-color: rgba(71, 66, 239, 0.15);"></div>
