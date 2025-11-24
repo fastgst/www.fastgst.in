@@ -49,9 +49,17 @@
                     </div>
                 </div>
             </div>
-            <!-- Mobile menu button -->
-            <div class="flex items-center md:hidden">
-                <button id="mobile-menu-button" type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900" aria-label="Toggle menu" aria-expanded="false">
+            <!-- Launch Console Button & Mobile menu button -->
+            <div class="flex items-center gap-3">
+                <!-- Launch Console Button - Desktop -->
+                <a href="https://console.fastgst.in/login" target="_blank" class="hidden md:inline-flex items-center gap-2 px-4 py-2 text-white rounded-lg font-semibold text-sm transition-all shadow-sm hover:shadow-md" style="background: linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200));" onmouseover="this.style.background='linear-gradient(to bottom right, rgb(67, 56, 202), rgb(49, 46, 129))';" onmouseout="this.style.background='linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200))';" onclick="if(typeof sendNotification !== 'undefined') sendNotification('Console Visit', 'Someone opened Console from navbar');">
+                    Launch Console
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 md:hidden" aria-label="Toggle menu" aria-expanded="false">
                     <svg id="menu-open-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -71,6 +79,15 @@
             <a href="/faqs/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">FAQs</a>
             <a href="/about/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">About</a>
             <a href="/contact/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors">Contact</a>
+            <!-- Launch Console Button - Mobile -->
+            <a href="https://console.fastgst.in/login" target="_blank" class="block px-3 py-2 text-white rounded-md font-semibold text-center transition-all mt-2" style="background: linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200));" onmouseover="this.style.background='linear-gradient(to bottom right, rgb(67, 56, 202), rgb(49, 46, 129))';" onmouseout="this.style.background='linear-gradient(to bottom right, rgb(71, 66, 239), rgb(55, 50, 200))';" onclick="if(typeof sendNotification !== 'undefined') sendNotification('Console Visit', 'Someone opened Console from mobile menu');">
+                <span class="flex items-center justify-center gap-2">
+                    Launch Console
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </span>
+            </a>
             <!-- Mobile Legal Submenu -->
             <div class="pt-2 border-t border-gray-100">
                 <div class="px-3 py-2 text-sm font-semibold text-gray-900">Legal</div>
