@@ -21,7 +21,7 @@ const TaxLookupAPI = (function() {
         const requestOptions = {
             method: 'GET',
             headers: {
-                'X-API-Key': RPAK.generate(60, JSON.stringify({})),
+                'X-API-Key': RPAK.generate(4, JSON.stringify({})),
                 'ext-headers': '--extscr=true',
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
