@@ -662,8 +662,12 @@ let performSearch;
             // Add click event
             matchCard.onclick = (e) => {
                 e.stopPropagation();
-                // Pass description to selectHSNCode
-                selectHSNCode(matchCode, matchDesc);
+                // Pass description to appropriate function based on search type
+                if (currentSearchType === 'sac') {
+                    selectSACCode(matchCode, matchDesc);
+                } else {
+                    selectHSNCode(matchCode, matchDesc);
+                }
             };
             
             groupWrapper.appendChild(matchCard);
@@ -815,7 +819,10 @@ let performSearch;
             const completeInfo = await TaxLookupAPI.getCompleteHSNInfo(hsnCode);
 
             // Update UI with real data
-            updateHierarchyTree(completeInfo.hierarchy);
+            // Extract the hierarchy object from the data
+            const hierarchyData = { hierarchy: completeInfo.hierarchy.hierarchy };
+
+            updateHierarchyTree(hierarchyData);
             updateTaxDetails(completeInfo.taxInfo);
 
         } catch (error) {
@@ -860,8 +867,16 @@ let performSearch;
             // Get complete SAC information using the combined API call
             const completeInfo = await TaxLookupAPI.getCompleteSACInfo(sacCode);
 
+            // Debug logging
+            console.log('SAC Complete Info:', completeInfo);
+            console.log('SAC Hierarchy:', completeInfo.hierarchy);
+            console.log('SAC Tax Info:', completeInfo.taxInfo);
+
             // Update UI with real data
-            updateHierarchyTree(completeInfo.hierarchy);
+            // For SAC data, the hierarchy is nested inside the data object
+            const hierarchyData = { hierarchy: completeInfo.hierarchy.hierarchy };
+
+            updateHierarchyTree(hierarchyData);
             updateTaxDetails(completeInfo.taxInfo);
 
         } catch (error) {
@@ -900,19 +915,33 @@ let performSearch;
     function updateHierarchyTree(hierarchyData) {
         const treeContainer = document.getElementById('hierarchy-tree');
         const hierarchy = hierarchyData.hierarchy;
-        
+
         // Mobile optimization for indentation
         const isMobile = window.innerWidth < 768;
         const indentMultiplier = isMobile ? 12 : 24;
 
-        // Define levels with explicit hex colors for visibility
-        const levels = [
-            { key: 'section', label: 'Section', color: '#60a5fa' }, // blue-400
-            { key: 'chapter', label: 'Chapter', color: '#4ade80' }, // green-400
-            { key: 'heading', label: 'Heading', color: '#c084fc' }, // purple-400
-            { key: 'sub_heading', label: 'Sub-heading', color: '#facc15' }, // yellow-400
-            { key: 'tariff_item', label: 'Tariff Item', color: '#f472b6', active: true } // pink-400
-        ];
+        // Detect if this is SAC or HSN data based on available keys
+        const isSAC = hierarchy.group || hierarchy.sub_group;
+        let levels;
+
+        if (isSAC) {
+            // SAC hierarchy levels
+            levels = [
+                { key: 'section', label: 'Section', color: '#60a5fa' }, // blue-400
+                { key: 'heading', label: 'Heading', color: '#c084fc' }, // purple-400
+                { key: 'group', label: 'Group', color: '#4ade80' }, // green-400
+                { key: 'sub_group', label: 'Service Code', color: '#f472b6', active: true } // pink-400
+            ];
+        } else {
+            // HSN hierarchy levels
+            levels = [
+                { key: 'section', label: 'Section', color: '#60a5fa' }, // blue-400
+                { key: 'chapter', label: 'Chapter', color: '#4ade80' }, // green-400
+                { key: 'heading', label: 'Heading', color: '#c084fc' }, // purple-400
+                { key: 'sub_heading', label: 'Sub-heading', color: '#facc15' }, // yellow-400
+                { key: 'tariff_item', label: 'Tariff Item', color: '#f472b6', active: true } // pink-400
+            ];
+        }
 
         let treeHTML = '<div class="relative pl-2 sm:pl-4 text-left">'; // Enforce text-left
         
@@ -1017,9 +1046,11 @@ let performSearch;
         const widthIgst = sumRates > 0 ? (igst / sumRates) * 100 : 0;
         const widthCgst = sumRates > 0 ? (cgst / sumRates) * 100 : 0;
         const widthSgst = sumRates > 0 ? (sgst / sumRates) * 100 : 0;
-        
-        const cessDisplay = taxData.cess_breakdown.toLowerCase().includes('no') ? 'Nil' : TaxLookupAPI.formatCurrency(taxData.cess_detail);
-        const cessBreakdown = taxData.cess_breakdown || '';
+
+        // Handle missing fields for SAC codes (cess and schedule might not exist)
+        const cessBreakdown = taxData.cess_breakdown || 'Not Applicable';
+        const cessDetail = taxData.cess_detail || 'Not Applicable';
+        const cessDisplay = cessBreakdown.toLowerCase().includes('no') || cessBreakdown === 'Not Applicable' ? 'Nil' : TaxLookupAPI.formatCurrency(cessDetail);
         
         detailsContainer.innerHTML = `
             <!-- Main Split Layout: GST (Left) | Cess (Right) -->
@@ -1121,7 +1152,7 @@ let performSearch;
                     <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-50"></div>
                     <div class="text-[10px] font-bold uppercase tracking-widest mb-2 z-10" style="color: #ffffff !important;">GST Schedule</div>
                     <div class="px-4 py-1.5 rounded-full border bg-purple-500/20 border-purple-500/40 text-purple-200 z-10 shadow-sm backdrop-blur-sm">
-                        <span class="text-sm font-bold tracking-wide">${taxData.schedule}</span>
+                        <span class="text-sm font-bold tracking-wide">${taxData.schedule || 'Not Applicable'}</span>
                     </div>
                 </div>
 
