@@ -190,7 +190,7 @@ schemaData: |
                                                 type="text"
                                                 id="hsn-input-field"
                                                 maxlength="11"
-                                                placeholder="Search By HSN Code"
+                                                placeholder="Search By HSN Code (XX-XX-XX-XX)"
                                                 class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
                                             >
 
@@ -202,7 +202,7 @@ schemaData: |
                                     </div>
 
                                     <!-- HSN Helper Text - Under the input -->
-                                    <div id="hsn-helper-text" class="mt-1 text-xs text-red-500 font-medium text-left">
+                                    <div id="hsn-helper-text" class="mt-1 text-xs font-medium text-left text-red-500">
                                         Please enter 8-digit tariff item HSN code
                                     </div>
                                 </div>
@@ -222,8 +222,8 @@ schemaData: |
                                             <input
                                                 type="text"
                                                 id="sac-input-field"
-                                                maxlength="7"
-                                                placeholder="Search By SAC Code"
+                                                maxlength="9"
+                                                placeholder="Search By SAC Code (XXX-X-X-X)"
                                                 class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
                                             >
 
@@ -235,7 +235,7 @@ schemaData: |
                                     </div>
 
                                     <!-- SAC Helper Text - Under the input -->
-                                    <div id="sac-helper-text" class="mt-1 text-xs text-red-500 font-medium text-left">
+                                    <div id="sac-helper-text" class="mt-1 text-xs font-medium text-left text-red-500">
                                         Please enter 6-digit service SAC code
                                     </div>
                                 </div>
@@ -547,9 +547,13 @@ let performSearch;
             // Reset HSN button state
             const hsnSearchBtn = document.getElementById('hsn-search-btn');
             if (hsnSearchBtn) hsnSearchBtn.disabled = true;
-            // Show helper text
+            // Reset helper text to invalid state
             const hsnHelperText = document.getElementById('hsn-helper-text');
-            if (hsnHelperText) hsnHelperText.style.display = 'block';
+            if (hsnHelperText) {
+                hsnHelperText.textContent = 'Please enter 8-digit tariff item HSN code';
+                hsnHelperText.className = 'mt-1 text-xs font-medium text-left text-red-500';
+                hsnHelperText.style.display = 'block';
+            }
         }
         
         // Clear SAC input
@@ -559,9 +563,13 @@ let performSearch;
             // Reset SAC button state
             const sacSearchBtn = document.getElementById('sac-search-btn');
             if (sacSearchBtn) sacSearchBtn.disabled = true;
-            // Show helper text
+            // Reset helper text to invalid state
             const sacHelperText = document.getElementById('sac-helper-text');
-            if (sacHelperText) sacHelperText.style.display = 'block';
+            if (sacHelperText) {
+                sacHelperText.textContent = 'Please enter 6-digit service SAC code';
+                sacHelperText.className = 'mt-1 text-xs font-medium text-left text-red-500';
+                sacHelperText.style.display = 'block';
+            }
         }
         
         // Hide search results
@@ -955,12 +963,12 @@ let performSearch;
             const searchInput = document.getElementById('gst-search-input');
             const searchResults = document.getElementById('search-results');
 
-            // Set SAC code with hyphen formatting (XXX-XXX)
+            // Set SAC code with hyphen formatting (XXX-X-X-X)
             if(sacInput) {
-                // Remove any non-digits and format as XXX-XXX
+                // Remove any non-digits and format as XXX-X-X-X
                 const digitsOnly = sacCode.replace(/\D/g, '');
                 if(digitsOnly.length === 6) {
-                    sacInput.value = digitsOnly.slice(0, 3) + '-' + digitsOnly.slice(3, 6);
+                    sacInput.value = digitsOnly.slice(0, 3) + '-' + digitsOnly.slice(3, 4) + '-' + digitsOnly.slice(4, 5) + '-' + digitsOnly.slice(5, 6);
                 } else {
                     sacInput.value = sacCode;
                 }
@@ -1331,9 +1339,13 @@ let performSearch;
     const hsnSearchBtn = document.getElementById('hsn-search-btn');
 
     if (hsnInput && hsnSearchBtn) {
-        // Initialize helper text as visible
+        // Initialize helper text as visible with invalid state
         const helperText = document.getElementById('hsn-helper-text');
-        if (helperText) helperText.style.display = 'block';
+        if (helperText) {
+            helperText.textContent = 'Please enter 8-digit tariff item HSN code';
+            helperText.className = 'mt-1 text-xs font-medium text-left text-red-500';
+            helperText.style.display = 'block';
+        }
 
         // Handle Input
         hsnInput.addEventListener('input', (e) => {
@@ -1345,12 +1357,19 @@ let performSearch;
             // Limit to exactly 8 digits
             val = val.slice(0, 8);
 
-            // Apply HSN format: XXXX-XX-XX (8 digits) only when complete
-            if (val.length === 8) {
-                val = val.slice(0, 4) + '-' + val.slice(4, 6) + '-' + val.slice(6, 8);
-            } else if (val.length >= 4) {
-                val = val.slice(0, 4) + '-' + val.slice(4);
+            // Apply HSN format: XX-XX-XX-XX (8 digits: 2-2-2-2)
+            // Progressive formatting: add hyphens as user types
+            if (val.length > 6) {
+                // 7-8 digits: XX-XX-XX-XX or XX-XX-XX-X
+                val = val.slice(0, 2) + '-' + val.slice(2, 4) + '-' + val.slice(4, 6) + '-' + val.slice(6);
+            } else if (val.length > 4) {
+                // 5-6 digits: XX-XX-XX or XX-XX-X
+                val = val.slice(0, 2) + '-' + val.slice(2, 4) + '-' + val.slice(4);
+            } else if (val.length > 2) {
+                // 3-4 digits: XX-XX or XX-X
+                val = val.slice(0, 2) + '-' + val.slice(2);
             }
+            // 1-2 digits: no formatting yet
 
             e.target.value = val;
 
@@ -1358,12 +1377,17 @@ let performSearch;
             const digitCount = val.replace(/-/g, '').length;
             const helperText = document.getElementById('hsn-helper-text');
 
-            if (digitCount === 8) {
-                hsnSearchBtn.disabled = false;
-                if (helperText) helperText.style.display = 'none';
-            } else {
-                hsnSearchBtn.disabled = true;
-                if (helperText) helperText.style.display = 'block';
+            if (helperText) {
+                if (digitCount === 8) {
+                    helperText.textContent = 'Valid HSN Tariff Item';
+                    helperText.className = 'mt-1 text-xs font-medium text-left text-green-600';
+                    hsnSearchBtn.disabled = false;
+                } else {
+                    helperText.textContent = 'Please enter 8-digit tariff item HSN code';
+                    helperText.className = 'mt-1 text-xs font-medium text-left text-red-500';
+                    hsnSearchBtn.disabled = true;
+                }
+                helperText.style.display = 'block';
             }
         });
 
@@ -1383,9 +1407,13 @@ let performSearch;
     const sacSearchBtn = document.getElementById('sac-search-btn');
 
     if (sacInput && sacSearchBtn) {
-        // Initialize helper text as visible
+        // Initialize helper text as visible with invalid state
         const sacHelperText = document.getElementById('sac-helper-text');
-        if (sacHelperText) sacHelperText.style.display = 'block';
+        if (sacHelperText) {
+            sacHelperText.textContent = 'Please enter 6-digit service SAC code';
+            sacHelperText.className = 'mt-1 text-xs font-medium text-left text-red-500';
+            sacHelperText.style.display = 'block';
+        }
 
         // Handle Input
         sacInput.addEventListener('input', (e) => {
@@ -1397,10 +1425,19 @@ let performSearch;
             // Limit to 6 digits only
             val = val.slice(0, 6);
 
-            // Apply SAC format: XXX-XXX (6 digits)
-            if (val.length > 3) {
-                val = val.slice(0, 3) + '-' + val.slice(3);
+            // Apply SAC format: XXX-X-X-X (6 digits: 3-1-1-1)
+            // Progressive formatting: add hyphens as user types
+            if (val.length > 5) {
+                // 6 digits: XXX-X-X-X
+                val = val.slice(0, 3) + '-' + val.slice(3, 4) + '-' + val.slice(4, 5) + '-' + val.slice(5, 6);
+            } else if (val.length > 4) {
+                // 5 digits: XXX-X-X
+                val = val.slice(0, 3) + '-' + val.slice(3, 4) + '-' + val.slice(4, 5);
+            } else if (val.length > 3) {
+                // 4 digits: XXX-X
+                val = val.slice(0, 3) + '-' + val.slice(3, 4);
             }
+            // 1-3 digits: no formatting yet
 
             e.target.value = val;
 
@@ -1408,12 +1445,17 @@ let performSearch;
             const digitCount = val.replace(/-/g, '').length;
             const sacHelperText = document.getElementById('sac-helper-text');
 
-            if (digitCount === 6) {
-                sacSearchBtn.disabled = false;
-                if (sacHelperText) sacHelperText.style.display = 'none';
-            } else {
-                sacSearchBtn.disabled = true;
-                if (sacHelperText) sacHelperText.style.display = 'block';
+            if (sacHelperText) {
+                if (digitCount === 6) {
+                    sacHelperText.textContent = 'Valid SAC Service Code';
+                    sacHelperText.className = 'mt-1 text-xs font-medium text-left text-green-600';
+                    sacSearchBtn.disabled = false;
+                } else {
+                    sacHelperText.textContent = 'Please enter 6-digit service SAC code';
+                    sacHelperText.className = 'mt-1 text-xs font-medium text-left text-red-500';
+                    sacSearchBtn.disabled = true;
+                }
+                sacHelperText.style.display = 'block';
             }
         });
 
