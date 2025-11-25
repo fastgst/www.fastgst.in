@@ -104,16 +104,30 @@ schemaData: |
                             </div>
 
                             <div id="mobile-keyword-panel" class="relative md:block">
+                                <!-- Mobile: Dropdown on top (full width) -->
+                                <div class="block md:hidden mb-3">
+                                    <select id="search-type-selector" class="appearance-none bg-black border-2 border-gray-600 rounded-lg px-4 py-4 text-sm font-medium text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none shadow-md pr-8 w-full">
+                                        <option value="hsn">📦 Products (HSN)</option>
+                                        <option value="sac">🛠️ Services (SAC)</option>
+                                    </select>
+                                    <!-- Custom dropdown arrow -->
+                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
+                                </div>
+
                                 <!-- Search Input Container -->
                                 <div class="relative flex">
-                                    <!-- Search Type Dropdown -->
-                                    <div class="relative">
-                                        <select id="search-type-selector" class="appearance-none bg-black border-2 border-gray-600 border-r-0 rounded-l-lg px-3 md:px-4 py-4 text-sm md:text-lg font-medium text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none shadow-md pr-6 md:pr-8 min-w-[140px] md:min-w-[180px] h-full box-border">
+                                    <!-- Desktop: Search Type Dropdown (side by side) -->
+                                    <div class="hidden md:block relative">
+                                        <select id="search-type-selector-desktop" class="appearance-none bg-black border-2 border-gray-600 border-r-0 rounded-l-lg px-4 py-4 text-lg font-medium text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none shadow-md pr-8 min-w-[180px] h-full box-border">
                                             <option value="hsn">📦 Products (HSN)</option>
                                             <option value="sac">🛠️ Services (SAC)</option>
                                         </select>
                                         <!-- Custom dropdown arrow -->
-                                        <div class="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">
+                                        <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">
                                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                             </svg>
@@ -121,7 +135,7 @@ schemaData: |
                                     </div>
 
                                     <!-- Search Icon -->
-                                    <div class="absolute left-[180px] md:left-[240px] top-1/2 -translate-y-1/2 z-10 flex items-center pointer-events-none text-gray-500">
+                                    <div class="absolute left-6 md:left-[240px] top-1/2 -translate-y-1/2 z-10 flex items-center pointer-events-none text-gray-500">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                         </svg>
@@ -131,7 +145,7 @@ schemaData: |
                                         type="text"
                                         id="gst-search-input"
                                         placeholder="Search by keywords..."
-                                        class="w-full pl-12 md:pl-16 pr-4 py-4 text-sm md:text-lg border-2 border-gray-300 border-l-0 rounded-r-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md h-auto box-border"
+                                        class="w-full pl-12 md:pl-16 pr-4 py-4 text-sm md:text-lg border-2 border-gray-300 md:border-l-0 rounded-lg md:rounded-r-lg md:rounded-l-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md h-auto box-border"
                                     >
                                 </div>
 
@@ -465,30 +479,48 @@ let performSearch;
     // Search functionality
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('gst-search-input');
-        const searchTypeSelector = document.getElementById('search-type-selector');
+        const searchTypeSelectorMobile = document.getElementById('search-type-selector');
+        const searchTypeSelectorDesktop = document.getElementById('search-type-selector-desktop');
         const searchResults = document.getElementById('search-results');
         const resultsContainer = searchResults.querySelector('.space-y-0');
 
-        if (!searchInput || !searchTypeSelector) {
+        if (!searchInput || (!searchTypeSelectorMobile && !searchTypeSelectorDesktop)) {
             console.error('Search elements not found!');
             return;
         }
 
         let searchTimeout;
 
-        // Handle search type selection
-        searchTypeSelector.addEventListener('change', function() {
-            currentSearchType = this.value;
+        // Function to handle search type change
+        const handleSearchTypeChange = function(value) {
+            currentSearchType = value;
             // Clear current results when switching types
             searchResults.classList.add('hidden');
             currentSearchResults = [];
-
             // Update placeholder text based on search type
             const placeholder = currentSearchType === 'sac'
                 ? 'Search by service keywords...'
                 : 'Search by product keywords...';
             searchInput.placeholder = placeholder;
-        });
+
+            // Sync both dropdowns
+            if (searchTypeSelectorMobile) searchTypeSelectorMobile.value = value;
+            if (searchTypeSelectorDesktop) searchTypeSelectorDesktop.value = value;
+        };
+
+        // Handle mobile search type selection
+        if (searchTypeSelectorMobile) {
+            searchTypeSelectorMobile.addEventListener('change', function() {
+                handleSearchTypeChange(this.value);
+            });
+        }
+
+        // Handle desktop search type selection
+        if (searchTypeSelectorDesktop) {
+            searchTypeSelectorDesktop.addEventListener('change', function() {
+                handleSearchTypeChange(this.value);
+            });
+        }
 
     // Search input handler
     performSearch = async function(query) {
@@ -1275,9 +1307,9 @@ let performSearch;
 
                 // Update search type for keyword tab
                 if (t === 'keyword') {
-                    const searchTypeSelector = document.getElementById('search-type-selector');
-                    if (searchTypeSelector) {
-                        searchTypeSelector.value = currentSearchType;
+                    const searchTypeSelectorMobile = document.getElementById('search-type-selector');
+                    if (searchTypeSelectorMobile) {
+                        searchTypeSelectorMobile.value = currentSearchType;
                     }
                 }
             } else {
