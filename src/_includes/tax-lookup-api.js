@@ -47,7 +47,7 @@ const TaxLookupAPI = (function() {
     }
 
     /**
-     * Search HSN/SAC codes by keywords
+     * Search HSN codes by keywords
      * @param {string} query - Search term (product name, HSN code, etc.)
      * @returns {Promise} - Promise resolving to search results
      */
@@ -57,6 +57,20 @@ const TaxLookupAPI = (function() {
         }
 
         const url = `${API_BASE_URL}/search/hsn?query=${encodeURIComponent(query.trim())}`;
+        return await makeRequest(url);
+    }
+
+    /**
+     * Search SAC codes by keywords
+     * @param {string} query - Search term (service name, SAC code, etc.)
+     * @returns {Promise} - Promise resolving to search results
+     */
+    async function searchBySACKeywords(query) {
+        if (!query || query.trim().length === 0) {
+            throw new Error('Search query cannot be empty');
+        }
+
+        const url = `${API_BASE_URL}/search/sac?query=${encodeURIComponent(query.trim())}`;
         return await makeRequest(url);
     }
 
@@ -99,6 +113,44 @@ const TaxLookupAPI = (function() {
     }
 
     /**
+     * Get hierarchy details for a specific SAC code
+     * @param {string} sacCode - The SAC code to get hierarchy for
+     * @returns {Promise} - Promise resolving to hierarchy data
+     */
+    async function getSACHierarchy(sacCode) {
+        if (!sacCode || sacCode.trim().length === 0) {
+            throw new Error('SAC code cannot be empty');
+        }
+
+        // Validate SAC code format (basic validation)
+        if (!/^\d{6}$/.test(sacCode.trim())) {
+            throw new Error('Invalid SAC code format. Must be 6 digits.');
+        }
+
+        const url = `${API_BASE_URL}/search/sac/${sacCode.trim()}`;
+        return await makeRequest(url);
+    }
+
+    /**
+     * Get tax information for a specific SAC code
+     * @param {string} sacCode - The SAC code to get tax information for
+     * @returns {Promise} - Promise resolving to tax data
+     */
+    async function getSACTaxInfo(sacCode) {
+        if (!sacCode || sacCode.trim().length === 0) {
+            throw new Error('SAC code cannot be empty');
+        }
+
+        // Validate SAC code format (basic validation)
+        if (!/^\d{6}$/.test(sacCode.trim())) {
+            throw new Error('Invalid SAC code format. Must be 6 digits.');
+        }
+
+        const url = `${API_BASE_URL}/search/sac/${sacCode.trim()}/taxes`;
+        return await makeRequest(url);
+    }
+
+    /**
      * Combined function to get both hierarchy and tax info for an HSN code
      * @param {string} hsnCode - The HSN code
      * @returns {Promise} - Promise resolving to combined data
@@ -121,6 +173,32 @@ const TaxLookupAPI = (function() {
             };
         } catch (error) {
             throw new Error(`Failed to get complete HSN info: ${error.message}`);
+        }
+    }
+
+    /**
+     * Combined function to get both hierarchy and tax info for a SAC code
+     * @param {string} sacCode - The SAC code
+     * @returns {Promise} - Promise resolving to combined data
+     */
+    async function getCompleteSACInfo(sacCode) {
+        try {
+            const [hierarchyData, taxData] = await Promise.all([
+                getSACHierarchy(sacCode),
+                getSACTaxInfo(sacCode)
+            ]);
+
+            return {
+                success: true,
+                hierarchy: hierarchyData.data,
+                taxInfo: taxData.data,
+                meta: {
+                    ...hierarchyData.meta,
+                    tax_request_id: taxData.meta.request_id
+                }
+            };
+        } catch (error) {
+            throw new Error(`Failed to get complete SAC info: ${error.message}`);
         }
     }
 
@@ -149,9 +227,13 @@ const TaxLookupAPI = (function() {
     return {
         // Core API functions
         searchByKeywords,
+        searchBySACKeywords,
         getHierarchy,
         getTaxInfo,
         getCompleteHSNInfo,
+        getSACHierarchy,
+        getSACTaxInfo,
+        getCompleteSACInfo,
 
         // Utility functions
         formatGSTRate,

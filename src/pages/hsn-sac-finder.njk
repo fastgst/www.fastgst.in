@@ -105,19 +105,33 @@ schemaData: |
 
                             <div id="mobile-keyword-panel" class="relative md:block">
                                 <!-- Search Input Container -->
-                                <div class="relative flex items-center">
-                                    <!-- Search Icon (Left) -->
-                                    <div class="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center pointer-events-none text-gray-500">
-                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="relative flex">
+                                    <!-- Search Type Dropdown -->
+                                    <div class="relative">
+                                        <select id="search-type-selector" class="appearance-none bg-black border-2 border-gray-600 border-r-0 rounded-l-lg px-3 md:px-4 py-4 text-sm md:text-lg font-medium text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none shadow-md pr-6 md:pr-8 min-w-[140px] md:min-w-[180px] h-full box-border">
+                                            <option value="hsn">📦 Products (HSN)</option>
+                                            <option value="sac">🛠️ Services (SAC)</option>
+                                        </select>
+                                        <!-- Custom dropdown arrow -->
+                                        <div class="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">
+                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Search Icon -->
+                                    <div class="absolute left-[180px] md:left-[240px] top-1/2 -translate-y-1/2 z-10 flex items-center pointer-events-none text-gray-500">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                         </svg>
                                     </div>
-                                    
+
                                     <input
                                         type="text"
                                         id="gst-search-input"
-                                        placeholder="Search By Keywords (Milk, Battery, Fish etc...)"
-                                        class="w-full pl-12 pr-4 py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md"
+                                        placeholder="Search by keywords..."
+                                        class="w-full pl-12 md:pl-16 pr-4 py-4 text-sm md:text-lg border-2 border-gray-300 border-l-0 rounded-r-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md h-auto box-border"
                                     >
                                 </div>
 
@@ -173,7 +187,7 @@ schemaData: |
                                 </div>
 
                                 <!-- Right Input (SAC) -->
-                                <div id="mobile-sac-panel" class="relative flex-1 w-full group opacity-60 grayscale select-none pointer-events-none hidden md:block">
+                                <div id="mobile-sac-panel" class="relative flex-1 w-full group hidden md:block">
                                     <div class="relative flex items-center">
                                         <!-- Icon -->
                                         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
@@ -185,13 +199,14 @@ schemaData: |
                                         <!-- Standard Input -->
                                         <input
                                             type="text"
+                                            id="sac-input-field"
+                                            maxlength="6"
                                             placeholder="Search By SAC Code"
-                                            disabled
-                                            class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg bg-gray-50 cursor-not-allowed outline-none text-gray-400 font-medium shadow-inner"
+                                            class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
                                         >
                                         
-                                        <!-- Rectangular Search Button (Disabled) -->
-                                        <button class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-gray-200 text-gray-400 text-sm font-bold rounded-lg cursor-not-allowed uppercase tracking-wide">
+                                        <!-- Rectangular Black Search Button (Inside) -->
+                                        <button id="sac-search-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-black text-white text-sm font-bold rounded-lg hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm uppercase tracking-wide" disabled>
                                             Search By SAC
                                         </button>
                                     </div>
@@ -350,6 +365,7 @@ schemaData: |
     overflow: hidden;
 }
 
+
 /* Compact tree structure styling */
 .tree-node {
     position: relative;
@@ -441,22 +457,38 @@ schemaData: |
 // Global state for current search results
 let currentSearchResults = [];
 let currentSelectedHSN = null;
+let currentSearchType = 'hsn'; // Default to HSN
 
 // Global search function (will be initialized after DOM load)
 let performSearch;
 
-// Search functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('gst-search-input');
-    const searchResults = document.getElementById('search-results');
-    const resultsContainer = searchResults.querySelector('.space-y-0');
+    // Search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('gst-search-input');
+        const searchTypeSelector = document.getElementById('search-type-selector');
+        const searchResults = document.getElementById('search-results');
+        const resultsContainer = searchResults.querySelector('.space-y-0');
 
-    if (!searchInput) {
-        console.error('Search elements not found!');
-        return;
-    }
+        if (!searchInput || !searchTypeSelector) {
+            console.error('Search elements not found!');
+            return;
+        }
 
-    let searchTimeout;
+        let searchTimeout;
+
+        // Handle search type selection
+        searchTypeSelector.addEventListener('change', function() {
+            currentSearchType = this.value;
+            // Clear current results when switching types
+            searchResults.classList.add('hidden');
+            currentSearchResults = [];
+
+            // Update placeholder text based on search type
+            const placeholder = currentSearchType === 'sac'
+                ? 'Search by service keywords...'
+                : 'Search by product keywords...';
+            searchInput.placeholder = placeholder;
+        });
 
     // Search input handler
     performSearch = async function(query) {
@@ -471,8 +503,15 @@ document.addEventListener('DOMContentLoaded', function() {
         searchResults.classList.remove('hidden');
 
         try {
-            // Use real API
-            const response = await TaxLookupAPI.searchByKeywords(query.trim());
+            // Use appropriate API based on search type
+            let response;
+            if (currentSearchType === 'sac') {
+                // For SAC search, we'll need to create a new API function
+                response = await TaxLookupAPI.searchBySACKeywords(query.trim());
+            } else {
+                // Default to HSN search
+                response = await TaxLookupAPI.searchByKeywords(query.trim());
+            }
             currentSearchResults = response.data || [];
 
             // Show results
@@ -524,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 2. Nested Matches (Individual Cards)
         item.matches.forEach((match, index) => {
-            const matchCode = match.hsn_code || '';
+            const matchCode = match.hsn_code || match.sac_code || '';
             const matchDesc = match.description || '';
             const matchScore = match.match_score || 0;
             const scorePercent = (matchScore * 100).toFixed(0);
@@ -736,6 +775,52 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             showErrorState('Failed to load HSN details. Please try again.');
             
+            // Ensure panel is visible even on error to show error message
+            const resultsPanel = document.getElementById('results-panel');
+            if (resultsPanel) {
+                resultsPanel.classList.remove('hidden');
+                resultsPanel.style.display = 'flex';
+            }
+        }
+    }
+
+    // Select SAC code and display details
+    async function selectSACCode(sacCode, description = '') {
+        // Send notification (Search operation)
+        const opType = description ? 'search' : 'lookup';
+        sendNotification(sacCode, opType, description);
+
+        try {
+            // Show the results panel
+            const resultsPanel = document.getElementById('results-panel');
+            if (resultsPanel) {
+                resultsPanel.classList.remove('hidden');
+                resultsPanel.style.display = 'flex';
+            }
+
+            // Automatically switch to classification tab on selection
+            switchTab('classification');
+
+            const sacInput = document.getElementById('sac-input-field');
+            const searchResults = document.getElementById('search-results');
+
+            if(sacInput) sacInput.value = sacCode;
+            if(searchResults) searchResults.classList.add('hidden');
+            currentSelectedHSN = sacCode;
+
+            // Show loading states
+            showLoadingState();
+
+            // Get complete SAC information using the combined API call
+            const completeInfo = await TaxLookupAPI.getCompleteSACInfo(sacCode);
+
+            // Update UI with real data
+            updateHierarchyTree(completeInfo.hierarchy);
+            updateTaxDetails(completeInfo.taxInfo);
+
+        } catch (error) {
+            showErrorState('Failed to load SAC details. Please try again.');
+
             // Ensure panel is visible even on error to show error message
             const resultsPanel = document.getElementById('results-panel');
             if (resultsPanel) {
@@ -1061,15 +1146,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle Input
         hsnInput.addEventListener('input', (e) => {
             let val = e.target.value;
-            
-            // Allow only numbers
-            if (!/^\d*$/.test(val)) {
-                e.target.value = val.replace(/\D/g, '');
-                val = e.target.value; // update ref
+
+            // Remove any existing hyphens and non-digits
+            val = val.replace(/[^\d]/g, '');
+
+            // Apply HSN format: XXXX-XX-XX (8 digits)
+            if (val.length >= 5) {
+                val = val.slice(0, 4) + '-' + val.slice(4, 6) + '-' + val.slice(6, 8);
+            } else if (val.length >= 3) {
+                val = val.slice(0, 4) + '-' + val.slice(4);
             }
 
-            // Update Search Button State
-            if (val.length >= 4) {
+            // Limit to 8 digits + 2 hyphens = 10 characters
+            val = val.slice(0, 10);
+
+            e.target.value = val;
+
+            // Update Search Button State (check digit count excluding hyphens)
+            const digitCount = val.replace(/-/g, '').length;
+            if (digitCount === 8) {
                 hsnSearchBtn.disabled = false;
             } else {
                 hsnSearchBtn.disabled = true;
@@ -1082,14 +1177,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 triggerHSNSearch();
             }
         });
-        
+
         // Search Button Click
         hsnSearchBtn.addEventListener('click', triggerHSNSearch);
     }
 
+    // SAC Code Input Logic (Unified Input)
+    const sacInput = document.getElementById('sac-input-field');
+    const sacSearchBtn = document.getElementById('sac-search-btn');
+
+    if (sacInput && sacSearchBtn) {
+        // Handle Input
+        sacInput.addEventListener('input', (e) => {
+            let val = e.target.value;
+
+            // Remove any existing hyphens and non-digits
+            val = val.replace(/[^\d]/g, '');
+
+            // Apply SAC format: XXX-XXX (6 digits)
+            if (val.length >= 4) {
+                val = val.slice(0, 3) + '-' + val.slice(3, 6);
+            }
+
+            // Limit to 6 digits + 1 hyphen = 7 characters
+            val = val.slice(0, 7);
+
+            e.target.value = val;
+
+            // Update Search Button State (check digit count excluding hyphens)
+            const digitCount = val.replace(/-/g, '').length;
+            if (digitCount === 6) {
+                sacSearchBtn.disabled = false;
+            } else {
+                sacSearchBtn.disabled = true;
+            }
+        });
+
+        // Handle Enter Key
+        sacInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                triggerSACSearch();
+            }
+        });
+
+        // Search Button Click
+        sacSearchBtn.addEventListener('click', triggerSACSearch);
+    }
+
     function triggerHSNSearch() {
-        const fullCode = hsnInput ? hsnInput.value : '';
-        
+        const fullCode = hsnInput ? hsnInput.value.replace(/-/g, '') : '';
+
         if (!fullCode || fullCode.length < 4) return;
 
         // Send notification for partial codes (full codes handled by selectHSNCode)
@@ -1107,26 +1244,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function triggerSACSearch() {
+        const fullCode = sacInput ? sacInput.value.replace(/-/g, '') : '';
+
+        if (!fullCode || fullCode.length !== 6) return;
+
+        // Send notification for SAC search
+        sendNotification(fullCode, 'lookup');
+
+        // Full SAC lookup (6 digits)
+        selectSACCode(fullCode);
+    }
+
     // Mobile Search Switcher
     window.switchMobileSearch = function(tab) {
         const tabs = ['keyword', 'hsn', 'sac'];
-        
+
         tabs.forEach(t => {
             const btn = document.getElementById(`mob-tab-${t}`);
             const panel = document.getElementById(`mobile-${t}-panel`);
-            
+
             if (!btn || !panel) return;
 
             if (t === tab) {
                 // Active Button
                 btn.className = "flex-1 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 shadow-sm bg-white text-blue-700 ring-1 ring-black/5";
-                
+
                 // Show Panel (remove hidden)
                 panel.classList.remove('hidden');
+
+                // Update search type for keyword tab
+                if (t === 'keyword') {
+                    const searchTypeSelector = document.getElementById('search-type-selector');
+                    if (searchTypeSelector) {
+                        searchTypeSelector.value = currentSearchType;
+                    }
+                }
             } else {
                 // Inactive Button
                 btn.className = "flex-1 py-2.5 text-xs font-bold rounded-lg transition-all duration-200 text-gray-500 hover:bg-white/50";
-                
+
                 // Hide Panel (add hidden)
                 panel.classList.add('hidden');
             }
