@@ -175,54 +175,68 @@ schemaData: |
                             <!-- Secondary Search Options -->
                             <div class="flex flex-col md:flex-row items-center gap-6">
                                 <!-- Left Input (HSN) -->
-                                <div id="mobile-hsn-panel" class="relative flex-1 w-full group hidden md:block">
-                                    <div class="relative flex items-center">
-                                        <!-- Icon -->
-                                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-gray-800 transition-colors">
-                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-                                            </svg>
+                                <div class="flex-1 w-full">
+                                    <div id="mobile-hsn-panel" class="relative group hidden md:block">
+                                        <div class="relative">
+                                            <!-- Icon -->
+                                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-gray-800 transition-colors">
+                                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                                </svg>
+                                            </div>
+
+                                            <!-- Standard Input -->
+                                            <input
+                                                type="text"
+                                                id="hsn-input-field"
+                                                maxlength="11"
+                                                placeholder="Search By HSN Code"
+                                                class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
+                                            >
+
+                                            <!-- Rectangular Black Search Button (Inside) -->
+                                            <button id="hsn-search-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-black text-white text-sm font-bold rounded-lg hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm uppercase tracking-wide" disabled>
+                                                Search By HSN
+                                            </button>
                                         </div>
-                                        
-                                        <!-- Standard Input -->
-                                        <input
-                                            type="text"
-                                            id="hsn-input-field"
-                                            maxlength="8"
-                                            placeholder="Search By HSN Code"
-                                            class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
-                                        >
-                                        
-                                        <!-- Rectangular Black Search Button (Inside) -->
-                                        <button id="hsn-search-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-black text-white text-sm font-bold rounded-lg hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm uppercase tracking-wide" disabled>
-                                            Search By HSN
-                                        </button>
+                                    </div>
+
+                                    <!-- HSN Helper Text - Under the input -->
+                                    <div id="hsn-helper-text" class="mt-1 text-xs text-red-500 font-medium text-left">
+                                        Please enter 8-digit tariff item HSN code
                                     </div>
                                 </div>
 
                                 <!-- Right Input (SAC) -->
-                                <div id="mobile-sac-panel" class="relative flex-1 w-full group hidden md:block">
-                                    <div class="relative flex items-center">
-                                        <!-- Icon -->
-                                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-                                            </svg>
+                                <div class="flex-1 w-full">
+                                    <div id="mobile-sac-panel" class="relative group hidden md:block">
+                                        <div class="relative flex items-center">
+                                            <!-- Icon -->
+                                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                                                </svg>
+                                            </div>
+
+                                            <!-- Standard Input -->
+                                            <input
+                                                type="text"
+                                                id="sac-input-field"
+                                                maxlength="6"
+                                                placeholder="Search By SAC Code"
+                                                class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
+                                            >
+
+                                            <!-- Rectangular Black Search Button (Inside) -->
+                                            <button id="sac-search-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-black text-white text-sm font-bold rounded-lg hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm uppercase tracking-wide" disabled>
+                                                Search By SAC
+                                            </button>
                                         </div>
-                                        
-                                        <!-- Standard Input -->
-                                        <input
-                                            type="text"
-                                            id="sac-input-field"
-                                            maxlength="6"
-                                            placeholder="Search By SAC Code"
-                                            class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
-                                        >
-                                        
-                                        <!-- Rectangular Black Search Button (Inside) -->
-                                        <button id="sac-search-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-black text-white text-sm font-bold rounded-lg hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm uppercase tracking-wide" disabled>
-                                            Search By SAC
-                                        </button>
+                                    </div>
+
+                                    <!-- SAC Helper Text - Under the input -->
+                                    <div id="sac-helper-text" class="mt-1 text-xs text-red-500 font-medium text-left">
+                                        Please enter 6-digit service SAC code
                                     </div>
                                 </div>
                             </div>
@@ -1175,6 +1189,10 @@ let performSearch;
     const hsnSearchBtn = document.getElementById('hsn-search-btn');
 
     if (hsnInput && hsnSearchBtn) {
+        // Initialize helper text as visible
+        const helperText = document.getElementById('hsn-helper-text');
+        if (helperText) helperText.style.display = 'block';
+
         // Handle Input
         hsnInput.addEventListener('input', (e) => {
             let val = e.target.value;
@@ -1182,24 +1200,28 @@ let performSearch;
             // Remove any existing hyphens and non-digits
             val = val.replace(/[^\d]/g, '');
 
-            // Apply HSN format: XXXX-XX-XX (8 digits)
-            if (val.length >= 5) {
+            // Limit to exactly 8 digits
+            val = val.slice(0, 8);
+
+            // Apply HSN format: XXXX-XX-XX (8 digits) only when complete
+            if (val.length === 8) {
                 val = val.slice(0, 4) + '-' + val.slice(4, 6) + '-' + val.slice(6, 8);
-            } else if (val.length >= 3) {
+            } else if (val.length >= 4) {
                 val = val.slice(0, 4) + '-' + val.slice(4);
             }
 
-            // Limit to 8 digits + 2 hyphens = 10 characters
-            val = val.slice(0, 10);
-
             e.target.value = val;
 
-            // Update Search Button State (check digit count excluding hyphens)
+            // Update Search Button State and Helper Text (check digit count excluding hyphens)
             const digitCount = val.replace(/-/g, '').length;
+            const helperText = document.getElementById('hsn-helper-text');
+
             if (digitCount === 8) {
                 hsnSearchBtn.disabled = false;
+                if (helperText) helperText.style.display = 'none';
             } else {
                 hsnSearchBtn.disabled = true;
+                if (helperText) helperText.style.display = 'block';
             }
         });
 
@@ -1219,6 +1241,10 @@ let performSearch;
     const sacSearchBtn = document.getElementById('sac-search-btn');
 
     if (sacInput && sacSearchBtn) {
+        // Initialize helper text as visible
+        const sacHelperText = document.getElementById('sac-helper-text');
+        if (sacHelperText) sacHelperText.style.display = 'block';
+
         // Handle Input
         sacInput.addEventListener('input', (e) => {
             let val = e.target.value;
@@ -1236,12 +1262,16 @@ let performSearch;
 
             e.target.value = val;
 
-            // Update Search Button State (check digit count excluding hyphens)
+            // Update Search Button State and Helper Text (check digit count excluding hyphens)
             const digitCount = val.replace(/-/g, '').length;
+            const sacHelperText = document.getElementById('sac-helper-text');
+
             if (digitCount === 6) {
                 sacSearchBtn.disabled = false;
+                if (sacHelperText) sacHelperText.style.display = 'none';
             } else {
                 sacSearchBtn.disabled = true;
+                if (sacHelperText) sacHelperText.style.display = 'block';
             }
         });
 
