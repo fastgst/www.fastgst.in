@@ -662,11 +662,54 @@ let performSearch;
             // Add click event
             matchCard.onclick = (e) => {
                 e.stopPropagation();
-                // Pass description to appropriate function based on search type
+
+                // Hide search results
+                const searchResults = document.getElementById('search-results');
+                if (searchResults) {
+                    searchResults.classList.add('hidden');
+                }
+
+                // Copy code to appropriate input field and trigger search
                 if (currentSearchType === 'sac') {
-                    selectSACCode(matchCode, matchDesc);
+                    // Copy SAC code to SAC input and click SAC search button
+                    const sacInput = document.getElementById('sac-input-field');
+                    const sacSearchBtn = document.getElementById('sac-search-btn');
+                    const searchInput = document.getElementById('gst-search-input');
+
+                    if (sacInput) {
+                        // Set the raw digits and let the input event handler format it
+                        sacInput.value = matchCode.replace(/\D/g, ''); // Remove any non-digits
+                        sacInput.dispatchEvent(new Event('input')); // Trigger input validation and formatting
+                    }
+
+                    // Clear the main search input for SAC searches
+                    if (searchInput) {
+                        searchInput.value = '';
+                    }
+
+                    if (sacSearchBtn) {
+                        sacSearchBtn.click();
+                    }
                 } else {
-                    selectHSNCode(matchCode, matchDesc);
+                    // Copy HSN code to HSN input and click HSN search button
+                    const hsnInput = document.getElementById('hsn-input-field');
+                    const hsnSearchBtn = document.getElementById('hsn-search-btn');
+                    const searchInput = document.getElementById('gst-search-input');
+
+                    if (hsnInput) {
+                        // Set the raw digits and let the input event handler format it
+                        hsnInput.value = matchCode.replace(/\D/g, ''); // Remove any non-digits
+                        hsnInput.dispatchEvent(new Event('input')); // Trigger input validation and formatting
+                    }
+
+                    // Clear the main search input for HSN searches
+                    if (searchInput) {
+                        searchInput.value = '';
+                    }
+
+                    if (hsnSearchBtn) {
+                        hsnSearchBtn.click();
+                    }
                 }
             };
             
@@ -808,7 +851,8 @@ let performSearch;
             const searchInput = document.getElementById('gst-search-input');
             const searchResults = document.getElementById('search-results');
 
-            if(searchInput) searchInput.value = hsnCode;
+            // Clear the search input instead of setting the code
+            if(searchInput) searchInput.value = '';
             if(searchResults) searchResults.classList.add('hidden');
             currentSelectedHSN = hsnCode;
 
@@ -855,9 +899,23 @@ let performSearch;
             switchTab('classification');
 
             const sacInput = document.getElementById('sac-input-field');
+            const searchInput = document.getElementById('gst-search-input');
             const searchResults = document.getElementById('search-results');
 
-            if(sacInput) sacInput.value = sacCode;
+            // Set SAC code with hyphen formatting (XXX-XXX)
+            if(sacInput) {
+                // Remove any non-digits and format as XXX-XXX
+                const digitsOnly = sacCode.replace(/\D/g, '');
+                if(digitsOnly.length === 6) {
+                    sacInput.value = digitsOnly.slice(0, 3) + '-' + digitsOnly.slice(3, 6);
+                } else {
+                    sacInput.value = sacCode;
+                }
+                // Trigger input event to ensure formatting is applied
+                sacInput.dispatchEvent(new Event('input'));
+            }
+            // Clear the search input
+            if(searchInput) searchInput.value = '';
             if(searchResults) searchResults.classList.add('hidden');
             currentSelectedHSN = sacCode;
 
