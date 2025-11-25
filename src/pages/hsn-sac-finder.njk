@@ -222,7 +222,7 @@ schemaData: |
                                             <input
                                                 type="text"
                                                 id="sac-input-field"
-                                                maxlength="6"
+                                                maxlength="7"
                                                 placeholder="Search By SAC Code"
                                                 class="w-full pl-12 pr-[160px] py-4 text-sm md:text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white shadow-md text-gray-800 font-medium"
                                             >
@@ -508,9 +508,8 @@ let performSearch;
         // Function to handle search type change
         const handleSearchTypeChange = function(value) {
             currentSearchType = value;
-            // Clear current results when switching types
-            searchResults.classList.add('hidden');
-            currentSearchResults = [];
+            // Clear all inputs when switching search types
+            clearAllInputs();
             // Update placeholder text based on search type
             const placeholder = currentSearchType === 'sac'
                 ? 'Search by service keywords...'
@@ -536,12 +535,66 @@ let performSearch;
             });
         }
 
+    // Helper function to clear all inputs and reset UI state
+    function clearAllInputs() {
+        // Clear search input
+        if (searchInput) searchInput.value = '';
+        
+        // Clear HSN input
+        const hsnInput = document.getElementById('hsn-input-field');
+        if (hsnInput) {
+            hsnInput.value = '';
+            // Reset HSN button state
+            const hsnSearchBtn = document.getElementById('hsn-search-btn');
+            if (hsnSearchBtn) hsnSearchBtn.disabled = true;
+            // Show helper text
+            const hsnHelperText = document.getElementById('hsn-helper-text');
+            if (hsnHelperText) hsnHelperText.style.display = 'block';
+        }
+        
+        // Clear SAC input
+        const sacInput = document.getElementById('sac-input-field');
+        if (sacInput) {
+            sacInput.value = '';
+            // Reset SAC button state
+            const sacSearchBtn = document.getElementById('sac-search-btn');
+            if (sacSearchBtn) sacSearchBtn.disabled = true;
+            // Show helper text
+            const sacHelperText = document.getElementById('sac-helper-text');
+            if (sacHelperText) sacHelperText.style.display = 'block';
+        }
+        
+        // Hide search results
+        if (searchResults) searchResults.classList.add('hidden');
+        
+        // Hide results panel
+        const resultsPanel = document.getElementById('results-panel');
+        if (resultsPanel) {
+            resultsPanel.classList.add('hidden');
+        }
+        
+        // Clear current search results
+        currentSearchResults = [];
+        currentSelectedHSN = null;
+    }
+
     // Search input handler
     performSearch = async function(query) {
         if (!query.trim()) {
             searchResults.classList.add('hidden');
             currentSearchResults = [];
             return;
+        }
+
+        // Clear all other inputs when starting a keyword search
+        const hsnInput = document.getElementById('hsn-input-field');
+        const sacInput = document.getElementById('sac-input-field');
+        if (hsnInput) hsnInput.value = '';
+        if (sacInput) sacInput.value = '';
+        // Hide results panel
+        const resultsPanel = document.getElementById('results-panel');
+        if (resultsPanel) {
+            resultsPanel.classList.add('hidden');
         }
 
         // Show loading state
@@ -1341,13 +1394,13 @@ let performSearch;
             // Remove any existing hyphens and non-digits
             val = val.replace(/[^\d]/g, '');
 
-            // Apply SAC format: XXX-XXX (6 digits)
-            if (val.length >= 4) {
-                val = val.slice(0, 3) + '-' + val.slice(3, 6);
-            }
+            // Limit to 6 digits only
+            val = val.slice(0, 6);
 
-            // Limit to 6 digits + 1 hyphen = 7 characters
-            val = val.slice(0, 7);
+            // Apply SAC format: XXX-XXX (6 digits)
+            if (val.length > 3) {
+                val = val.slice(0, 3) + '-' + val.slice(3);
+            }
 
             e.target.value = val;
 
@@ -1376,6 +1429,14 @@ let performSearch;
     }
 
     function triggerHSNSearch() {
+        // Clear all other inputs when starting an HSN search
+        if (searchInput) searchInput.value = '';
+        const sacInput = document.getElementById('sac-input-field');
+        if (sacInput) sacInput.value = '';
+        // Hide search results
+        const searchResults = document.getElementById('search-results');
+        if (searchResults) searchResults.classList.add('hidden');
+        
         const fullCode = hsnInput ? hsnInput.value.replace(/-/g, '') : '';
 
         if (!fullCode || fullCode.length < 4) return;
@@ -1396,6 +1457,14 @@ let performSearch;
     }
 
     function triggerSACSearch() {
+        // Clear all other inputs when starting a SAC search
+        if (searchInput) searchInput.value = '';
+        const hsnInput = document.getElementById('hsn-input-field');
+        if (hsnInput) hsnInput.value = '';
+        // Hide search results
+        const searchResults = document.getElementById('search-results');
+        if (searchResults) searchResults.classList.add('hidden');
+        
         const fullCode = sacInput ? sacInput.value.replace(/-/g, '') : '';
 
         if (!fullCode || fullCode.length !== 6) return;
