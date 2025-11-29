@@ -1,6 +1,28 @@
 {
   "sections": [
     {
+      "id": "hsn-gst-lookup",
+      "title": "HSN Code & GST Rate Lookup",
+      "items": [
+        {
+          "question": "How to Check HSN Code for a Product?",
+          "answer": "<p class=\"text-gray-700\">\n    To check HSN code for any product, you can use our free <a href=\"/hsn-sac-finder/\" class=\"text-blue-600 hover:text-blue-800\">HSN/SAC Finder tool</a> or integrate our API. Search by product keywords like \"mobile phone\", \"laptop\", or \"consulting services\" to find the correct HSN classification and GST rate.\n</p>"
+        },
+        {
+          "question": "How to Find GST Rate Using HSN Code?",
+          "answer": "<p class=\"text-gray-700\">\n    Enter the HSN code in our <a href=\"/hsn-sac-finder/\" class=\"text-blue-600 hover:text-blue-800\">free lookup tool</a> or use our API endpoint. For example, enter \"8517\" to find GST rates for telephones. Our system will return the applicable GST rate (5%, 12%, 18%, or 28%) along with compensation cess if applicable.\n</p>"
+        },
+        {
+          "question": "How to Validate HSN/SAC Codes?",
+          "answer": "<p class=\"text-gray-700\">\n    Use our <a href=\"/hsn-sac-finder/\" class=\"text-blue-600 hover:text-blue-800\">HSN/SAC Code Validator</a> to check if a code is valid. Enter the full HSN (8 digits) or SAC (6 digits) code to verify its existence and get complete classification details including chapter, heading, and sub-heading information.\n</p>"
+        },
+        {
+          "question": "What is HSN Code and How Does It Relate to GST?",
+          "answer": "<p class=\"text-gray-700\">\n    HSN (Harmonized System of Nomenclature) codes are 8-digit codes used to classify goods for taxation purposes. SAC (Services Accounting Code) codes classify services. GST rates in India are determined based on these codes. Our API helps you find the exact GST rate for any HSN/SAC code instantly.\n</p>"
+        }
+      ]
+    },
+    {
       "id": "general",
       "title": "General Questions",
       "items": [
@@ -11,6 +33,24 @@
         {
           "question": "How It Works?",
           "answer": "<p class=\"text-gray-700\">\n    FastGST runs services that operates 24×7 on cloud infrastructure designed to streamline tax rate change detection, data ingestion, validation, and notification. We implemented state-of-the-art automated and manual process pipelines that continuously monitor official sources for tax updates and CBIC notifications. Automated workflows paired with human verification provides additional layer of validation to ensure best-effort data accuracy\n</p>"
+        }
+      ]
+    },
+    {
+      "id": "api-integration",
+      "title": "API Integration & Development",
+      "items": [
+        {
+          "question": "How to Integrate HSN Code Lookup into My Application?",
+          "answer": "<p class=\"text-gray-700\">\n    Integration is simple! Sign up at <a href=\"https://console.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">FastGST Console</a>, get your API key, and use our REST API endpoints. Check our <a href=\"https://docs.taxlookupapi.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">API documentation</a> for code examples in multiple programming languages.\n</p>"
+        },
+        {
+          "question": "What Programming Languages Support Your API?",
+          "answer": "<p class=\"text-gray-700\">\n    Our REST API works with any programming language that can make HTTP requests. We provide code examples for JavaScript, Python, Java, C#, PHP, Ruby, and Go in our <a href=\"https://docs.taxlookupapi.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">documentation</a>.\n</p>"
+        },
+        {
+          "question": "How to Search HSN Codes by Product Name?",
+          "answer": "<p class=\"text-gray-700\">\n    Use our fuzzy search endpoint with product keywords. For example, search for \"mobile phone\" or \"laptop computer\" to find matching HSN codes. Our AI-powered search understands variations and synonyms for better results.\n</p>"
         }
       ]
     },
@@ -57,6 +97,24 @@
         {
           "question": "Can I get a GST Invoice for purchases?",
           "answer": "<p class=\"text-gray-700\">\n    FastGST currently operates without GST registration under Section 22 of the CGST Act. You can download standard non-GST invoices from Console for any payments you made\n</p>"
+        }
+      ]
+    },
+    {
+      "id": "gst-rates",
+      "title": "GST Rates & Compliance",
+      "items": [
+        {
+          "question": "What are the Different GST Rate Slabs in India?",
+          "answer": "<p class=\"text-gray-700\">\n    India has four main GST rate slabs: 5% (essential goods), 12% (standard rate goods), 18% (luxury and semi-luxury items), and 28% (luxury and demerit goods). Some items are exempted (0%) and others are under special rates. Use our API to find the exact rate for any HSN/SAC code.\n</p>"
+        },
+        {
+          "question": "How to Check Compensation Cess for Products?",
+          "answer": "<p class=\"text-gray-700\">\n    Certain luxury goods attract compensation cess in addition to GST. Use our <a href=\"/hsn-sac-finder/\" class=\"text-blue-600 hover:text-blue-800\">HSN lookup tool</a> or API to check both GST rate and cess amount for any product. Cess rates vary by product category and are in addition to the base GST.\n</p>"
+        },
+        {
+          "question": "Latest GST Rate Changes and Updates?",
+          "answer": "<p class=\"text-gray-700\">\n    Our system automatically updates with the latest GST rate changes from CBIC notifications. The most recent updates include changes from the 56th GST Council meeting (effective September 2025). Check our API for real-time rate information.\n</p>"
         }
       ]
     },
