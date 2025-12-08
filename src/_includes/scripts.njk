@@ -168,26 +168,26 @@
                 'step_name': 'Swagger Viewed'
             });
         } 
-        // Track API Console Launch (Product Trial - Critical!)
+        // Track API ConsoleDesk Launch (Product Trial - Critical!)
         else if (href && href.includes('console.fastgst.in')) {
             safeGtag('event', 'begin_checkout', {
                 'event_category': 'Product_Trial',
-                'event_label': 'Console_Launched'
+                'event_label': 'ConsoleDesk_Launched'
             });
             // Also track as lead generation
             safeGtag('event', 'generate_lead', {
                 'event_category': 'API_Signup',
-                'event_label': 'Console_Access_Requested',
+                'event_label': 'ConsoleDesk_Access_Requested',
                 'value': 1,
                 'currency': 'INR'
             });
             
-            // Track Funnel Step 5: Conversion - Console Launched
+            // Track Funnel Step 5: Conversion - ConsoleDesk Launched
             safeGtag('event', 'funnel_step', {
                 'event_category': 'Conversion_Funnel',
-                'event_label': 'Step_5_Console_Launched',
+                'event_label': 'Step_5_ConsoleDesk_Launched',
                 'step_number': 5,
-                'step_name': 'Console Launched - CONVERSION'
+                'step_name': 'ConsoleDesk Launched - CONVERSION'
             });
         }
     });
@@ -237,7 +237,7 @@
 <script>
     // Homepage CTA Tracking with Location Context
     document.addEventListener('DOMContentLoaded', function() {
-        // Track Console Launch Button (Hero Section)
+        // Track ConsoleDesk Launch Button (Hero Section)
         var consoleButtons = document.querySelectorAll('a[href*="console.fastgst.in"]');
         consoleButtons.forEach(function(btn) {
             btn.addEventListener('click', function() {
@@ -250,7 +250,7 @@
                 
                 safeGtag('event', 'cta_click', {
                     'event_category': 'Homepage_CTA',
-                    'event_label': 'Launch_Console_Button',
+                    'event_label': 'Launch_ConsoleDesk_Button',
                     'cta_location': location
                 });
             });

@@ -42,7 +42,7 @@
       "items": [
         {
           "question": "How to Integrate HSN & SAC Code Lookup into My Application?",
-          "answer": "<p class=\"text-gray-700\">\n    Integration is simple! Sign up at <a href=\"https://console.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">FastGST Console</a>, get your API key, and use our REST API endpoints. Check our <a href=\"https://docs.taxlookupapi.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">API documentation</a> for code examples in multiple programming languages.\n</p>"
+          "answer": "<p class=\"text-gray-700\">\n    Integration is simple! Sign up at <a href=\"https://console.fastgst.in/marketplace/tax-lookup-api\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">FastGST ConsoleDesk</a>, get your API key, and use our REST API endpoints. Check our <a href=\"https://docs.taxlookupapi.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">API documentation</a> for code examples in multiple programming languages.\n</p>"
         },
         {
           "question": "What Programming Languages Support Your API?",
@@ -60,7 +60,7 @@
       "items": [
         {
           "question": "Any Free Plans?",
-          "answer": "<p class=\"text-gray-700\">\n    Yes, You can opt the limited free plan to test the API and ensure it matches your needs. If you need higher quotas you can always upgrade. To do that Signup in Console and create an account, then choose a plan, and finaly generate an API Key.\n</p>"
+          "answer": "<p class=\"text-gray-700\">\n    Yes, You can opt the limited free plan to test the API and ensure it matches your needs. If you need higher quotas you can always upgrade. To do that Signup in ConsoleDesk and create an account, then choose a plan, and finaly generate an API Key.\n</p>"
         },
         {
           "question": "Does Free Plans Expire?",
@@ -70,19 +70,19 @@
     },
     {
       "id": "console",
-      "title": "Console and API Keys",
+      "title": "ConsoleDesk and API Keys",
       "items": [
         {
-          "question": "What is Console?",
-          "answer": "<p class=\"text-gray-700\">\n    Console is a centralised administration portal for managing your plans, API keys, billings, usage and more. You must register in Console and activate 'Tax lookup API' inorder to start using the service.\n</p>"
+          "question": "What is ConsoleDesk?",
+          "answer": "<p class=\"text-gray-700\">\n    ConsoleDesk is a centralised administration portal for managing your plans, API keys, billings, usage and more. You must register in ConsoleDesk and activate 'Tax lookup API' inorder to start using the service.\n</p>"
         },
         {
-          "question": "What I need to do in Console?",
-          "answer": "<p class=\"text-gray-700\">\n    Signup/Login to Console, Activate 'Tax lookup API', Generate API Key, Use API Key to test API\n</p>"
+          "question": "What I need to do in ConsoleDesk?",
+          "answer": "<p class=\"text-gray-700\">\n    Signup/Login to ConsoleDesk, Activate 'Tax lookup API', Generate API Key, Use API Key to test API\n</p>"
         },
         {
-          "question": "Is Plan selection and Billing managed in Console?",
-          "answer": "<p class=\"text-gray-700\">\n    Yes, All your account and billing details are managed in Console.\n</p>"
+          "question": "Is Plan selection and Billing managed in ConsoleDesk?",
+          "answer": "<p class=\"text-gray-700\">\n    Yes, All your account and billing details are managed in ConsoleDesk.\n</p>"
         },
         {
           "question": "Can I upgrade or downgrade plans in between?",
@@ -96,7 +96,7 @@
       "items": [
         {
           "question": "Can I get a GST Invoice for purchases?",
-          "answer": "<p class=\"text-gray-700\">\n    FastGST currently operates without GST registration under Section 22 of the CGST Act. You can download standard non-GST invoices from Console for any payments you made\n</p>"
+          "answer": "<p class=\"text-gray-700\">\n    FastGST currently operates without GST registration under Section 22 of the CGST Act. You can download standard non-GST invoices from ConsoleDesk for any payments you made\n</p>"
         }
       ]
     },
