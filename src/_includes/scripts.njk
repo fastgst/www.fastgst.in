@@ -47,7 +47,7 @@
         // Defer notifications on slower connections
         if ('requestIdleCallback' in window) {
             requestIdleCallback(function() {
-                fetch('https://api.console.fastgst.in/global/notify', {
+                fetch('https://api.consoledesk.in/global/notify', {
                     method: 'POST',
                     headers: {
                         'accept': '*/*',
@@ -62,7 +62,7 @@
                 });
             }, { timeout: 3000 });
         } else {
-            fetch('https://api.console.fastgst.in/global/notify', {
+            fetch('https://api.consoledesk.in/global/notify', {
                 method: 'POST',
                 headers: {
                     'accept': '*/*',
