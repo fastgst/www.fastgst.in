@@ -169,7 +169,7 @@
             });
         } 
         // Track API ConsoleDesk Launch (Product Trial - Critical!)
-        else if (href && href.includes('console.fastgst.in')) {
+        else if (href && (href.includes('consoledesk.in') || href.includes('console.fastgst.in'))) {
             safeGtag('event', 'begin_checkout', {
                 'event_category': 'Product_Trial',
                 'event_label': 'ConsoleDesk_Launched'
@@ -238,7 +238,7 @@
     // Homepage CTA Tracking with Location Context
     document.addEventListener('DOMContentLoaded', function() {
         // Track ConsoleDesk Launch Button (Hero Section)
-        var consoleButtons = document.querySelectorAll('a[href*="console.fastgst.in"]');
+        var consoleButtons = document.querySelectorAll('a[href*="consoledesk.in"], a[href*="console.fastgst.in"]');
         consoleButtons.forEach(function(btn) {
             btn.addEventListener('click', function() {
                 var location = 'unknown';
@@ -611,7 +611,7 @@
         });
 
         // Track Pricing Tier Selection (Button Clicks)
-        var selectButtons = document.querySelectorAll('a[href*="console.fastgst.in"]');
+        var selectButtons = document.querySelectorAll('a[href*="consoledesk.in"], a[href*="console.fastgst.in"]');
         selectButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 var plan = this.closest('.bg-white, .bg-gradient-to-br');

@@ -42,7 +42,7 @@
       "items": [
         {
           "question": "How to Integrate HSN & SAC Code Lookup into My Application?",
-          "answer": "<p class=\"text-gray-700\">\n    Integration is simple! Sign up at <a href=\"https://console.fastgst.in/marketplace/tax-lookup-api\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">FastGST ConsoleDesk</a>, get your API key, and use our REST API endpoints. Check our <a href=\"https://docs.taxlookupapi.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">API documentation</a> for code examples in multiple programming languages.\n</p>"
+          "answer": "<p class=\"text-gray-700\">\n    Integration is simple! Sign up at <a href=\"https://www.consoledesk.in/marketplace/tax-lookup-api\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">FastGST ConsoleDesk</a>, get your API key, and use our REST API endpoints. Check our <a href=\"https://docs.taxlookupapi.fastgst.in\" class=\"text-blue-600 hover:text-blue-800\" target=\"_blank\">API documentation</a> for code examples in multiple programming languages.\n</p>"
         },
         {
           "question": "What Programming Languages Support Your API?",

@@ -116,7 +116,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-gray-600 hover:text-primary-500 transition-colors">Home</a>
                     <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-gray-600 hover:text-primary-500 transition-colors">Documentation</a>
-                    <a href="https://console.fastgst.in/marketplace/tax-lookup-api" target="_blank" class="text-gray-600 hover:text-primary-500 transition-colors">ConsoleDesk</a>
+                    <a href="https://www.consoledesk.in/marketplace/tax-lookup-api" target="_blank" class="text-gray-600 hover:text-primary-500 transition-colors">ConsoleDesk</a>
                     <a href="contact.html" class="text-gray-600 hover:text-primary-500 transition-colors">Contact</a>
                 </div>
             </div>
@@ -204,7 +204,7 @@
                         <p class="text-gray-600 mb-4">
                             Access your API keys, monitor usage, and manage your account.
                         </p>
-                        <a href="https://console.fastgst.in/marketplace/tax-lookup-api" target="_blank" class="inline-block bg-primary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-600 transition-colors">
+                        <a href="https://www.consoledesk.in/marketplace/tax-lookup-api" target="_blank" class="inline-block bg-primary-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-600 transition-colors">
                             ConsoleDesk
                         </a>
                     </div>
@@ -273,7 +273,7 @@
                         Powering GST-compliant invoicing for India with smart APIs and seamless integration.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="https://console.fastgst.in/marketplace/tax-lookup-api" target="_blank" class="text-gray-400 hover:text-white transition-colors">ConsoleDesk</a>
+                        <a href="https://www.consoledesk.in/marketplace/tax-lookup-api" target="_blank" class="text-gray-400 hover:text-white transition-colors">ConsoleDesk</a>
                         <a href="https://api.taxlookup.fastgst.in/swagger/index.html" target="_blank" class="text-gray-400 hover:text-white transition-colors">API & Swagger</a>
                         <a href="https://docs.taxlookupapi.fastgst.in/documentations/index.html" target="_blank" class="text-gray-400 hover:text-white transition-colors">API Documentation</a>
                     </div>
@@ -380,7 +380,7 @@
                 sendNotification('Doc Visit', 'Someone opened API documentation');
             } else if (href && href.includes('api.taxlookup.fastgst.in/swagger')) {
                 sendNotification('Swagger Visit', 'Someone opened Swagger');
-            } else if (href && href.includes('console.fastgst.in')) {
+            } else if (href && (href.includes('consoledesk.in') || href.includes('console.fastgst.in'))) {
                 sendNotification('ConsoleDesk Visit', 'Someone opened ConsoleDesk');
             }
         });
